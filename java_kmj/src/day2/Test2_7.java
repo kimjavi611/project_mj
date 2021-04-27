@@ -20,7 +20,7 @@ public class Test2_7 {
 			System.out.println(month + "월은 28일까지 있습니다. ");
 		}if(month == 4 || month == 6 || month == 9 || month == 11) {
 			System.out.println(month + "월은 30일까지 있습니다. ");
-		}
+		}//마지막에 else if로 쓰거나 if로 써도 결과는 같은데 if로 쓰는 이유는? else는 생략이 가능?
 		
 	
 
