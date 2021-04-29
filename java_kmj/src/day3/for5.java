@@ -13,11 +13,24 @@ public class for5 {
 		 *  i = 4	sum = sum3 + 4
 		 *  i = 5	sum = sum4 + 5
 		 *  */
-		int i; 
-		for(i=1 ; i <= 5 ; i++) {
-			sum += i;
+		
+		/* i + 1 
+		 * i + 2 (i + 1)
+		 * i + 3
+		 * i + 4
+		 * i + 5*/
+	
+		
+		int i, sum = 0 ;
+		
+			
+			for(i = 1 ; i <= 5 ; i += 1) {
+				sum = sum + i;
+				
+			}
 			System.out.println("1부터 5까지의 합 : " + sum);
-		}
+		
+		
 
 		
 	}
