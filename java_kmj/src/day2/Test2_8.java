@@ -43,15 +43,17 @@ public class Test2_8 {
 			}else if(op == '-') {
 				result = num1 - num2;
 			}else if(op == '/') {
+				result = num1 / num2;
+			}else if(op == '%' ) {
 				result = num1 % num2;
-			}else if(op == )
+			}
 					
 				
 			
 			
-			
+				scan.close();
 		}
-		scan.close();
+		
 		
 	}
 
