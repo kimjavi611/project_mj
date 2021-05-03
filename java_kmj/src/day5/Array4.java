@@ -14,26 +14,26 @@ public class Array4 {
 		
 		int min = 1, max =10;
 		int i, k;
-		int arr [] = new int[3];
+		int cnt [] = new int[3];
 		System.out.print("랜덤 : "); 
 		
-			for(i = 0 ; i < arr.length ; i += 1) {
-		 		arr[i] = (int)(Math.random() * (max - min + 1) + min);
-			 	System.out.print(arr[1] + " ");
+			for(i = 0 ; i < cnt.length ; i += 1) {
+		 		cnt[i] = (int)(Math.random() * (max - min + 1) + min);
+			 	System.out.print(cnt[1] + " ");
 		 		//중복되었는지
 		 		
 		 	}
 			System.out.println();
 			
-			if(arr[0] == arr[1] || arr[0] == arr[2] || arr[1] == arr[2] ) {
+			if(cnt[0] == cnt[1] || cnt[0] == cnt[2] || cnt[1] == cnt[2] ) {
 				System.out.println("중복");
 			}else {
 				System.out.println("중복아님");
 			}
 			boolean isDuplicated = false;
-			for(i=0; i<arr.length-1; i +=1) {
-				for(k = i + 1; k < arr.length; k +=1) {
-					if(arr[i] == arr[k]) {
+			for(i=0; i<cnt.length-1; i +=1) {
+				for(k = i + 1; k < cnt.length; k +=1) {
+					if(cnt[i] == cnt[k]) {
 						isDuplicated = true;
 					}
 				}
