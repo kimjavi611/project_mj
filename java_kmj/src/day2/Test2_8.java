@@ -46,7 +46,11 @@ public class Test2_8 {
 				result = num1 / num2;
 			}else if(op == '%' ) {
 				result = num1 % num2;
+<<<<<<< HEAD
 			}
+=======
+			}else if(op == '%' );
+>>>>>>> 9899448102aa0fc09f58e9f2b213104a95330027
 					
 				
 			
