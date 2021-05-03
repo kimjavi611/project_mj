@@ -44,7 +44,7 @@ public class Test2_8 {
 				result = num1 - num2;
 			}else if(op == '/') {
 				result = num1 % num2;
-			}else if(op == )
+			}else if(op == '%' );
 					
 				
 			
