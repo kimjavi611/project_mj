@@ -23,10 +23,14 @@ public class Test5_4 {
 		int sum = 0;
 		for(i = 0 ; i < score.length ; i += 1) {
 			sum = sum + score[i];
+			
 		
 		}
 		//평균을 구함
-		double avg = int sum 
+		//총점 / 학생수
+		double avg = (double)sum / score.length;
+		System.out.println("총점 : " + sum + "평균 : " + avg);
+		
 			
 			
 			
