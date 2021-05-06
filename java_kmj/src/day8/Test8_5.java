@@ -21,27 +21,12 @@ public class Test8_5 {
 		arr2[0] = arr2[1] =1;
 		//피보나치 수열 값을 배열에 저장
 		for(int i =2 ;i <arr2.length ; i+=1) {//0번지 1번지는 초기화를 해줬기때문에 2번지부터
-			arr[i] = arr2[i-2]+arr2[i-1];
+			arr[i] = arr2[i-2]+ arr2[i-1];
 		}
 		//배열의 값을 출력
 		for(int i = 0; i < arr2.length ; i+=1) {
 			System.out.print(arr2[i] + " ");
-			//배열의 값을 출력
-			/*arr2[0] =1;
-			arr2[1] =1;*/
-			/*[0] 1
-			 * [1] 1
-			 * [2] 2
-			 * [3] 5
-			 * [4] 8
-			 * i + i
-			 * i+(i+i)
-			 * (i+i)+(i+i)+i
-			 * (i+i)+i+((i+i)+i)+i
-			 **/ 
-			//for(int i = 0;i< pbn.length ; i +=1) {
-				//pbn[i]+=1;
-			//arr[i] = arr[i-2]+ arr[i-1]
+			
 		}
 		System.out.println();
 		
@@ -85,7 +70,7 @@ public class Test8_5 {
 			System.out.println("연속아님");
 		}
 		
-		int[]arr4 = new int[5]; 
+		/*int[]arr4 = new int[5]; 
 		for(int i =0 ;i < arr3.length ;i +=1 ) {
 			int cnt = arr4[i];
 			if(arr3[i]+1 == arr3[i+1] ) {
@@ -95,7 +80,7 @@ public class Test8_5 {
 			}if(cnt == 3) {
 				break;
 			}
-		}
+		}*/
 		
 	}
 		
