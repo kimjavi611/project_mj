@@ -19,7 +19,6 @@ public class Lotto {
 		//자동생성 번호를 만듬.
 		int []user = new int[6];
 		int min =1, max =45;//테스트용으로 범위 좁혀서 10까지하고 후에 수정 (확률이 너무 낮아서 테스트하기가 어려움)
-		init(user, min,max);//1~10까지 랜덤한 숫자를 메소드init을 이용해서 만듦
 		for(int tmp : user) {
 			System.out.print(tmp +" ");
 		}
