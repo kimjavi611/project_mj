@@ -30,11 +30,10 @@ public class Rect {
 	public Rect () {
 		leftUp = new Point();
 		rightDown = new Point();
-		//멤버변수초기화
 	}
 	/* 생성자 : 좌상점과 우하점이 주어지면 해당 점을 이용한 사각형이 되도록 초기화 
 	 * 			좌상점, 우하점 초기화, 너비와 높이도 계산해서 초기화	
-	 * 매개변수 : 주어진점 
+	 * 매개변수 :  
 	 * */
 	public Rect(int left, int up, int right, int down) {
 		leftUp = new Point(left,up);
