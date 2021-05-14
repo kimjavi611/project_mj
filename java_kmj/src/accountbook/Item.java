@@ -46,6 +46,18 @@ public class Item {
 	public int getCost() {
 		return cost;
 	}
+	//금액 그냥 입력하면 지출인 '-00원'을 나타낼 수 없음 => 지출일때 -가 되는거 만들어줌 
+	//문자열끼리 비교하는거 아직 안배워서 switch문 이용 
+	public int calcost() {
+		switch(type) {
+		case "지출":
+			return -cost;
+		case "수입":
+			return +cost;
+		default:
+			return 0;
+		}
+	}
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
