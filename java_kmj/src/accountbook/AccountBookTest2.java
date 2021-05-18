@@ -1,5 +1,6 @@
 package accountbook;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AccountBookTest2 {
@@ -10,6 +11,7 @@ public class AccountBookTest2 {
 		int subMenu = 0;
 		Scanner scan = new Scanner(System.in);
 		do {
+			try {
 			abp.prinMenu();
 			menu = scan.nextInt();
 			switch(menu) {
@@ -47,7 +49,12 @@ public class AccountBookTest2 {
 			default:
 				System.out.println("잘못된 메뉴");
 			}
-			
+			}catch(InputMismatchException e) {
+				System.out.println("값을 잘못 입력했습니다");
+				//공백(스페이스)를 포함한 문자열을 엔터까지 가져옴
+				scan.nextLine();
+				menu = 0;
+			}
 		}while(menu != 5);
 
 	}
