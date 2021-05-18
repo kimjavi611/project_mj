@@ -56,8 +56,9 @@ public class AccountBook2 {
 	 *  */
 	public void delete(int index) {
 		if(index >= count || index < 0) {
-			System.out.println("잘못된 번지입니다.");
-			return;
+			throw new ArrayIndexOutOfBoundsException("잘못된 번지로 접근하고 있습니다.");
+			//System.out.println("잘못된 번지입니다.");
+			//return;
 		}
 		//삭제한거 빼야되니까 총금액 계산
 		total = total - arr[index].calcost();
