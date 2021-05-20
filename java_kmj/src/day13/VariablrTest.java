@@ -20,3 +20,4 @@ class A{
 		num2 = num4;
 	}
 }
+
