@@ -1,6 +1,6 @@
 package day17;
 
-public class WrpperTest {
+public class WrapperTest {
 
 	public static void main(String[] args) {
 		Integer num1 =1;
