@@ -17,7 +17,7 @@ public class MapTest1 {
 		System.out.println(map.put("과일", "포도"));
 		//containsKey(객체) : key값에 객체와 일치하는 정보가 있는지 없는지 알려줌
 		//containsValue(객체) : value값에 객체와 일치하는 정보가 있는지 없는지 알려줌
-		System.out.println("key에 과일이 있습니까? " + map.containsKey("과일"));
+		System.out.println("key에 과과일이 있습니까? " + map.containsKey("과일"));
 		System.out.println("key에 포도가 있습니까? " + map.containsKey("포도"));
 		System.out.println("value에 과일이 있습니까? " + map.containsValue("과일"));
 		System.out.println("Value에 포도가 있습니까? " + map.containsValue("포도"));
