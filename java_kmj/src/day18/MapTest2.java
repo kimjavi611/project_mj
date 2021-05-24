@@ -61,11 +61,12 @@ public class MapTest2 {
 			//1. 회원가입
 			switch(num) {
 			case 1 : 
-				System.out.print("등록할 아이디와 비밀번호를 입력하세요 : ");
+				System.out.print("등록할 아이디를 입력하세요 : ");
 				//아이디 입력
 				id = scan.next();
 				//가입된 아이디가 아니면 비밀번호 입력 후 아이디와 비밀번호를 저장
 				if(!map.containsKey(id)) {
+					System.out.println("등록할 비밀번호를 입력하세요 : ");
 					pw = scan.next();
 					map.put(id,pw);
 				//가입된 아이디이면 이미 가입된 아이디라고 출력
@@ -76,16 +77,16 @@ public class MapTest2 {
 			case 2:
 				//아이디 입력
 				 System.out.print("아이디를 입력하세요 : ");
-				 String id2 = scan.next();
+				 id = scan.next();
 				//비밀번호 입력
 				 System.out.print("비밀번호를 입력하세요 : ");
-				 String pw2 =scan.next();
+				 pw =scan.next();
 				 //아이디와 비밀번호가 일치하는지 확인하여 같으면 로그인 성공
 				 //문자열비교 equals()
 				 //아이디랑 비밀번ㅎ가 일치하는지 => id랑 id2가 일치하는지 
 				 //pw랑 pw2가 일치하는지 확인
 				//다르면 로그인 실패라고 출력
-				 if(id2.equals(map.get(id)) && pw2.equals(map.get(pw))){
+				 if(map.get(id).equals(pw)){
 					 System.out.print("로그인 성공");	
 				 }else {
 					 System.out.print("로그인 실패");
@@ -97,7 +98,7 @@ public class MapTest2 {
 			default:
 				System.out.print("잘못된 메뉴입니다.");
 			} 
-		}while(num == 3); 
+		}while(num != 3); // true면 작동 false면 멈춤
 		
 		
 	}
