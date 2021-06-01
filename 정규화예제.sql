@@ -31,4 +31,4 @@ select so_title from `source`
 		on so_num = li_so_num
 	join album
 		on al_num = li_al_num
-	where si_name = '소녀시대' and al_title like '%3집%';   
+	where li_si_name = '소녀시대' and al_title like '%3집%';   
