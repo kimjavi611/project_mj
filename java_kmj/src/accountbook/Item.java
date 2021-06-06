@@ -92,7 +92,6 @@ public class Item {
 			this.cost = cost;
 		if(contents != null)
 			this.contents = contents;
-		
 		this.type = type;
 		this.date = date;
 		this.paymentType = paymentType;
