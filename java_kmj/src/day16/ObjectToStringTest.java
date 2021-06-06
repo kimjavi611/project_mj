@@ -12,7 +12,7 @@ public class ObjectToStringTest {
 class Student{
 	private String name;
 	private int grade;
-	private int classnum;
+	private int classNum;
 	private int num;
 	
 	public String getName() {
@@ -28,10 +28,10 @@ class Student{
 		this.grade = grade;
 	}
 	public int getClassnum() {
-		return classnum;
+		return classNum;
 	}
 	public void setClassnum(int classnum) {
-		this.classnum = classnum;
+		this.classNum = classnum;
 	}
 	public int getNum() {
 		return num;
@@ -43,12 +43,16 @@ class Student{
 		super();
 		this.name = name;
 		this.grade = grade;
-		this.classnum = classnum;
+		this.classNum = classnum;
 		this.num = num;
 	}
 	@Override
 	public String toString() {//클래스의 값을 간단하게 출력할 수 있음 
-		return "Student [name=" + name + ", grade=" + grade + ", classnum=" + classnum + ", num=" + num + "]";
+		return "Student [name=" + name + ", grade=" + grade + ", classnum=" + classNum + ", num=" + num + "]";
+	}
+	public void print() {
+		System.out.println("이름 : " + name + "\n학년 : " + grade 
+				+ "\n반 : " + classNum + "\n번호 : " + num);
 	}
 	
 }
