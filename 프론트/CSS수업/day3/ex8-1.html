@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>구조 예제</title>
+	<style>
+		*{font-weight: bold; color: thistle; font-size: 20px; text-align: center;}
+		.header,footer{ height: 50px;  line-height: 50px;
+		 background-color: teal; }
+		.container{margin: 10px 0;}
+		.container::after{content: ''; display: block; clear: both;}
+		nav, aside{
+			width: 100px; height: 400px; line-height: 400px; float: left; background-color: teal;
+			}
+		aside{float: right;}		
+		section{
+			height: 400px; background-color: teal; float: left;
+			width: calc(100% - 200px - 20px); margin-left: 10px; padding: 10px; box-sizing: border-box;
+		}
+		.title{height: 30px; line-height: 30px;}
+		.container>section>header{
+			height: 50px; background-color: darkslategray; line-height: 50px;
+			}
+		.container>section>footer{
+			height: 80px; background-color: darkslategray; line-height: 80px;
+			}
+		.container>section>article{
+			height: clac(100% - 160px -20px); background-color: darkslategray; 
+		line-height: 180; margin: 10px 0;
+		}
+	</style>
+</head>
+<body>
+	<header class="header">&lt;header&gt;</header>
+	<div class="container">
+		<nav>&lt;nav&gt;</nav>
+		<section>
+			<div class="title">&lt;section&gt;</div>
+				<header>&lt;header&gt;</header>
+				<article>&lt;article&gt;</article>
+				<footer>&lt;footer&gt;</footer>
+		</section>
+		<aside>&lt;aside&gt;</aside>
+	</div>
+	<footer class="footer">&lt;footer&gt;</footer>
+</body>
+</html>
