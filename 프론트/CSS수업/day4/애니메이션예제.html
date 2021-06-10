@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박스이동 애니메이션</title>
+    <style>
+     /* 박스가 오른쪽으로 이동했다가 원래 위치로 돌아오는 애니메이션을 만드세요. 무한반복 */
+     .box{
+        width: 100px; height: 100px; border:2px solid darkblue; 
+        display: inline-block; position: relative; animation: move1 infinite 3s;
+     }
+    @keyframes move1{
+        0%{margin-left: 10px;}
+        50%{margin-left: 100px;}
+        100%{margin-left: 10px;}
+            
+    
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
