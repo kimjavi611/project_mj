@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예제 내가 푸는거</title>
+    <script src="https://kit.fontawesome.com/660af269cf.js" crossorigin="anonymous"></script>
+    <style>
+         *{padding: 0; margin: 0;}
+        ul,ol{list-style: none;}
+        a{text-decoration: none; color: black;}
+        .ham-menu{border: 1px solid tomato;}
+        .menu li{
+            width: calc(100% / 3); height: 50px; 
+            box-sizing: border-box; float: left; border-right: 1px solid tomato;
+        }
+        .menu::after{content: ''; display: block; clear: both;}
+        .menu >li:last-child{border-right: none;}
+        .menu>li>a{display: block; height: 100%; text-align: center; line-height: 50px;}
+
+        @media screen and (max-width : 640px) {
+            
+            .ham-menu{width: 300px;}
+            .menu>li{width: 100%; border-right: none; border-bottom: 1px solid tomato;}
+            
+        .menu >li:last-child{border-bottom: none;}
+        }
+    </style>
+</head>
+<body>
+    <nav class="ham-mene">
+        <ul class="menu">
+            <li><a href="#1">메뉴1</a></li>
+            <li><a href="#2">메뉴2</a></li>
+            <li><a href="#3">메뉴3</a></li>
+            <i class="fas fa-bars"></i>
+        </ul>
+
+
+    </nav>
+</body>
+</html>
