@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다단 예제</title>
+    <style>
+        /* 
+        - column-count : 다단 갯수
+        - column-gab : 단과 단사이의 여백
+        - column-rule : 단 선 모양
+        - column-span : h태그가 포함되면 해당 부분에 단을 해제할지 말지를 결정하는 속성
+        - column-width : 한 단에 대한 최소 너비
+         */
+        p{
+            width: 600px;
+            column-count: 2;
+            column-gap: 20px;
+            column-rule: 1px solid violet;
+            column-width: 250px;
+            text-align: justify;
+        }
+        body h1{column-span: all;}
+    </style>
+</head>
+<body>
+    <h1>김라비 개짱짱</h1>
+    <p>
+        
+        가수 라비(RAVI)가 글로벌한 차트 성적을 이어가고 있다.
+        지난 3일 발매된 라비의 네 번째 미니앨범 ‘로지스(ROSES)’가 미국 아이튠즈 힙합 차트에서 30위를 차지하며 글로벌한 인기를 과시하고 있다.
+        라비는 이번 차트에서 유일한 한국 아티스트로 이름을 올렸다. 특히 2019년 이후로 미국 아이튠즈 힙합 장르에 차트인 된 한국 아티스트가 없었다는 점에서, 라비의 새 앨범 ‘로지스(ROSES)’를 주목할 만하다.
+        앞서 미국의 경제 전문지 포브스(Forbes)는 ‘6월 발매가 가장 기대되는 K팝 솔로 아티스트’로 라비의 네 번째 미니앨범 ‘로지스(ROSES)’를 꼽은 바 있다.
+        기대에 부응하듯 라비의 새 앨범 ‘로지스(ROSES)’는 발매와 동시에 싱가포르를 비롯한 말레이시아, 필리핀, 인도네시아, 태국, 베트남 등 해외 6개국 아이튠즈 K팝 앨범 차트에서 10위권 안에 오르며 호성적을 거뒀다.
+        또한 더블 타이틀곡 ‘카디건(CARDIGAN)’과 ‘꽃밭(FLOWER GARDEN)’은 지니, 벅스 등 국내 주요 음원사이트 순위권에 진입하는 등 국내외 힙합 팬들의 호평 속에 뜨거운 반응을 얻고 있다.
+
+
+    </p>
+  
+</body>
+</html>
