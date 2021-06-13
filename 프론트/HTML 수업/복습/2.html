@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습파일2</title>
+
+</head>
+<body>
+    <!-- img태그가 있는 html문서와 같은 폴더에 있는 고양이.jpg 이미지를 가져옴 -->
+    <img src="고양이.jpg" alt="고양이">
+
+    <!-- 
+        최상위를 기준으로 최상위 폴더 > 복습 폴더 > 고양이.jpg 이미지를 가져옴
+        최상위 폴더의 기준은 open folder를 아용하여 연 폴더를 기준으로 하기 때문에
+        상황에 따라 최상위 폴더 기준이 달라질 수 있다.
+     -->
+
+    <img scr="/복습/고양이.jpg" alt="고양이" width="100" height="100">
+    <img src="./고양이.jpg" alt="고양이" width="100" height="auto">
+    <img src="../복습/고양이.jpg" alt="고양이" width="auto" height="100">
+    <img scr="https://pbs.twimg.com/media/ESKRiHUUYAAdmDU?format=jpg&name=small" alt="구름이">
+</body>
+</html>
