@@ -5,6 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>기본태그</title>
+
+</head>
+<body>
+    **<img태그>**
+<!--
+- 인라인 태그
+- 이미지를 추가하는 태그, 화면에 이미지를 보여주는 태그
+- 속성
+    -src : 이미지 파일 주소
+    -alt : 이미지를 못 불러왔을 때 보여줄 대체 문자열
+    -width : 이미지 폭, 생략하면 원본 이미지 높이, 단위는 px
+    -height : 이미지 높이, 생략하면 원본 이미지 높이, 단위는 px
+
+- width 또는 height 중 하나의 값이 auto이면 정해진 width, height를 기준으로 비율을 유지하면서 값을 설정
+- width="100" height="auto" 인 경우 가로 100px를 기준으로 원본 이미지 비율대로 높이를 설정-->
+
 <!-- img태그가 있는 html문서와 같은 폴더에 있는 dogi.jpg 이미지를 가져옴-->
 <img src="dogi.JPG" alt="두기">
 <!-- 최상위를 기준으로 최상위 폴더 > day1폴더 > cat.jpg 이미지를 가져옴
@@ -17,7 +33,7 @@
     day1 폴더 안에 있는 cat.jpg 이미지를 가져옴-->
 <img src="../dya1/dogi.JPG" alt="두기"width="100" height="auto">
 <!-- 인터넷에 있는 이미지를 가져옴-->
-<img src="https://images.mypetlife.co.kr/content/uploads/2019/09/09152948/cat-baby-4208578_1920.jpg
+<img src="https://images.mypetlife.co.kr/content/uploads/2019/09/09152948/cat-baby-4208578_1920.jpg"
 alt="구름이">
 <!-- 
 - 리스트
@@ -69,8 +85,5 @@ alt="구름이">
     <dd>구글에서 만든 브라우저</dd>
 
 </dl>
-</head>
-<body>
-    
 </body>
 </html>
