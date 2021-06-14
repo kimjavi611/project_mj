@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>네이버 구조 예제</title>
+	<script src="https://kit.fontawesome.com/660af269cf.js" crossorigin="anonymous"></script>
+	<style>
+		*{padding: 0; margin: 0;}
+		ul,ol{list-style: none;}
+		a{text-decoration: none; color: black;}
+
+		.container{width: 1190px; margin: 0 auto;}
+		.box1{box-sizing: border-box; height: 49px; border: 1px solid red;}
+		.box2{box-sizing: border-box; height: 160px; position: relative;}
+		.box3{
+			box-sizing: border-box; min-width: 1190px; height: 52px; border-top: 2px solid #e4e8eb; 
+			box-shadow: 0px 1px 3px 0 rgba(0,0,0,12); 
+
+			}
+		.box4{box-sizing: border-box; height: 1000px; padding: 20px 30px ;}
+		.box5{box-sizing: border-box; height: 423px; border: 1px solid purple;}
+		
+		.logo-box{
+			width: 220px; height: 52px; box-sizing: border-box;
+			border: 1px solid red; position: absolute; top:calc(50% - 26px) ; left: 0;
+			}
+		.search-box{
+			width: 586px; height: 56px; box-sizing: border-box;
+			border: 2px solid #19ce60; position: absolute; top: 50%; left: 268px; margin-top: -28px;
+			}
+		/* 자식의 position이 absolute이고, 부모의 position이 absolute이면 
+		자식은 부모를 기준으로 잡는다. */
+		.search-btn{
+			width: 56px; height: 56px; border: none; background-color: #19ce60;
+			position: absolute; right: -2px; top: -2px;/*테두리랑 겹치게*/ cursor: pointer;  
+		}
+		.search-input{
+			display: block; padding: 14px 15px;/* 빈 여백을 클릭해도 검색창이 활성화 되도록 
+			position absloute가 아니라 padding으로 만들어줌*/ 
+			line-height: 24px;height: 24px; width: 444px;
+			border: none; 
+			}
+		.search-input:focus{border: none; outline: none;}
+		
+		.menu{height: 100%; box-sizing: border-box; border: 1px solid blue;}
+		.box4-inner{
+			 height: 100%; 
+		}
+		.inner-left{border: 1px solid red; width: 750px; height: 100%; float: left; box-sizing: border-box;}
+		.inner-right{border: 1px solid orange; width: 350px; height: 100%; float: right; box-sizing: border-box; }
+		.after::after{
+			clear: both;display: block; content: "";
+		}
+		.left-top, .right-top{
+			height: 135px; width: 100%; border:1px solid green; 
+		box-sizing: border-box;margin-bottom: 12px;
+		}
+		.left-bottom{height: 367px;}
+		.right-bottom{height: 49px; width: 100%; border: 1px solid black; box-sizing: border-box;
+		position: relative;}
+
+		.lb-top{height: 49px; width: 100%; background:  purple;}
+		.lb-middle{height: 56px; width: 100%; background-color: paleturquoise;}
+		.lb-bottom{height: 262px; width: 100%; border: 1px solid #dae1e6; box-sizing: border-box; position: relative;}
+
+		.lb-bottom>.row{display: flex;}
+		.lb-bottom>.row>.col{
+			height: 65px;width: 100%;
+		}
+		
+		.bar{
+			background-color: #dae1e6;
+		}
+		.top1{
+			left: 0; right: 0; top: 65px; height: 1px;position: absolute;
+		}
+		.top2{
+			left: 0; right: 0; top: 130px; height: 1px;position: absolute;
+		}
+		.top3{
+			left: 0; right: 0; top: 195px; height: 1px;position: absolute;
+		}
+
+		.right1{
+			position: absolute; top: 0; bottom: 0; left: 124px; width: 1px;
+		}
+		.right2{
+			position: absolute; top: 0; bottom: 0; left: 248px; width: 1px;
+		}
+		.right3{
+			position: absolute; top: 0; bottom: 0; left: 372px; width: 1px;
+		}
+		.right4{
+			position: absolute; top: 0; bottom: 0; left: 497px; width: 1px;
+		}
+		.right5{
+			position: absolute; top: 0; bottom: 0; left: 622px; width: 1px;
+		}
+
+		/* 마우스를 가져다 대면 횐색=> 회색으로 색 변함. 마우스 다시 떼면 다시 흰색 */
+		.col-1{width:100%; height: 65px; background-color: white}
+		/* 처음에 색 안보이게 만들어줘야됨 => displqy: none안해주면 설정된 색으로 보임 */
+		.col-2{width: 100%; height: 65px;background-color: #f7f9fa; display: none;}
+		.col:hover .col-1{display: none;}
+		.col:hover .col-2{display: block;}
+
+		
+.right-bottom .btn-box{
+			position: absolute; top: 11px; right: 10px;
+		}
+		.btn-box>.prev-btn,
+		.btn-box>.next-btn{
+			float: left; width: 24px;height: 24px; border: 1px solid #e4e8eb; box-sizing: border-box; 
+		   text-align: center; line-height: 22px; cursor: pointer; font-size: 12px;
+		}
+		.btn-box>.next-btn{
+		 margin-left: -1px; 
+		}
+
+
+
+		
+	</style>
+</head>
+<body>
+	
+	<div class="box1 container"></div>
+	<div class="box2 container">
+		<div class="logo-box"></div>
+		<div class="search-box">
+			<form action="">
+				<button type="submit" class="search-btn"></button>
+			</form>	
+				<input type="text" class="search-input">
+			</div>
+		</div>
+	</div>
+	<div class="box3">
+		<div class="menu container"></div>
+	</div>
+	<div class="box4 container">
+		<div class="box4-inner after">
+			<div class="inner-left after">
+				<div class="left-top"></div>
+				<div class="left-bottom after">
+					<div class="lb-top"></div>
+					<div class="lb-middle"></div>
+					<div class="lb-bottom">
+						<div class="bar-list">
+							<div class="bar top1"></div>
+							<div class="bar top2"></div>
+							<div class="bar top3"></div>
+							<div class="bar right1"></div>
+							<div class="bar right2"></div>
+							<div class="bar right3"></div>
+							<div class="bar right4"></div>
+							<div class="bar right5"></div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+							<div class="col">
+								<div class="col-1"></div>
+								<div class="col-2"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="inner-right after">
+				<div class="right-top"></div>
+				<div class="right-bottom after">
+					<div class="btn-box">
+						<div class="prev-btn">
+							<i class="fas fa-angle-left"></i>
+						</div>
+						<div class="next-btn">
+							<i class="fas fa-angle-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box5 container"></div>
+
+</body>
+</html>
