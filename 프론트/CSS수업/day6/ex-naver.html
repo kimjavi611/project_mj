@@ -19,7 +19,7 @@
 			box-shadow: 0px 1px 3px 0 rgba(0,0,0,12); 
 
 			}
-		.box4{box-sizing: border-box; height: 1000px; padding: 20px 30px ;}
+		.box4{padding: 20px 30px;}
 		.box5{box-sizing: border-box; height: 423px; border: 1px solid purple;}
 		
 		.logo-box{
@@ -49,7 +49,7 @@
 			 height: 100%; 
 		}
 		.inner-left{border: 1px solid red; width: 750px; height: 100%; float: left; box-sizing: border-box;}
-		.inner-right{border: 1px solid orange; width: 350px; height: 100%; float: right; box-sizing: border-box; }
+		.inner-right{ width: 350px; float: right;}
 		.after::after{
 			clear: both;display: block; content: "";
 		}
@@ -57,6 +57,11 @@
 			height: 135px; width: 100%; border:1px solid green; 
 		box-sizing: border-box;margin-bottom: 12px;
 		}
+		.right-top{
+			padding: 16px 16px 12px 17px; background-color: #f7f9fa; 
+			border:1px solid #dae1e6;
+			}
+		
 		.left-bottom{height: 367px;}
 		.right-bottom{height: 49px; width: 100%; border: 1px solid black; box-sizing: border-box;
 		position: relative;}
@@ -107,7 +112,7 @@
 		.col:hover .col-2{display: block;}
 
 		
-.right-bottom .btn-box{
+		.right-bottom .btn-box{
 			position: absolute; top: 11px; right: 10px;
 		}
 		.btn-box>.prev-btn,
@@ -119,9 +124,54 @@
 		 margin-left: -1px; 
 		}
 
+		.inner-rt-box{position: relative; height: 100%;}
+		.inner-rt-box>p.title{
+			height: 16px; line-height: 16px; line-height: 16px;
+			font-size: 12px; color: grey;
+			}
+		.inner-rt-box>a.login-link{
+			height: 48px; background-color: #19ce60; margin-top: 11px; display: block; 
+			text-align: center; line-height: 48px; color: white; font-weight: bold; 
+			border: 1px solid #15c654; border-radius: 2px;
+			}
+			
+		.find-box{
+			position: absolute; bottom: 0;left: 0;
+		}	
+		.signup-link{
+			position: absolute; bottom: 0; right: 0;
+		}
+		.signup-link, .findid-link, .findpw-link{font-size: 12px; color: #505050;}
+		.findpw-link::before{
+			content: "";
+			display: inline-block; width: 2px; height: 2px; position: relative;
+			border-radius: 50%; background-color: #505050; margin-right: 5px; top: -5px;
+		}
+
+		.right-box3{height: 200px; margin-top: 12px; background-color: cadetblue;}
+		.right-box4{height: 1539px; margin-top: 15px; background-color: cadetblue;}
+		.right4-top-box{height: 44px; background-color: darkblue;}
+		.right4-bot-box{border: 1px solid #e4e8eb; box-sizing: border-box;}
+		.right4-bot1{
+			height: 70px; background:#f7f9fa; border-bottom: #e4e8eb;
+			padding: 12px 4px 11px 10px; box-sizing: border-box;
+		}
+		.right4-bot2{height: 886px; background: rgb(183, 197, 183);}
+		.right4-bot3{height: 262px; background: yellow;}
+		.right4-bot4{height: 274px; background: teal;}
+
+		.bot1-1, .bot1-2{height: 23px; font-size: 13px; line-height: 23px;}
 
 
-		
+		.shop2::before, .shop3::before, .shop4::before, .shop5::before, .shop6::before,
+		.shop8::before, .shop9::before, .shop10::before, .shop11::before, .shop12::before{
+			content: "";
+			display: inline-block; width: 2px; height: 2px; position: relative;
+			border-radius: 50%; background-color: #c9cccf; margin-right: 5px; margin-bottom: 5px;
+		}
+
+		.bold{font-weight: bold;}
+		.bot1-1:hover, .bot1-2:hover{text-decoration: underline;}
 	</style>
 </head>
 <body>
@@ -266,15 +316,53 @@
 				</div>
 			</div>
 			<div class="inner-right after">
-				<div class="right-top"></div>
+				<div class="right-top">
+					<div class="inner-rt-box after">
+						<p class="title">네이버를 더 안전하고 편리하게 이용하세요</p>
+						<a href="#" class="login-link">NAVER 로그인</a>
+						<div class="find-box">
+							<a href="#" class="findid-link">아이디</a>
+							<a href="#" class="findpw-link">비밀번호찾기</a>
+						</div>
+						<a href="#" class="singup-link">회원가입</a>
+					</div>
+				</div>
 				<div class="right-bottom after">
 					<div class="btn-box">
 						<div class="prev-btn">
 							<i class="fas fa-angle-left"></i>
 						</div>
-						<div class="next-btn">
+						<div class="next-btn"></div>
 							<i class="fas fa-angle-right"></i>
 						</div>
+					
+				</div>
+				<div class="right-box3"></div>
+				<div class="right-box4">
+					<div class="right4-top-box"></div>
+					<div class="right4-bot-box">
+						<div class="right4-bot1">
+								<div class="bot1-1">
+									<a href="#" class="shop1 bold">G마켓</a>
+									<a href="#" class="shop2">옥션</a>
+									<a href="#" class="shop3">11번가</a>
+									<a href="#" class="shop4 bold" >이마트몰</a>
+									<a href="#" class="shop5">티몬</a>
+									<a href="#" class="shop6">위메프</a>
+								</div>
+								<div class="bot1-2">
+									<a href="#" class="shop7">쿠팡</a>
+									<a href="#" class="shop8">신세계몰</a>
+									<a href="#" class="shop9 bold">올리브영</a>
+									<a href="#" class="shop10">GS샵</a>
+									<a href="#" class="shop11 bold">롯데i몰</a>
+									<a href="#" class="shop12">CJ온스타일</a>
+								</div>
+							</div>
+						</div>
+						<div class="right4-bot2"></div>
+						<div class="right4-bot3"></div>
+						<div class="right4-bot4"></div>
 					</div>
 				</div>
 			</div>
