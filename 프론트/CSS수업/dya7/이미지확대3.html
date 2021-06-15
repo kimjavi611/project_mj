@@ -7,7 +7,9 @@
 	<title>이미지확대3</title>
 	<style>
 		*{padding: 0; margin: 0; text-decoration: none; color: black;}
+		
 		.box{padding: 10px; width: 410px; border: 1px solid black;}
+		.box:nth-child(2){float: right;}
 		.inner-box{clear: both; content: ""; display: block;}
 
 		.img-box{width: 200px; height: 200px; overflow: hidden; float: left;}
@@ -22,14 +24,16 @@
 	</style>
 </head>
 <body>
-	<div class="box">
-		<div class="inner-box">
-			<div class="img-box">
-				<img src="../image/고양이.jpg" alt="">
-			</div>
-			<div class="group-box">
-				<p class="title">제목</p>
-				<p class="contents">내용</p>
+	<div class="container">
+		<div class="box">
+			<div class="inner-box">
+				<div class="img-box">
+					<img src="../image/고양이.jpg" alt="">
+				</div>
+				<div class="group-box">
+					<p class="title">제목</p>
+					<p class="contents">내용</p>
+				</div>
 			</div>
 		</div>
 	</div>
