@@ -53,17 +53,17 @@
 		.after::after{
 			clear: both;display: block; content: "";
 		}
-		.left-top, .right-top{
+		.left-top, .right-box1{
 			height: 135px; width: 100%; border:1px solid green; 
 		box-sizing: border-box;margin-bottom: 12px;
 		}
-		.right-top{
+		.right-box1{
 			padding: 16px 16px 12px 17px; background-color: #f7f9fa; 
 			border:1px solid #dae1e6;
 			}
 		
 		.left-bottom{height: 367px;}
-		.right-bottom{height: 49px; width: 100%; border: 1px solid black; box-sizing: border-box;
+		.right-box2{height: 49px; width: 100%; border: 1px solid black; box-sizing: border-box;
 		position: relative;}
 
 		.lb-top{height: 49px; width: 100%; background:  purple;}
@@ -112,21 +112,22 @@
 		.col:hover .col-2{display: block;}
 
 		
-		.right-bottom .btn-box{
+		.right-box2 .btn-box{
 			position: absolute; top: 11px; right: 10px;
 		}
-		.btn-box>.prev-btn,
-		.btn-box>.next-btn{
-			float: left; width: 24px;height: 24px; border: 1px solid #e4e8eb; box-sizing: border-box; 
+		.right-box2 .btn-box>.prev-btn,
+		.right-box2 .btn-box>.next-btn{
+			float: left; width: 24px; height: 24px; border: 1px solid #e4e8eb; 
+			box-sizing: border-box; 
 		   text-align: center; line-height: 22px; cursor: pointer; font-size: 12px;
 		}
-		.btn-box>.next-btn{
-		 margin-left: -1px; 
+		.right-box2 .btn-box .next-btn{
+			 margin-left: -1px; 
 		}
 
 		.inner-rt-box{position: relative; height: 100%;}
 		.inner-rt-box>p.title{
-			height: 16px; line-height: 16px; line-height: 16px;
+			height: 16px; line-height: 16px; 
 			font-size: 12px; color: grey;
 			}
 		.inner-rt-box>a.login-link{
@@ -145,8 +146,12 @@
 		.findpw-link::before{
 			content: "";
 			display: inline-block; width: 2px; height: 2px; position: relative;
-			border-radius: 50%; background-color: #505050; margin-right: 5px; top: -5px;
+			border-radius: 50%; background-color: #505050; margin-right: 6px; bottom: 4px;
 		}
+
+		.signup-link:hover, .findid-link:hover, .findpw-link:hover{
+			text-decoration: underline;
+			}
 
 		.right-box3{height: 200px; margin-top: 12px; background-color: cadetblue;}
 		.right-box4{height: 1539px; margin-top: 15px; background-color: cadetblue;}
@@ -160,18 +165,19 @@
 		.right4-bot3{height: 262px; background: yellow;}
 		.right4-bot4{height: 274px; background: teal;}
 
-		.bot1-1, .bot1-2{height: 23px; font-size: 13px; line-height: 23px;}
-
-
-		.shop2::before, .shop3::before, .shop4::before, .shop5::before, .shop6::before,
-		.shop8::before, .shop9::before, .shop10::before, .shop11::before, .shop12::before{
-			content: "";
-			display: inline-block; width: 2px; height: 2px; position: relative;
-			border-radius: 50%; background-color: #c9cccf; margin-right: 5px; margin-bottom: 5px;
+		.mall-link{
+			float: left; height: 23px; font-size: 13px; line-height: 23px;
 		}
+		.mall-list::after{clear: both; display: block; content: '';}
+
+		.circle, .circle2{
+			width: 2px; height: 2px; border-radius: 50%;background-color: #c9cccf;
+			float: left; margin: 10px 9px 0 9px;
+		}
+		.circle2{margin: 10px 5px 0 5px;}
 
 		.bold{font-weight: bold;}
-		.bot1-1:hover, .bot1-2:hover{text-decoration: underline;}
+		.mall-link:hover{text-decoration: underline;}
 	</style>
 </head>
 <body>
@@ -192,9 +198,9 @@
 	</div>
 	<div class="box4 container">
 		<div class="box4-inner after">
-			<div class="inner-left after">
+			<div class="inner-left">
 				<div class="left-top"></div>
-				<div class="left-bottom after">
+				<div class="left-bottom">
 					<div class="lb-top"></div>
 					<div class="lb-middle"></div>
 					<div class="lb-bottom">
@@ -315,50 +321,59 @@
 					</div>
 				</div>
 			</div>
-			<div class="inner-right after">
-				<div class="right-top">
-					<div class="inner-rt-box after">
+			<div class="inner-right">
+				<div class="right-box1">
+					<div class="inner-rt-box">
 						<p class="title">네이버를 더 안전하고 편리하게 이용하세요</p>
 						<a href="#" class="login-link">NAVER 로그인</a>
 						<div class="find-box">
-							<a href="#" class="findid-link">아이디</a>
+							<a href="#" class="findid-link"><i class="fas fa-lock"></i> 아이디</a>
 							<a href="#" class="findpw-link">비밀번호찾기</a>
 						</div>
-						<a href="#" class="singup-link">회원가입</a>
+						<a href="#" class="signup-link"><i class="fas fa-user"></i> 회원가입</a>
 					</div>
 				</div>
-				<div class="right-bottom after">
-					<div class="btn-box">
+				<div class="right-box2">
+					<div class="btn-box after">
 						<div class="prev-btn">
 							<i class="fas fa-angle-left"></i>
 						</div>
-						<div class="next-btn"></div>
+						<div class="next-btn">
 							<i class="fas fa-angle-right"></i>
 						</div>
-					
+					</div>
 				</div>
 				<div class="right-box3"></div>
 				<div class="right-box4">
 					<div class="right4-top-box"></div>
 					<div class="right4-bot-box">
 						<div class="right4-bot1">
-								<div class="bot1-1">
-									<a href="#" class="shop1 bold">G마켓</a>
-									<a href="#" class="shop2">옥션</a>
-									<a href="#" class="shop3">11번가</a>
-									<a href="#" class="shop4 bold" >이마트몰</a>
-									<a href="#" class="shop5">티몬</a>
-									<a href="#" class="shop6">위메프</a>
+								<div class="mall-list">
+									<a href="#" class="mall-link bold">G마켓</a>
+									<span class="circle"></span>
+									<a href="#" class="mall-link">옥션</a>
+									<span class="circle"></span>
+									<a href="#" class="mall-link">11번가</a>
+									<span class="circle"></span>
+									<a href="#" class="mall-link bold" >이마트몰</a>
+									<span class="circle"></span>
+									<a href="#" class="mall-link">티몬</a>
+									<span class="circle"></span>
+									<a href="#" class="mall-link">위메프</a>
 								</div>
-								<div class="bot1-2">
-									<a href="#" class="shop7">쿠팡</a>
-									<a href="#" class="shop8">신세계몰</a>
-									<a href="#" class="shop9 bold">올리브영</a>
-									<a href="#" class="shop10">GS샵</a>
-									<a href="#" class="shop11 bold">롯데i몰</a>
-									<a href="#" class="shop12">CJ온스타일</a>
+								<div class="mall-list">
+									<a href="#" class="mall-link">쿠팡</a>
+									<span class="circle2"></span>
+									<a href="#" class="mall-link">신세계몰</a>
+									<span class="circle2"></span>
+									<a href="#" class="mall-link bold">올리브영</a>
+									<span class="circle2"></span>
+									<a href="#" class="mall-link" >GS샵</a>
+									<span class="circle2"></span>
+									<a href="#" class="mall-link bold">롯데i몰</a>
+									<span class="circle2"></span>
+									<a href="#" class="mall-link">CJ온스타일</a>
 								</div>
-							</div>
 						</div>
 						<div class="right4-bot2"></div>
 						<div class="right4-bot3"></div>
