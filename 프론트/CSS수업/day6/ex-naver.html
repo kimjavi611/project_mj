@@ -161,7 +161,11 @@
 			height: 70px; background:#f7f9fa; border-bottom: #e4e8eb;
 			padding: 12px 4px 11px 10px; box-sizing: border-box;
 		}
-		.right4-bot2{height: 886px; background: rgb(183, 197, 183);}
+		.right4-bot2{
+			height: 886px; background: rgb(183, 197, 183);
+			padding: 55px 8px 22px;
+			}
+
 		.right4-bot3{height: 262px; background: yellow;}
 		.right4-bot4{height: 274px; background: teal;}
 
@@ -178,6 +182,17 @@
 
 		.bold{font-weight: bold;}
 		.mall-link:hover{text-decoration: underline;}
+
+		.ad-list{background-color: blanchedalmond;}
+		.ad1,.ad2, .ad3{
+			width: calc((100% / 3)); height: 182px; border: 1px solid black; box-sizing: border-box;
+			float: left; 
+		}
+		
+		.ad3{float: right;}
+		
+		
+		
 	</style>
 </head>
 <body>
@@ -375,7 +390,14 @@
 									<a href="#" class="mall-link">CJ온스타일</a>
 								</div>
 						</div>
-						<div class="right4-bot2"></div>
+						<div class="right4-bot2">
+							<div class="ad-list after">
+								<div class="ad1"></div>
+								<div class="ad2"></div>
+								<div class="ad3"></div>
+							</div>
+							
+						</div>
 						<div class="right4-bot3"></div>
 						<div class="right4-bot4"></div>
 					</div>
