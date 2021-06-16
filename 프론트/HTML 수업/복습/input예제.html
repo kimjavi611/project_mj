@@ -9,17 +9,21 @@
 <body>
     <!-- 회원가입 h1태그 (h태그 뒤의 숫자 크기가 커질수록 크기가 작음)  -->
     <h1>회원가입</h1>    
+    <!-- form태그 안에 input태그를 넣어줘야 입력한 데이터 전송 가능 -->
     <form action="">
     아이디 : <input type="text" name="id"><br>
     비밀번호 : <input type="password" name="pw"><br>
     비밀번호 확인 : <input type="password" name="checkpw"><br>
     이메일 : <input type="email" name="email"><br>
+    <!-- radio박스 옆 글자를 클릭해도 선택될 수 있게 label태그로 감싸줌 -->
     성별 : <label for="">
             <input type="radio" value="male" name="남성"> 남성
            </label>
            <label for="">
             <input type="radio" value="female" name="여성"> 여성 
            </label><br>
+    <!--number로 숫자를 상하로 조절할 수 있게 만듦
+        =>실제로 이렇게 만들지는 않음  -->
     전화번호 : <input type="number" name="number1"> - 
     <input type="number" name="number2"> - <input type="number" name="number3"><br>
     <input type="submit" value="회원가입">
