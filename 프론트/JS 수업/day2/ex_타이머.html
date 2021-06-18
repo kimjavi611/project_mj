@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/* 
+		분:초를 출력하는 타이머를 만드는 코드를 작성하세요.
+		*/
+		 var seconde =0;
+		 var minute = 0;
+		 console.log(getTime(minute,seconde));
+		var id = setInterval(function(){
+			seconde++;
+			minute = seconde == 60 ? ++minute : minute;
+			seconde = seconde == 60 ? 0 : seconde;
+			console.log(getTime(minute,seconde));
+		},1000);
+		
+		function addZero(num){
+			return num < 10 ? '0' + num : num;
+		}
+		function getTime(minute,seconde){ //두 문자열을 합쳐줌
+			return addZero(minute) + ':' + addZero(seconde);
+		}
+
+	</script>
+</body>
+</html>
