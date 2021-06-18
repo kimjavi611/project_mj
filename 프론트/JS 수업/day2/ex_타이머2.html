@@ -17,17 +17,17 @@
 			단, 타이머는 콘솔에 출력
 		*/
 		var minute = 0;
-		var seconde = 0;
-		console.log(Time(minute,seconde));
+		var second = 0;
+		console.log(Time(minute,second));
 	
 		var start = document.querySelector('#btn1')
 			start.addEventListener('click', function(){		
 			var timer = setInterval(function(){
-			seconde++;
+			second++;
 			minute = seconde == 60 ? ++minute : minute;
-			seconde = seconde == 60 ? 0 : seconde;
+			second = seconde == 60 ? 0 : second;
 			
-			console.log(Time(minute,seconde));
+			console.log(Time(minute,second));
 		},1000);
 		})
 
@@ -36,14 +36,14 @@
 			clearInterval(timer);
 		});
 
-
+		
 
 		function addZero(num){
 			num < 10 ? '0' + num : num
 		}  
 
-		function Time(minute, seconde){
-			return addZero(minute) + ':' + addZero(seconde);
+		function Time(minute, second){
+			return addZero(minute) + ':' + addZero(second);
 		}
 
 	</script>
