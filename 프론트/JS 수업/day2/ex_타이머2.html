@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>타이머 예제2</title>
+</head>
+<body>
+	<button id="btn1">시작</button>
+	<button id="btn2">종료</button>
+
+	<script>
+		/* 
+		- 시작 버튼과 종료 버튼을 만들어서, 시작버튼을 누르면 타이머가 시작되고,
+			종료 버튼을 누르면 타이머가 종료되도록 코드를 작성하세요
+			단, 타이머는 콘솔에 출력
+		*/
+		var minute = 0;
+		var seconde = 0;
+		console.log(Time(minute,seconde));
+	
+		var start = document.querySelector('#btn1')
+			start.addEventListener('click', function(){		
+			var timer = setInterval(function(){
+			seconde++;
+			minute = seconde == 60 ? ++minute : minute;
+			seconde = seconde == 60 ? 0 : seconde;
+			
+			console.log(Time(minute,seconde));
+		},1000);
+		})
+
+		var end = document.querySelector('#btn2');
+		end.addEventListener('click', function(){
+			clearInterval(timer);
+		});
+
+
+
+		function addZero(num){
+			num < 10 ? '0' + num : num
+		}  
+
+		function Time(minute, seconde){
+			return addZero(minute) + ':' + addZero(seconde);
+		}
+
+	</script>
+</body>
+</html>
