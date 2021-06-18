@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>window 객체</title>
+</head>
+<body>
+	<script>
+		/* 
+		-window 객체
+			- 웹 브라우저에 대한 전반적인 정보 취득이나 제어와 관련된 객체
+			=> 웹 하나를 하나의 윈도우라고 생각하면 됨
+			- location객체, screen객체, navigator객체, document 객체로 구성
+			- window 객체의 메소드들은 앞?????
+			- 메소드
+				- open() : 새로운 윈도우를 만들어주는 메소드
+					- 주소입력창 주소 검색창 만들때 사용할 수 있음
+					- 기본 윈도우창이 부모/ 새로 만들어진 윈도우창이 자식
+					- 윈도우끼리 데이터를 주고 받을 수 있음 =>나중에 해보기로
+				- open('주소', '윈도우 이름', '옵션=값,옵션=값, ...');
+				- 옵션
+					- width : 가로
+					- height : 세로
+					- left : 새 윈도우의 시작 위치 x좌표
+					- top : 새 윈도우의 시작위치 y좌표
+					- location : yes/no, 주소창을 보여줄지 말지 
+					- scrollbar : yes/no, 스크롤바를 보여줄지 말자
+					- menubar : yes/no, 메뉴바를 보여줄지 말지
+					- toolbar : yes/no, 윈도우 툴바를 보여줄지 말지
+					- status : yes/no, 윈도우 상태창을 보여줄지 말지
+		*/
+
+		//window.open('날짜.html','날짜', 'width=500, height=500, left=200, top=200'); 
+		/* 
+		- setInterval(함수,시간) : 일정시간마다 함수를 실행하는 메소드로 
+			아이디값(타이머 아이디)을 반환
+		- clearInterval(아이디값) : 해당 아이디와 일치하는 setIntersval()을 삭제 
+		- setTimeout(함수,시간) : 지정된 시간이 지난뒤 함수를 실행하는 메소드
+			아이디값을 반환
+		- clearTimeout(아이디값) : 아이디값과 일치하는  setTiomeout()을 해지
+		- 위 메소드응 기본 시간이 ms, 1000ms가 1s(1초)
+		*/	
+
+		var id = setTimeout(function(){
+			console.log('setTimeout')
+		}, 1000); /*실행문 동작하고 끝. 다음꺼로 넘어감 1초 동안 아무것도 안하고 기다리는게 아니라
+		다른 동작을 하고 있다가 1초가 되면 그때 동작을 실행함 */
+		console.log('시작');
+		console.log('setTimeout ID : ' + id);
+		clearTimeout(id); 
+
+		var count =1;
+		var id2 = setInterval(function(){
+			console.log(count+'초');
+			count++
+			clearInterval(2); //콘솔창에 직접 입력해줘도 됨
+		},1000);
+		console.log('setInterval ID :' + id2);
+	</script>
+</body>
+</html>
