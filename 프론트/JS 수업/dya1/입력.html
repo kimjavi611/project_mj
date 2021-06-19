@@ -17,7 +17,17 @@
         var num2 = prompt('정수2을 입력하세요');
         var op = prompt('산술 연산자를 입력하세요');
         var res = calc(num1, op, num2);
-        
+       
+        if(res == 'NaN'){
+            document.write('숫자가 아닌 값을 산술연산할 수 없음');
+        }
+        else if(res == 'wrong op'){
+            document.write(`${op}는 산술 연산자가 아닙니다`);
+        }
+        else{
+            document.write(`${num1} ${op} ${num2} = ${res}`);
+        }
+
         function calc(num1, num2, op){
             if(isNaN(num1) || isNaN(num2)){
                 return 'NaN';
@@ -33,15 +43,7 @@
             default : return 'wrong op'
             }  
         }
-        if(res == 'NaN'){
-            document.write('숫자가 아닌 값을 산술연산할 수 없음');
-        }
-        else if(res == 'wrong op'){
-            document.write(`${op}는 산술 연산자가 아닙니다`);
-        }
-        else{
-            document.write(`${num1} ${op} ${num2} = ${res}`);
-        }
+       
     </script>
 </body>
 </html>
