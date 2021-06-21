@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="../JS/jquery.js"></script> 
+	<!-- 먼저 다른데서 가져온 파일을 불러온 상태에서 jquery를 먼저 입력 후 현재 파일에서 사용하는 jquery 코드를 작성 -->
+	<script>
+		//jquery코드 
+		/* 
+		- 요소 선택
+			$('선택자') - 모든 요소 선택 가능 (클래스, 아이디 등등)
+			//$('#btn'); //id가 btn인 요소 선택
+		- 이벤트 등록
+			$('선택자').이벤트명(fuction(){
+
+			});
+			$('선택자').on('이벤트명',function(){
+
+			});
+		*/ 
+		/* 
+		- body태그 안에 있는 요소 배치가 완료 후 이벤트 등록 
+			- 자바스크립트 :  load 이벤트는 1번만 적용
+		window.addEventListener('load',fuction(){ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
+ㄹ
+		}); //자바 스크립트
+		- Jquery 1 : ready가 몇개 있든 상관없이 다 적용
+		$(document).ready(function(){
+
+		});
+		- Jquery 2
+		$(function(){
+
+		});
+		*/
+		/* 이벤트는 이벤트 등록할 시점에 해당 요소들애개먼 등록하고, 이후에 생성된 요소들에는
+		자동으로 이벤트가 등록되지 않음
+		- 이벤트 호출
+			$('선택자').이벤트명();
+		*/
+		
+		$(function(){
+			$('#btn').click(function(){
+				alert('버튼');
+			});
+		
+			$('.box').mouseenter(function(){
+				console.log('들어감');
+			});
+			$('.box').mouseleave(function(){
+				console.log('나옴');
+			});
+			$('.box').hover(function(){
+				console.log('호버');
+			});
+			$('.box').mouseover(function(){
+				console.log('오버');
+			});
+			$('.box').mouseout(function(){
+				console.log('아웃');
+			});
+		})
+			</script>
+</head>
+<body>
+	<button id="btn">버튼</button>
+	<div class="box" style="background: yellow; width: 40px; height: 30px; float: left;"></div>
+</body>
+</html>
