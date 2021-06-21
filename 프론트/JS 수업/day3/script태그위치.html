@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>script 태그 위치</title>
+	<!-- 
+		- 일반적으로 외부 js파일은 head태그에 배치하고, 해당 문서에 대한 이벤트를 처리하는
+		 js는 body태그 제일 아래에 배치한다.
+
+	 -->
+	 <script>
+		//load : 해당 요소가 준비가 다 끝나면, 요소 생성이 완료되면 발생하는 이벤트
+		window.addEventListener('load',function(){
+			var start = document.querySelectorAll('#btn1');
+			start[0].addEventListener('click',function(){
+				alert('시작')
+			} );
+
+			var end =document.querySelector('#btn2');
+			end.addEventListener('click', function(){
+				alert('종료')
+			});	
+		})
+	 
+		</script>
+</head>
+<body>
+
+
+	<button id="btn1">버튼1</button>
+	<button id="btn2">버튼2</button>
+	
+</body>
+</html>
