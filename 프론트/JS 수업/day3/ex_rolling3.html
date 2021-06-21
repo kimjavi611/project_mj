@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>롤링예제3</title>
+	<script src="../JS/jquery.js"></script>
+	<script>
+		/* 
+		- 롤링방향이 오른쪽에서 왼쪽으로 이동하도록 작성해보세요
+		*/
+		var ml = -400;
+			$(function(){
+				setInterval(function(){
+					$('.innerBox').animate({'margin-left': ml+'px'},1200)
+				ml = ml - 400;
+				ml = ml == -2000 ? 0 : ml;
+				},1500);	
+			});	
+
+	</script>
+	<style>
+		.show{width:400px; height: 50px; border:1px solid black; overflow: hidden;}
+		.innerBox{width: 2000px; height: 50px;}
+		.box{
+			height: 50px; width: 400px ; background-color: burlywood; 
+			text-align: center; line-height: 50px; float: left; 
+			}
+		.box:nth-child(2n){
+			background: coral;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="show">
+			<div class="innerBox">
+			<div class="box">1</div>
+			<div class="box">2</div>
+			<div class="box">3</div>
+			<div class="box">4</div>
+			<div class="box">5</div>
+		</div>
+	</div>
+</body>
+</html>
