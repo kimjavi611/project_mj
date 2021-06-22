@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>더보기 예제 복습</title>
+    <script src="../JS/jquery.js"></script>
+    <script>
+        $(function(){
+            // more버튼을 클릭하면
+            $('.more').click(function(){
+                //display:none했던 more-menu를 show
+                $('.more-menu').show();
+                //more버튼을 숨김 => folder버튼만 보임 
+                $(this).hide();
+            });
+            //위랑 반대로
+            $('.folder').click(function(){
+                $('.more-menu').hide();
+                $('.more').show();
+            })
+        })
+    </script>
+    <style>
+        .box{
+            position: relative;
+        }
+        .menu{
+            width: 500px; height: 50px; background: tomato;
+        }
+        .under-menu{
+            width: 500px; height: 400px; background: yellow;
+        }
+        .more-menu{
+            /* 더보기버튼을 누르기전에는 안보여야 하기때문에 display:none */
+            width: 500px; height: 300px; background: turquoise; 
+            position: absolute; top: 0; display: none; 
+        }
+    </style>
+</head>
+<body>
+    <button class="more">더보기</button>
+    <button class="folder">접기</button>
+    <div class="box">
+        <div class="menu"></div>
+        <div class="under-menu"></div>
+        <div class="more-menu"></div>
+    </div>
+</body>
+</html>
