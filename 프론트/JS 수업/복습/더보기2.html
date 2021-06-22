@@ -12,13 +12,16 @@
             $('.more').click(function(){
                 //display:none했던 more-menu를 show
                 $('.more-menu').show();
-                //more버튼을 숨김 => folder버튼만 보임 
+                //more버튼을 숨김 => folder버튼을 show 
                 $(this).hide();
+                $('.folder').show();
+              
             });
             //위랑 반대로
             $('.folder').click(function(){
                 $('.more-menu').hide();
                 $('.more').show();
+                $('.folder').hide();
             })
         })
     </script>
@@ -36,6 +39,9 @@
             /* 더보기버튼을 누르기전에는 안보여야 하기때문에 display:none */
             width: 500px; height: 300px; background: turquoise; 
             position: absolute; top: 0; display: none; 
+        }
+        .folder{
+            display: none;
         }
     </style>
 </head>
