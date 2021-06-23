@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 예제</title>
+	<script src="../JS/jquery.js"></script>
+	<script>
+		$(function(){
+			var arr =[];
+			$('input[name=hobby]').click(function(){
+				var value = $(this).val();
+				//console.log(value);
+				//checkbox는 중복 선택이 되기때문에 그냥 view박스에 넣어줄 수 없음
+				//상황에 따라서 선택했던 요소를 제거해 줘야함
+				//선택한 값을 배열에 추가 후 출력. 선택해제를 하면 배열에서 제거 후 출력 
+				var index = arr.indexOf(value);
+				//선택한 항목이 있으면(체크를 해제하면)
+				if(index >= 0){
+					arr.splice(index,1); //splice : 원하는 항목을 갯수만큼 잘라냄
+				//선택한 항목이 없으면(체크 하면)
+				}else{
+					arr.push(value);
+				}
+				$('view-box').text(arr.join(',')); // join : 배열의 값을 문자열로 만들어줌 join('값,값')
+			})
+		})
+	</script>
+	<style>
+		.view-box{
+			min-height: 20px; border: 1px solid black; line-height: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="view-box"></div>
+	<label><input type="checkbox" name="hobby" value="농구">농구</label>
+	<label><input type="checkbox" name="hobby" value="야구">야구</label>
+	<label><input type="checkbox" name="hobby" value="축구">축구</label>
+</body>
+</html>
