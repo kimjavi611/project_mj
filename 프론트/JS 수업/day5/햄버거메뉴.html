@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>햄버거메뉴</title>
+	<script src="../JS/jquery.js"></script>
+	<script src="https://kit.fontawesome.com/660af269cf.js" crossorigin="anonymous"></script>
+	<script>
+		$(function(){
+			$('.ham-menu').click(function(){
+				$('.menu-box').stop().animate({'margin-left': '0px'},1000);
+			})
+			$('btn-close').click(function(){
+				$('.menu-box').stop().animate({'margin-left' :'-200px'},1000);
+			})
+		});
+	</script>
+	<style>
+		*{padding: 0; margin: 0; color: black; text-decoration: none; list-style: none;}
+
+		nav{
+			height: 50px; background: gold; position: relative;
+		}
+		.ham-menu{
+			/* box-sizing: border-box; border: 1px solid gold; 호버하면 하얀테두리 생기게 하고 싶은데
+			테두리가 없다가 생기면 밀릴 수 있기 때문에 배경색이랑 똑같은 테두리를 만들어주고 호버했을 때 색상만 바꿔주려고 */
+		 	width: 50px; height: 50px; box-sizing: border-box; border: 1px solid gold;
+			 position: absolute; top: 0; right: 0; text-align: center; line-height: 48px;
+			 font-size: 35px; cursor: pointer;
+		}
+		.ham-menu:hover{
+			border-color: blue;
+		}
+		.container{
+			position: relative; height: 400px; background: chartreuse; margin-top: 10px;
+		}
+		.menu-box{
+			width: 200px; height: 400px; position: absolute; top: 0; left: 0; background-color: #b6b6be;
+			margin-left: -200px;
+		}
+		.btn-close{
+			width: 30px; height: 30px; cursor: pointer; position: absolute; 
+			right: 0; top: 0; text-align: center; line-height: 30px;
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<div class="ham-menu">
+			<i class="fas fa-bars"></i>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="menu-box">
+			<div class="btn-close">
+				<i class="fas fa-times"></i>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
