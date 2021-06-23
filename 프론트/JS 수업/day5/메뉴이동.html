@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>메뉴이동</title>
+	<script src="../JS/jquery.js"></script>
+	<script src="https://kit.fontawesome.com/660af269cf.js" crossorigin="anonymous"></script>
+	<script>
+		$(function(){
+			$('#prev-btn').click(function(e){
+				e.preventDefault();
+				$('.menu a')
+			})
+		})
+	</script>
+	<style>
+		*{padding: 0; margin: 0; text-decoration: none; list-style: none;}
+
+		
+		.container::after{display: block; content: ''; clear: both;}
+
+		.menu{
+			border: 1px solid black; display: flex; width: 400px;
+		}
+		.menu>li{
+			border-right: 1px solid black; width: 100%;
+		}
+		.menu>li:last-child{
+			border-right: none;
+		}
+		.menu>li>a{
+			display: block; height: 50px; line-height: 50px; font-size: 25px;
+			text-align: center; cursor: pointer;
+		}
+
+		.prev-btn{
+			border: 1px solid black; float: left; margin-top: 15px; margin-left: 8px;
+		}
+		.next-btn{
+			 border: 1px solid black; 
+		}
+
+		.prev-btn:hover, .next-btn:hover{cursor: pointer;}
+
+	</style>
+</head>
+<body>
+	
+		<div class="prev-btn">
+			<i class="fas fa-chevron-left"></i>
+		</div>
+		<ul class="menu">
+			<li><a href="#">메뉴1</a></li>
+			<li><a href="#">메뉴2</a></li>
+			<li><a href="#">메뉴3</a></li>
+			<li><a href="#">메뉴4</a></li>
+		</ul>
+		<div class="next-btn">
+			<i class="fas fa-chevron-right"></i>
+		</div>
+	
+</body>
+</html>
