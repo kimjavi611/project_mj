@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>예제1</title>
+	<script src="https://kit.fontawesome.com/660af269cf.js" crossorigin="anonymous"></script>
+	<script src="../JS/jquery.js"></script>
+	<script>
+		$(function(){
+		$('#hmenu').click(function(){
+			$('.more-box').animate({left: '0px'});
+		})
+		$('#btn').click(function(){
+			$('.more-box').animate({left:'-100px'});
+		})
+
+		})
+	</script>
+	<style>
+		*{padding: 0; margin: 0; text-decoration: none;}
+		/*.outter-box{ 
+			position: relative; width: 700px; height: 600px; border: cornsilk;
+		}*/
+		.container{
+			 width: 500px; height: 500px; border:1px solid blanchedalmond;
+		}
+		.head{
+			width: 500px; height: 50px; border:1px solid black; box-sizing: border-box;
+		}
+		.head::after{display: block; clear: both; content: '';}
+		.ham-menu{
+			width: 50px; height: 50px; border: 1px solid black; float: right; 
+			box-sizing: border-box; font-size: 40px; text-align: center;line-height: 50px;
+			}
+			
+		.more-box{
+			width: 100px; height:200px; border: 1px solid blue; box-sizing: border-box;
+			position: absolute; left: -100px; top: 50px;
+		}
+		.more-box::after{display: block; clear: both; content: '';}
+		.xbtn{
+			width: 20px; height: 20px; float: right; border: 1px solid blue; 
+			font-size: 20px; color: blue; text-align: center; line-height: 20px;
+			}
+	</style>
+</head>
+<body>
+	<div class="outter-box">
+		<div class="container">
+			<div class="head">
+				<div class="ham-menu" id="hmenu">
+					<i class="fas fa-bars" id="ham"></i>
+				</div>
+			</div>
+			<div class="more-box">
+				<div class="xbtn" id="btn">
+					<i class="fas fa-times"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
