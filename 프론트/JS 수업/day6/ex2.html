@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>서브 질문 추가</title>
+	<script src="../JS/jquery.js"></script>
+	<style>
+		.q-box, .sub-box{position: relative;}
+		.main-add-btn, .sub-add-btn{position: absolute; top: 0; right: 0;}
+
+	</style>
+</head>
+<body>
+	
+		<div class="q-box">
+			<button class="main-add-btn">메인질문추가</button>
+			<div class="main-q-box">
+				<div class="main-title">질문1</div>
+				<input type="text" class="main-input">
+			</div>
+			<div class="sub-box">
+				<button class="sub-add-btn">서브질문추가</button>
+				<div class="sub-q-box">
+					<div class="sub-title">질문1-1</div>
+					<input type="text" class="sub-input">
+				</div>
+			</div>
+		</div>
+	
+	<script>
+		$(function(){
+			var num = 1;
+			var num2 = num + 1;
+			$('.main-add-btn').click(function(){
+				var str = 
+				'<div class="main-q-box">'+
+					'<div class="main-title">질문' + ++num +'</div>'+
+					'<input type="text" class="main-input">'+
+				'</div>'
+				$('.q-box').append(str);
+			})
+			$('.sub-add-btn').click(function(){
+				var str = 
+					'<div class="sub-q-box">'+
+						'<div class="sub-title">질문'+ ++num +'-' + num2 + '</div>'
+						'<input type="text" class="sub-input">'+
+					'</div>'
+					$('.sub-box').append(str);
+			})
+		
+		})
+	</script>
+</body>
+</html>
