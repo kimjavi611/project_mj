@@ -76,7 +76,7 @@
 					addEventSubBtnClick($('.sub-add-btn'));
 			});
 
-			addEventSubBtnClik($('.sub-add-btn'));
+			addEventSubBtnClick($('.sub-add-btn'));
 			/*$('.sub-add-btn').click(function(){
 				//클릭한 요소의 위치에 따라서 가져오는 값이 다르기 때문에 탐색을 잘 해줘야함!
 				var mainNum = $(this).siblings('.q-sub-box').last().find('.sub-title').text();
@@ -98,13 +98,13 @@
 
 			
 		})
-		function addEventSubBtnClik(obj){
+		function addEventSubBtnClick(obj){
 			obj.click(function(){
 				var mainNum = $(this).siblings('.q-sub-box').last().find('.sub-title').text();
 				var index = mainNum.indexOf('-');
 				var num = mainNum.substr(index+1);
 				num = parseInt(num);
-				mainNum = mainNum.substr(0,index+1)
+				
 				var str = 
 				'<div class="sub-q-box">'+
 					'<div class="sub-title">' + mainNum + ++num + '</div>'+
