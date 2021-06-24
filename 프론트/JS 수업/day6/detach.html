@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>detach 예제</title>
+	<script src="../JS/jquery.js"></script>
+	<script>
+		$(function(){
+			/*
+			- detach() : 요소를 떼어낸다(속성과 이벤트 정보를 유지)
+				- 요소를 떼어내기만 하면 제거(remove)랑 같은 기능
+				- 요소를 떼어내서 다른곳에 붙일 때 사용한다
+			- is('') : ~인지 아니지 확인하여 ~이면 true, 아니면 false
+				- :animated, :checked, :eq(1)
+			*/ 
+			//첫번째 요소 삭제
+			//$('ul li').first().detach();
+			//요소뒤에 붙임
+			setInterval(function(){
+				if(!$('ul li').first().is(':animated')){ //첫번째 요소가 움직이지 않으면
+					$('ul li').first().animate({'margin-top':'-50px'},1000, function(){
+						//.attr('style', '') : 전부 마진탑 값이 들어가서 겹치게됨. 그래서 스타일값을 빈문자로해줌
+						$(this).detach().appendTo('ul').attr('style', '');
+					})
+				}
+			},1500)
+		})
+	</script>
+	<style>
+		li{
+			height: 50px; line-height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+</body>
+</html>
