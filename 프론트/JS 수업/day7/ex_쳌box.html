@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체크박스</title>
+    <script src="../JS/jquery.js"></script>
+    <script>
+        var arr = [];
+        $(function(){
+			 $('input[name=hobby]').click(function(){
+				var value = $(this).val();
+				var index = arr.indexOf(value);
+				
+				if(index >= 0){
+					arr.splice(index,1);
+				}
+				
+				else{
+                    //배열에 저장된 갯수가 3보다 작으면 배열에 추가
+                    if(arr.length <=3){
+                        arr.push(value);
+                    }else
+                        $( this).prop('checked',false);
+                        alert('최대 3개입니다')
+					
+                    //배열에 저장된 갯수가 3보다 크거나 같으면 배열에 추가하지 않고,
+                    //지금 막 체크된 체크 박스를 체크해제
+				}
+				//typeOf : 타입을 알려줌 
+
+            })
+        })
+    </script>
+    <style>
+        .view-box{
+            height: 400px; width: 100px; float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="view-box">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+
+        <label><input type="checkbox" name="hobby" value="농구">농구</label>
+        <label><input type="checkbox" name="hobby" value="야구">야구</label>
+        <label><input type="checkbox" name="hobby" value="축구">축구</label>
+    </div>
+</body>
+</html>
