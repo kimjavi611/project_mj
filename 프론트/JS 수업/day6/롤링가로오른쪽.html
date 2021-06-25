@@ -7,32 +7,28 @@
 	<title>롤링가로 오른쪽</title>
 	<script src="../JS/jquery.js"></script>
 	<script>
+		var id;
 		$(function(){
-			setInterval(function(){
-				if(!$('.box1 li').first().is(':animated')){
-					var width = $('.box1 li').last().width();
-					$('.box1 li:last-child').detach().prependTo('.box1')
-						.css('margin-left','-'+ width + 'px');
-					$('.box1 li').first().animate({'margin-left' :'0'},800)
-				}	
-			},1000)
+			id = rollingRight('.box1', 'li', 800,1000);
 			
 		})
-		function rollingRight(list, listItem, animateTime, intervalTime ){
+		function rollingRight(list, listItem, animateTime, intervalTime){
 			var id = setInterval(function(){
-				var width = $(list+ ' ' + listItem).first().width();
+				if(!$(list + ' ' + listItem).first().is(':animated')){
+				var width = $(list+ ' ' + listItem).last().width();
 				$(list+ ' ' + listItem).last().detach().prependTo('list')
-					.css(list + ' ' + listItem,'-'+ width);
-					$(list + ' ' + listItem).first().animate({'margin-left' :'0'},animateTime,function(){
-					})
+					.css('margin-left',-width+'px')
+					.animate({'margin-left' :'0'},animateTime)
+				}		
 			},intervalTime)
+			return id;
 		}
 	</script>
 	<style>
 		.view-box{
 			height: 50px; overflow: hidden; border: 1px solid black;
 		}
-		ul{
+		.box1{
 			list-style: none; padding: 0; margin: 0; width: 400%;
 		}
 		li{
