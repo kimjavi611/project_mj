@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>롤링 예제</title>
+	<script src="../JS/jquery.js"></script>
+	<script src="../JS/rolling.js"></script>
+	<script>
+		var id;
+		$(function(){
+			//id = rollingRight('.box1','li',800,1000);
+			id = rolling('right','.box1','li',0,800,1000);
+			$('.view-box').hover(function(){
+				clearInterval(id);
+			},function(){
+				id = rollingRight('.box1','li',800,1000);
+			});
+            $(function(){
+                $('prev-btn').click(function(){
+                    clearInterval(id)                    
+                })
+            })
+		})
+
+		
+	</script>
+    <script src="https://kit.fontawesome.com/660af269cf.js" crossorigin="anonymous"></script>
+	<style>
+		.view-box{
+			height: 50px; overflow: hidden; border: 2px solid black;
+		}
+		.box1{
+			list-style: none; width: 400%; padding: 0; margin: 0;
+		}
+		.box1 li{
+			width: 25%; height: 50px; line-height: 50px; text-align: center;
+			background: yellow; float: left;
+		}
+        
+        .prev-btn{
+            height: 30px; width: 30px; position: absolute; top: 20px; left: -5px;
+        }
+        .next-btn{
+            height: 30px; width: 30px; position: absolute; right: 0;top: 20px; 
+        }
+        .prev-btn:hover, .next-btn:hover{cursor: pointer;}   
+        .selected{background: pink;}
+	</style>
+</head>
+<body>
+        <div class="view-box">
+            <ul class="box1">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+        <div class="btn-box">
+            <button class="prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+</body>
+</html>
