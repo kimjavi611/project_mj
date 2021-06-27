@@ -7,27 +7,94 @@
   <title>메뉴만들기 복습</title>
   <script src="../JS/jquery.js"></script>
   <style>
+    *{padding: 0; margin: 0; text-decoration: none;}
+    .inner-box{
+      width: 500px; margin:0 40px; border: 2px solid black;
+      overflow: hidden;
+    }
     .menu-list{
-      border: 1px solid black;
+      width: 400%; height: 50px; list-style: none;
     }
+    .menu-list::after{display: block; clear: both; content: '';}
     li{
-      list-style: none; float: left; height: 50px;
+      line-height: 50px; text-align: center; width: calc(100% / 4);
+      float: left; background: rgb(158, 224, 250)
     }
+    .btn-box{position: relative;}
+    .prev-btn{
+      position: absolute; width: 30px; height: 30px; cursor: pointer; 
+      top: 10px; left: 27px; border: 2px solid black;
+      line-height: 30px; text-align: center; background: rgb(255, 172, 227); 
+    }
+    .next-btn{
+      position: absolute; width: 30px; height: 30px; line-height: 30px;
+      text-align: center; background: rgb(255, 172, 227); border: 2px solid black;
+      right: 70px;top: 10px; cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
-  <div class="container">
-    
-      <ul class="menu-list">
-        <li><a href="#">메뉴1</a></li>
-        <li><a href="#">메뉴2</a></li>
-        <li><a href="#">메뉴3</a></li>
-        <li><a href="#">메뉴4</a></li>
-      </ul>
+  <div class="view">
     <div class="btn-box">
-      <div class="prev-box"><</div>
-      <div class="next-box">></div>
+      <div class="prev-btn">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="next-btn">
+        <i class="fas fa-chevron-right"></i>
+      </div>
     </div>
+    <div class="inner-box">
+        <ul class="menu-list">
+          <li>메뉴1</li>
+          <li>메뉴2</li>
+          <li>메뉴3</li>
+          <li>메뉴4</li>
+        </ul>
+    </div> 
   </div>
 </body>
+<script src="https://kit.fontawesome.com/660af269cf.js" crossorigin="anonymous"></script>
+<script>
+  $(function(){
+    /*setInterval(function(){
+      if(!$('.menu-list li').first().is(':animated')){
+        var width = $('.menu-list').first().width()
+        $('.menu-list li').first().animate({'margin-left' : -width+ 'px'},800,function(){
+          $(this).detach().appendTo('.menu-list').removeAttr('style')
+        })
+      }
+    },1000)*/
+    //왜 menu-list가 왼쪽으로 이동하는데 -(margin-left)를 해줘야 하는거지..?
+        /*margin-left는 요소의 왼쪽에 공간을 주는건데 -를 주면 반대로 
+        오른쪽에 공간을 주게됨. 그럼 결론적으로 왼쪽으로 이동하는것처럼 됨
+        =>요소를 이동시킬때 원하는 방향으로 이동시키려면 -(margin-(이동하고싶은 방향))을 이용하면 쉬움*/ 
+    $('.next-btn').click(function(){
+      //클릭을 하면 다음 함수와 같은 이벤트가 일어남
+      var width = $('.menu-list li').first().width();
+      //width를 변수로 선언하고 li의 넓이를 구함 
+      $('.menu-list li').first().animate({'margin-left': -width +'px'},500,function(){
+      //menu-list의 요소 li의 첫번째 요소에 애니메이션을 줌 
+      //애니메이션 = 500ms동안 왼쪽으로 넓이만큼 이동함   
+      //이동한 후에 다음과 같은 함수를 실행함
+        $(this).detach().appendTo('.menu-list').removeAttr('style');
+        //이동한 요소를 떼어내서 menu-list의 맨앞에 붙인다. 
+        //적용된 stlye속성은 제거한다. => 제거하지 않으면 위에 준 마진값이 적용이됨
+
+      })
+    });
+    $('.prev-btn').click(function(){
+      //prev버튼을 누르면 다음 함수와 같은 이벤트가 일어남
+      var width = $('.menu-list li').first().width();
+      //넓이를 구함
+      $('.menu-list li').last().detach().prependTo('.menu-list')
+      //menu-list의 요소 li의 마지막 요소를 떼어내서 menu-list의 맨앞에 붙임
+      //여기까지하면 배경이 같이 밀려가지는 않음 
+      .css('margin-right',-width+'px')
+      //.animate({'margin-right': -width+'px'})
+      //떼어내서 맨 앞에 붙인 요소를 오른쪽으로 밀음 
+    
+    });
+  })
+</script>
 </html>
