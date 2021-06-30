@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex1</title>
+  <script src="../JS/jquery.js"></script>
+  <script>
+    
+    $(function(){
+      $('#btn').click(function(){
+        var value = $('#in').val();
+        value = parseInt(value);
+        if(isNaN(value)|| value > 5 || value < 0){
+          alert('잘못된 숫자입니다');
+          return;
+        }
+        //$('.container1 .box').removeClass('selected');
+        //$('.container2 .box').removeClass('selected');
+        
+        //$('.container1 .box').eq(value-1).addClass('selected');
+        //$('.container2 .box.box'+value).addClass('selected');
+        $('.container1 .box').eq(value-1).click();
+        $('.container2 .box.box'+value).click();
+      });
+
+
+      //박스를 클릭하면 해당 박스에 빨간색 테두리가 생기게 하기
+      //전체에서 1개 선택 
+        /*$('.box').click(function(){
+          $('.box').removeClass('selected2')
+          $(this).addClass('selected2')
+        })*/
+        //한줄에서 1개씩 선택 
+        $('.box').click(function(){
+          $(this).siblings().removeClass('selected2')
+          $(this).addClass('selected2')
+        })
+
+        //숫자 여러개를 입력하면 입력한 상자의 테두리색이 모두 변하게 하기
+        $('#btn').click(function(){
+        var value = $('#in').val();
+        value = parseInt(value);
+        var index = arr.indexOf(value);
+        console.log(index);
+      
+    })
+  </script>
+  <style>
+    .box{
+      border: 2px solid black; width: 50px; height: 50px; 
+      float: left; margin-right:30px ;
+      line-height: 50px; text-align: center;
+    }
+    .container::after{display: block; content: ''; clear: both;}
+    .selected{border: 2px solid blue;}
+    .selected2{border-color: tomato;}
+    .container{margin-top: 30px;}
+  </style>
+</head>
+<body>
+  <input type="text" id="in">
+  <button id="btn">클릭</button>
+  <div class="container container1">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+  </div>
+  <div class="container container2">
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+    <div class="box box4">4</div>
+    <div class="box box5">5</div>
+  </div>
+</body>
+</html>
