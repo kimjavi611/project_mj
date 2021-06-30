@@ -1,125 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메뉴예제확장</title>
-    <script src="../JS/jquery.js"></script>
-    <script>
-   	 $(function(){
-				$('.next-btn').click(function(){
-				if($('.selected').attr('data') != 'last')
-				$('.selected').removeClass('selected').next().addClass('selected')
-				$('.selected').click();
-			})
-			$('.prev-btn').click(function(){
-				if($('.selected').attr('data') != 'first')
-				/*$('선택자')에는 여러 요소들이 올 수 있어서 #이나 .을 붙여 아이디인지, 클래스인지
-				구분해 줘야함.
-				removeClass()의 경우 ()안에 클래스만 오기 때문에 따로 구분해줄 필요가 없음 */
-				$('.selected').removeClass('selected').prev().addClass('selected')
-			})
-			$('.menu-list').click(function(){
-				$('.menu-list').removeClass('selected')
-				$(this).addClass('selected')
-				var target = $(this).attr('data-target');
-				$('.contents').hide();
-				$(target).show();
-			})
-			$('#contents2').hide();
-			$('#contents3').hide();
-			$('#contents4').hide();
-
-    })
-    </script>
-    <style>
-        *{
-			padding: 0; margin: 0; text-decoration: none; list-style: none; color: black;
-		}
-		.box{
-			margin: 0 20px; position: relative; 
-		}
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>메뉴 선택</title>
+	<script src="../js/jquery.js"></script>
+	<style>
 		.menu-box{
-			border: 1px solid black; height: 50px; 
-		}		
-		.menu, .menu2{
-			display: flex;
+			height: 50px; margin: 0 40px; position: relative;
 		}
-		.menu-list{
-			border-right: 1px solid black; width: 100%; height: 50px;
+		.menu-container-box{
+			height: 50px; width: 100%; overflow: hidden; border: 2px solid black; box-sizing: border-box;
 		}
-		.menu-list:last-child{
+		.menu-wrap-box{
+			width: 300%; height: 50px;
+		}
+		.menu{
+			width: calc(100% / 3); float: left; list-style: none; padding: 0; margin: 0;
+		}
+		.menu .menu-item{
+			width: 25%; float: left; box-sizing: border-box; border-right: 2px solid black;
+			height: 50px; line-height: 50px; text-align: center;
+		}
+		.menu .menu-item:nth-child(4n){
 			border-right: none;
 		}
-		.menu-link{
-			display: block; height: 50px; line-height: 50px; text-align: center;
+		.menu-btn-box .prev-btn, .menu-btn-box .next-btn{
+			width: 40px; height: 40px; background: white; border: 2px solid black; border-radius: 50%;
+			text-align: center; line-height: 40px; position: absolute; top: 3px; left: 0; 
+			margin-left: -20px; cursor: pointer;
 		}
-		.prev-btn{
-			position: absolute; width: 30px; height: 30px; background: white;
-			border: 1px solid black; top: 9px; left: 0; margin-left: -9px;
-			border-radius: 40%; cursor: pointer; text-align: center; line-height: 30px;
-		}
-		.next-btn{
-			position: absolute; width: 30px; height: 30px; background: white;
-			border: 1px solid black; top: 9px; right: 0; margin-right: -15px; 
-			border-radius: 40%; cursor: pointer;text-align: center; line-height: 30px;
+		.menu-btn-box .next-btn{
+			left: auto; right: 0; margin-right: -20px;
 		}
 		.selected{
-			background: gold;
+			background: cornflowerblue;
 		}
-		.contents{
-			height: 300px; margin: 0 20px; background: turquoise; margin-top: 10px;
-		}
-    </style>
+	</style>
 </head>
 <body>
-  
-	<div class="box">
-		<div class="menu-box">
-			<ul class="menu">
-				<li class="menu-list selected" data="first" data-target="#contents1">
-					<a href="#" class="menu-link">메뉴1</a>
-				</li>
-				<li class="menu-list" data-target="#contents2">
-					<a href="#" class="menu-link">메뉴2</a>
-				</li>
-				<li class="menu-list" data-target="#contents3">
-					<a href="#" class="menu-link">메뉴3</a>
-				</li>
-				<li class="menu-list" data="last" data-target="#contents4">
-					<a href="#" class="menu-link">메뉴4</a>
-				</li>
-			</ul>
-			<ul class=" menu2">
-				<li class="menu-list selected" data="first" data-target="#contents1">
-					<a href="#" class="menu-link">메뉴5</a>
-				</li>
-				<li class="menu-list" data-target="#contents2">
-					<a href="#" class="menu-link">메뉴6</a>
-				</li>
-				<li class="menu-list" data-target="#contents3">
-					<a href="#" class="menu-link">메뉴7</a>
-				</li>
-				<li class="menu-list" data="last" data-target="#contents4">
-					<a href="#" class="menu-link">메뉴8</a>
-				</li>
-			</ul>
+	<div class="menu-box">
+		<div class="menu-btn-box">
+			<div class="prev-btn"><</div>
+			<div class="next-btn">></div>
 		</div>
-		<div class="btn-box">
-			<div class="prev-btn">
-				<i class="fas fa-chevron-left"></i>
-			</div>
-			<div class="next-btn">
-				<i class="fas fa-chevron-right"></i>
+		<div class="menu-container-box">
+			<div class="menu-wrap-box">
+				<ul class="menu">
+					<li class="menu-item selected" data-target=".box1">메뉴1</li>
+					<li class="menu-item" data-target=".box2">메뉴2</li>
+					<li class="menu-item" data-target=".box3">메뉴3</li>
+					<li class="menu-item" data-target=".box4">메뉴4</li>
+				</ul>
+				<ul class="menu">
+					<li class="menu-item" data-target=".box5">메뉴5</li>
+					<li class="menu-item" data-target=".box6">메뉴6</li>
+					<li class="menu-item" data-target=".box7">메뉴7</li>
+					<li class="menu-item" data-target=".box8">메뉴8</li>
+				</ul>
+				<ul class="menu">
+					<li class="menu-item" data-target=".box9">메뉴9</li>
+					<li class="menu-item" data-target=".box10">메뉴10</li>
+					<li class="menu-item" data-target=".box11">메뉴11</li>
+					<li class="menu-item" data-target=".box12">메뉴12</li>
+				</ul>
 			</div>
 		</div>
+	</div>	
+	<div class="contents-box">
+		<div class="box1">박스1</div>
+		<div class="box2">박스2</div>
+		<div class="box3">박스3</div>
+		<div class="box4">박스4</div>
+		<div class="box5">박스5</div>
+		<div class="box6">박스6</div>
+		<div class="box7">박스7</div>
+		<div class="box8">박스8</div>
+		<div class="box9">박스9</div>
+		<div class="box10">박스10</div>
+		<div class="box11">박스11</div>
+		<div class="box12">박스12</div>
 	</div>
-	<div class="container">
-		<div class="contents" id="contents1">1</div>
-		<div class="contents" id="contents2">2</div>
-		<div class="contents" id="contents3">3</div>
-		<div class="contents" id="contents4">4</div>
-	</div>
+	<script>
+		$(function(){
+			$('.menu-btn-box .next-btn').click(function(){
+				var selected = $('.selected');
+				//메뉴 4, 메뉴8, 메뉴12
+				if(selected.next().length == 0){
+					//마지막 메뉴인 경우(메뉴 12)
+					if(selected.parent().next().length == 0){
+						return;
+					}
+					//애니메이션
+					var ml = $('.menu-wrap-box').css('margin-left');
+					ml = parseFloat(ml);
+					var width = $('.menu').first().width();
+					ml = ml - width;
+					$('.menu-wrap-box').animate({'margin-left':ml+'px'},500);
+					//이동 후 다음 큰 메뉴에서 첫번 째 메뉴에 seleted 클래스 추가
+					selected.parent().next().children('.menu-item').first().addClass('selected');
+					selected.removeClass('selected');
+				}else{
+					//큰 메뉴내에서 다음으로 이동
+					selected.removeClass('selected').next().addClass('selected');
+				}
+				$('.selected').click();
+			})
+			$('.menu-btn-box .prev-btn').click(function(){
+				var selected = $('.selected');
+				//메뉴 1, 메뉴5, 메뉴9
+				if(selected.prev().length == 0){
+					//첫번째 메뉴인 경우(메뉴 1)
+					if(selected.parent().prev().length == 0){
+						return;
+					}
+					//애니메이션
+					var ml = $('.menu-wrap-box').css('margin-left');
+					ml = parseFloat(ml);
+					var width = $('.menu').first().width();
+					ml = ml + width;
+					$('.menu-wrap-box').animate({'margin-left':ml+'px'},500);
+					//이동 후 다음 큰 메뉴에서 첫번 째 메뉴에 seleted 클래스 추가
+					selected.parent().prev().children('.menu-item').last().addClass('selected');
+					selected.removeClass('selected');
+				}else{
+					//큰 메뉴내에서 다음으로 이동
+					selected.removeClass('selected').prev().addClass('selected');
+				}
+				$('.selected').click();
+			})
+			$('.menu-item').click(function(){
+				$('.menu-item').removeClass('selected');
+				$(this).addClass('selected');
+				var target = $(this).attr('data-target');
+				$('.contents-box div').hide();
+				$(target).show();
+			})
+			$('.menu-item').eq(0).click();
+		})
+	</script>
 </body>
 </html>
