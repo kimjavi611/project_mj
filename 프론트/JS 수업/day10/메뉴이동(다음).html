@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../JS/jquery.js"></script>
+</head>
+<style>
+  *{padding: 0; margin: 0; list-style: none; text-decoration: none; color: black;}
+  .menu{
+    width: 500px;height: 50px;
+    display: flex;
+  }
+  .menu::after{display: none; content: ''; clear: both;}
+  li{
+    width: calc(100% / 6);line-height: 50px;
+     text-align: center; 
+    font-weight: bold;
+  }
+  
+  .dot-box{
+    width: calc(100% / 7); 
+  }
+  .dot-box a{
+    line-height: 100%; text-align: center;
+    font-size: 30px;
+  }
+  
+  .selected a{color: blue; font-weight: bold; }
+  .veiw-box{
+    width: 500px; height: 300px; border: 1px solid black; 
+  }
+  
+
+</style>
+<body>
+    <ul class="menu">
+      <li class="selected"><a href="https://news.daum.net/">뉴스</a></li>
+      <div class="dot-box">
+        <span class="selected"><a href="#" data-target=".box1" >.</a></span>
+        <span><a href="#" data-target=".box2">.</a></span>
+        <span><a href="#" data-target=".box3">.</a></span>
+      </div>
+      <li><a href="https://entertain.daum.net/">연예</a></li>
+      <li><a href="https://sports.daum.net/">스포츠</a></li>
+      <li><a href="https://movie.daum.net/main">영화</a></li>
+      <li><a href="https://auto.daum.net/">자동차</a></li>
+      <li><a href="https://realty.daum.net/">부동산</a></li>
+    </ul>
+    <div class="veiw-box">
+      <div class="box1">1</div>
+      <div class="box2">2</div>
+      <div class="box3">3</div>
+    </div>
+</body>
+<script>
+  $(function(){
+    $('.menu li').click(function(e){
+      e.preventDefault();
+      if($(this).hasClass('selected')){
+        location.href=$(this).children('a').attr('href')
+      }else{
+        $('.menu li').removeClass('selected')
+       $(this).addClass('selected');
+      }
+    })
+    $('span a').click(function(){
+      $('span a').removeClass('selected')
+      $(this).addClass('selected')
+      var target = $(this).attr('data-target');
+      $('.view-box div').hide();
+      $(target).show();
+    })
+  });
+</script>
+</html>
