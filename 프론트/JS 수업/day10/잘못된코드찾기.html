@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>잘못된코드 찾기</title>
+  <script src="../JS/jquery.js"></script>
+  <script>
+    $(function(){
+      $('#btn1').click(function(){
+        alert('버튼1클릭')
+      $('#btn2').click(function(){
+        alert('버튼2클릭')
+      })//들여쓰기 잘못함 위에 버튼1클릭 끝나는곳에 있어야함
+      })//버튼2를 먼저 클릭하면 실행이 안됨 =>1번버튼을 클릭하면 알림을 띄우고 2번버튼 클릭이벤트를 주세요 하는 것
+    })
+  </script>
+</head>
+<body>
+  <button id="btn1">버튼1</button>
+  <button id="btn2">버튼2</button>
+</body>
+</html>
