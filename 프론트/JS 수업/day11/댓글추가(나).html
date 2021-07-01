@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>댓글추가 기능</title>
+  <script src="../JS/jquery.js"></script>
+  <script>
+   $(function(){
+     $('.reg').click(function(){
+      var value = $('.input').val();
+      var writer = $('.writer').val();
+      $('.reple').text(value+witer)
+      $('.del').show();
+    })
+   })   
+  </script>
+  <style>
+    *{padding: 0; margin: 0; text-decoration: none;}
+    .contents{
+      width: 700px; height: 500px; border: 1px solid black;
+      margin: 20px 0;
+    }
+    .reple{
+      border: 1px solid black; width: 700px;
+    }
+    .input{
+      width: 500px; height: 100px; float: right;
+    }
+    .reple-box{
+      position: relative; width: 600px;
+    }
+    .reg{
+      width: 100px; height: 100px; margin-left: 20px;
+    }
+    .del{float: right; display: none; }
+    .righter{
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <nav>제목입니다</nav><br>
+  홍길동
+  <div class="contents"></div>
+  <h3>댓글</h3>
+  <div class="reple">
+    <button class="del">삭제x</button>
+  </div>
+  <div class="reple-box">
+    <div class="writer">작성자</div>
+    <input type="text" class="input">
+  </div>  
+  <button class="reg">등록</button>
+</body>
+</html>
