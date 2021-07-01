@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>네이버 회원 가입</title>
+  <script src="../JS/jquery.js"></script>
+  <script>
+    $(function(){
+
+    })
+  </script>
+  <style>
+    *{margin-bottom: 10px;}
+  </style>
+</head>
+<body>
+  <form action="">
+    아이디<br>
+    <input type="text" class="id" placeholder="아이디를 입력하세요"><br>
+    <span class="id-error" style="color: red;"></span><br>
+    비밀번호<br>
+    <input type="passward" class="pw" placeholder="비밀번호를 입력하세요"><br>
+    <span class="pw-error" style="color: red;"></span><br>
+    비밀번호 재확인<br>
+    <input type="passward" class="pw-check" placeholder="비밀번호 확인"><br>
+    <span class="pw-error" class="pw-check-error" style="color: red;"></span><br>
+    이름<br>
+    <input type="text"><br>
+    생년월일<br>
+    <input type="text" id="yy" placeholder="년(4자)">
+    <select name="month" id="mm" style="width: 100px;">
+      <option value="">월</option>
+      <option value="01">1</option>
+      <option value="02">2</option>
+      <option value="03">3</option>
+      <option value="04">4</option>
+      <option value="05">5</option>
+      <option value="06">6</option>
+      <option value="07">7</option>
+      <option value="08">8</option>
+      <option value="09">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <input type="text" id="dd" placeholder="일"><br>
+    성별<br>
+    <select name="gender" id="gender">
+      <option value="">성별</option>
+      <option value="male">남성</option>
+      <option value="female">여성</option>
+      <option value="none">선택안함</option>
+    </select><br>
+    본인 확인 이메일(선택)<br>
+    <input type="text"><br>
+    휴대전화<br>
+    <select name="nationalp" id="npn">
+      <option value="kr">대한민국 +82</option>
+    </select><br>
+    <input type="text" placeholder="전화번호 입력"><br>
+    <button type="submit">가입하기</button><br>
+  </form> 
+</body>
+</html>
