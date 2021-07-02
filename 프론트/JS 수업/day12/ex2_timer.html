@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타이머</title>
+  <script src="../JS/jquery.js"></script>
+  <script>
+    var hour = 0;
+    var minute = 0;
+    var second = 0;
+    var msecond =0;
+    var id;
+    $(function(){
+      $('.start-btn').on('click',function(){
+        id = setInterval(function(){
+          msecond++
+          if(msecond == 100){
+            msecond = 0;
+            second++
+          }
+          if(second == 60){
+            second = 0;
+            minute++
+          }
+          if(minute==60){
+            minute = 0
+            hour++
+          }
+          $('.timer-box').text(getTime(hour,minute,second,msecond))
+        },1000)
+        
+      })
+      $('.reset-btn').on('click',function(){
+        
+      })
+    })
+    //숫자가 10미만이면 앞에 0을 붙여서 문자열로 만들어주는 함수
+    function addZero(num){
+			if(num<10){
+        return '0'+num;
+      }
+      return ''+num;
+		}  
+    //시, 분, 초, 밀리초가 주어지면 문자열로 만들어주는 함수
+		function getTime(hour, minute, second, msecond){
+			return addZero(hour) + ':' + addZero(minute) + ':' + addZero(second) + '.' + addZero(msecond);
+		}
+  </script>
+</head>
+<style>
+  .cintainer{
+    width: 500px; margin-top: 20px;
+  }
+  .timer-box{
+    height: 50px; line-height: 50px; border: 1px solid black;
+    text-align: center; font-weight: bold; margin-bottom: 10px;
+  }
+  .btn-box ::after{ display: none; content: ''; clear: both;}
+  .btn-box button{
+    height: 50px; box-sizing: border-box; width: 160px; border: 1px solid black;
+    text-align: center; line-height: 48px; margin-right: 0;
+    float: left;
+  }
+  .btn-box button:last-child{
+    margin-right: 0;
+  }
+  .record-box{
+    margin-top: 10px; padding: 10px; border: 1px solid black;
+
+
+  }
+</style>
+<body>
+  <div class="container">
+    <div class="timer-box">00 : 00 : 00.00</div>
+    <div class="btn-box">
+      <button class="start-btn">시작</button>
+      <button class="rset-btn">초기화</button>
+      <button class="record-btn">기록</button>
+    </div>
+    <div class="record-box">
+      <div class="record">00:00:00.00</div>
+      <div class="record">00:00:00.00</div>
+    </div>
+  </div>  
+
+</body>
+</html>
