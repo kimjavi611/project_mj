@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글</title>
+  <script src="../JS/jquery.js"></script>
+  <script>
+    $(function(){
+      $('#btn1').on('click',function(){
+        $('.container table').addClass('.abstract')
+      })
+      $('#btn2').on('click',function(){
+        $('.container table').removeClass('.abstract')
+      })
+    })
+  </script>
+  <style>
+    *{padding: 0; margin: 0; text-decoration: none; color: black; }
+    .container{
+      width: 800px; margin: 20px auto 0; border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+    table{
+      width: 100%; border-collapse: collapse;
+    }
+    tr{
+      border-bottom: 1px solid #aaa;
+    }
+    tr:last-child{
+      border-bottom: none;
+    }
+    tr>td{
+      height: 35px; line-height: 35px;
+    }
+    .title{
+      width: 600px;
+    }
+    .category{
+      width: 60px;
+    }
+    .time{
+      width: 100px;
+    }
+    .metto, .answer, .contents{
+      display: none;
+    }
+    .abstract tr>td{
+      display: block;
+    }
+    .abstract .count,
+    .abstract .category,
+    .abstract .time{
+      float: left; width: auto;margin-right: 10px;
+    }
+    .abstract .metoo,
+    .abstract .answer{
+      float: right; margin-left: 10px; display: none;
+    }
+    .abstract tr:hover .metoo
+
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="btn1">미리보기</button>
+    <button id="btn2">요약보기</button>
+    <table class="abstract">
+      <tr>
+        <td class="title">윈도우 블랙 스크린</td>
+        <td class="contnets">답변</td>
+        <div class="count"></div>
+        <td class="category">맥os</td>
+        <td class="time">방금</td>
+        <td class="answer"><a>답변하기</a></td>
+        <td class="metoo"><a>나도 궁금해요</a></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
