@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타이머 만들기</title>
+  <script src="../JS/jquery.js"></script>
+  <script>
+
+  </script>
+  <style>
+    .container{
+      width: 500px; margin: 30px  auto;
+    }
+    .view-box{
+      height: 50px; border: 1px solid black;
+      line-height: 50px; text-align: center; font-weight: bold;
+    }
+    .btn-box{
+      width: 100%; line-height: 50px; text-align: center;
+      margin-top: 20px;
+    }
+    .btn-box::after{display: block; content: '';clear: both; }
+    .btn-box button{
+      float: left; width: calc(100% / 3); border: 1px solid black;
+      box-sizing: border-box; height: 40px;
+    }
+    .record-box{
+      text-align: center; margin-top: 20px;
+      border: 1px solid black;box-sizing: border-box;
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="view-box">00 : 00 : 00.00</div>
+    <div class="btn-box">
+      <button class="start-btn">시작</button>
+      <button class="reset-btn">초기화</button>
+      <button class="record-btn">기록</button>
+    </div>
+    <div class="record-box">
+      <div class="record">00 : 00 : 00.00</div>
+      <div class="record">00 : 00 : 00.00</div>
+    </div>
+  </div>
+</body>
+</html>
