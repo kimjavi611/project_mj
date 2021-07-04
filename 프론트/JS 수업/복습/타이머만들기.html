@@ -7,7 +7,26 @@
   <title>타이머 만들기</title>
   <script src="../JS/jquery.js"></script>
   <script>
-
+    var h, m, s, ms;
+    var id;
+    $(function(){
+      //start-btn을 클릭하면 타이머가 시작
+     $('.start-btn').on('click', function(){
+      id = setInterval(function(){
+        ms++
+        if(ms == 1000 ){
+          ms=0; s++
+        }
+        if(s == 60){
+          s=0; m++
+        }
+        if(m == 60){
+          m=0; h++
+        }
+        
+      },1000)
+     }) 
+    })
   </script>
   <style>
     .container{
