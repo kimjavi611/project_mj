@@ -7,14 +7,14 @@
   <title>타이머 만들기</title>
   <script src="../JS/jquery.js"></script>
   <script>
-    var h, m, s, ms;
+    var h=0, m=0, s=0, ms=0;
     var id;
     $(function(){
       //start-btn을 클릭하면 타이머가 시작
      $('.start-btn').on('click', function(){
       id = setInterval(function(){
         ms++
-        if(ms == 1000 ){
+        if(ms == 100){
           ms=0; s++
         }
         if(s == 60){
@@ -23,10 +23,19 @@
         if(m == 60){
           m=0; h++
         }
-        
+        //view-box에 setInterval로 준 기능을 넣어줌
+        $('.view-box').text(makeTime(h,m,s,ms))
       },1000)
      }) 
     })
+    //숫자가 10보다 작을 때 앞에 0으로 표현되게 하는 함수
+    function makeZero(num){
+      num < 10 ? '0' + num : num
+    }
+    //h, m, s, ms을 문자열로 만들어주는 함수 
+    function makeTime(h,m,s,ms){
+      return makeZero(h) + ':' + makeZero(m) + ':' + makeZero(s) + '.' + makeZero(ms) 
+    }
   </script>
   <style>
     .container{
