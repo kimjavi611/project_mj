@@ -16,7 +16,7 @@
 <c:forEach items="${list}" var="board">
 <!--  vo를 이용하여 멤버변수명을 쓰면 해당 멤버 변수를 부르는 것이 아니라 해당 멤버 변수의 getter를 부르는 것이다 
 	멤버변수는 private으로 되어있어서 바로 쓸 수 없다. -->
-	${board.num}:${board.title}: ${board.writer}:${board.registered}:${board.views}<br> 
+	<!-- ${board.num}:${board.title}: ${board.writer}:${board.registered}:${board.views}<br>--> 
 	
 </c:forEach>
 
