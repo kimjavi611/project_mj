@@ -21,7 +21,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.green.test" />
+	<!-- 패키지 먼저 만들어놓고 설정 / component-scan: 지정된 파일들만 인식함 -->
+	<context:component-scan base-package="kr.green.test.*" />
 	
 	
 	
