@@ -28,8 +28,7 @@ public class HomeController {
 			UserVo user,  
 			@RequestParam("hobby") String[] hobby) {
 		mv.setViewName("signin");
-		System.out.println("id : " + user.getId());
-		System.out.println("pw : " + user.getPw());
+		
 		for(String tmp : hobby) {
 			System.out.println("취미: " + tmp);
 		}

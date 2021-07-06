@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.green.spring.dao.MemberDAO;
+import kr.green.spring.vo.MemberVO;
  
 @Service
 public class MemberServiceImp implements MemberService {
@@ -11,7 +12,7 @@ public class MemberServiceImp implements MemberService {
     MemberDAO memberDao;
     
     @Override
-    public MemberVo getMember(String id) {
+    public MemberVO getMember(String id) {
         return memberDao.getMember(id);
     }
 }
