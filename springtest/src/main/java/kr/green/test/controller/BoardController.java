@@ -68,10 +68,11 @@ public class BoardController {
 		mv.setViewName("board/modify");
 		return mv;
 	}
-	@RequestMapping(value="/board/delete") 
+	@RequestMapping(value="/board/delete") //삭제의 경우 메소드가 get이든 post든 상관 x
 	public ModelAndView boardDeleteGet(ModelAndView mv, Integer num) { 
 		boardService.deleteBoard(num);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
+	
 }

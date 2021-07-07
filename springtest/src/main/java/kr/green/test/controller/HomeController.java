@@ -68,4 +68,13 @@ public class HomeController {
 		}
 		return mv;
 	}
+	@RequestMapping(value="/member/mypage", method=RequestMethod.GET) 
+	public ModelAndView memberMypageGet(ModelAndView mv, String id) { 
+		//서비스에게 아이디를 주면서 회원정보를 가져오라고 시킴
+		MemberVO user = memberService.getMember(id);
+		//가져온 회원 정보를 화면에 전달
+		mv.addObject("user", user);
+		mv.setViewName("member/mypage");
+		return mv;
+	}
 }

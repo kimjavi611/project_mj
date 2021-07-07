@@ -43,4 +43,20 @@ public class MemberServiceImp implements MemberService {
 		return true;
 	}
 
+
+
+	@Override
+	public MemberVO getMember(String id) {
+		//다오에게 아이디를 주면서 회원 정보를 가져오라고 시킴
+		//가져온 회원 정보를 전달
+		return memberDao.getMember(id);
+	}
+
+
+
+	
+	
+
+
+
 } 
