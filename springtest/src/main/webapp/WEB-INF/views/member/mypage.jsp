@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
-<form class="container" method="post" action="<%=request.getContextPath()%>/signup">
+<form class="container" method="post" action="<%=request.getContextPath()%>/test">
 	<h1>마이페이지</h1>
 	<div class="form-group">
 	  <label for="usr">아이디:</label>
