@@ -29,4 +29,14 @@ public class BoardController {
 		mv.setViewName("board/list");
 		return mv;
 	}
+	@RequestMapping(value="/board/detail")
+	public ModelAndView boardDetail(ModelAndView mv, Integer num) { //int는 url이 잘못됐을때(NULL)이 됐을 때 에러가 뜬다. null값을 가질 수 없기 때문
+		//서비스에게 번호를 주면서 게시글을 가져오라고 시킴 
+		//게시글 정보 가져오는 작업을 먼저 해야함
+		BoardVO board = boardService.getBoard(num);
+		//가져온 게시글을 화면에 전달, 화면으로 보낼 이름은 board로
+		mv.addObject("board", board);
+		mv.setViewName("board/detail");
+		return mv;
+	}
 }
