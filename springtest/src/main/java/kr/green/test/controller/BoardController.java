@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.test.service.BoardService;
@@ -39,4 +40,19 @@ public class BoardController {
 		mv.setViewName("board/detail");
 		return mv;
 	}
+	@RequestMapping(value="/board/register", method=RequestMethod.GET) //전송방식이 get일때 주소가 너무 길어질 수 있음 =>실제 처리는 post이용
+	public ModelAndView boardRegisterGet(ModelAndView mv) { 
+		
+		mv.setViewName("board/register");
+		return mv;
+	}
+	//화면에서 보내주는 제목, 작성자, 내용을 받아서 콘솔에 출력
+	@RequestMapping(value="/board/register", method=RequestMethod.POST) //jsp에서 action="post"한 후 Mapping추가 해줌
+	public ModelAndView boardRegisterPost(ModelAndView mv,BoardVO board ) { 
+		//서비스에게 게시글 정보(제목,작성자, 내용)을 주면서 게시글을 등록하라고 시킴
+		boardService.insertBoard(board);
+		mv.setViewName("redirect:/board/list");//등록후에 다시 메인으로 
+		return mv;
+	}
+	
 }

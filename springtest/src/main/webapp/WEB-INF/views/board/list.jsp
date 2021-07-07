@@ -46,7 +46,7 @@
 	    </c:forEach>
     </tbody>
   </table>
+  <a href="<%=request.getContextPath()%>/board/register"><button class="bnt bnt-outline-success">글쓰기</button></a>
 </div>
-
 </body>
 </html>
