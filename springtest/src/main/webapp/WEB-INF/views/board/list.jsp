@@ -40,7 +40,7 @@
 	      <tr>
 	        <td>${board.num}</td>
 	        <td><a href="<%=request.getContextPath()%>/board/detail?num=${board.num}">${board.title}</a></td>
-	        <td>${board.writer}</td>>
+	        <td>${board.writer}</td>
 	        <td>${board.registeredDate}</td>
 	        <td>${board.views}</td>
 	      </tr>
