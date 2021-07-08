@@ -12,4 +12,12 @@
  		value(#{user.id},#{user.pw},#{user.name},#{user.email},#{user.gender}) 
  		<!-- 클래스에 속한 멤버변수는 클래스명.멤버변수로 써줘야함 -->
  	</insert>
+ 	<update id="updateMember">
+ 		update member set
+ 			pw = #{user.pw},
+ 			email = #{user.email},
+ 			gender = #{user.gender},
+ 			authority = #{user.authority}
+ 		where id = #{user.id}
+ 	</update>
 </mapper>
