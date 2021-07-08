@@ -13,9 +13,6 @@
 </head>
 <body>
 
-
-
-
 <form class="container" method="post" action="<%=request.getContextPath()%>/board/register">
   <h2>게시글 등록</h2>           
  	<div class="form-group">
