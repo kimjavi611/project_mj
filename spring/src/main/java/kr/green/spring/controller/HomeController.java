@@ -19,25 +19,9 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {
 		mv.setViewName("home");
-		mv.addObject("name","홍길동");
-		System.out.println(memberService.getMember("abc123"));
 		return mv;
 	}
-	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	public ModelAndView signinGet(ModelAndView mv,
-			UserVo user,  
-			@RequestParam("hobby") String[] hobby) {
-		mv.setViewName("signin");
-		
-		for(String tmp : hobby) {
-			System.out.println("취미: " + tmp);
-		}
-		
-		return mv;
-	}
+	
+	
 }
-@Data
-class UserVo{
-	private String id;
-	private String pw;
-}
+
