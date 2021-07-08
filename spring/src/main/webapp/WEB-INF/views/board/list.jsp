@@ -39,6 +39,7 @@
     </tbody>
   </table>
   <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-primary">±Û¾²±â</button></a>
+  
 </div>
 
 </body>

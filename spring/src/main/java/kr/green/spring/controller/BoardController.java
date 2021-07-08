@@ -45,7 +45,21 @@ public class BoardController {
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
 	public ModelAndView registerPost(ModelAndView mv, BoardVO board) {
 		boardService.insertBoard(board);
-		mv.setViewName("redirect:/board/list");
+		mv.setViewName("redirect:/board/list"); //동작 처리후에 보낼곳 
+		return mv;
+	}
+	@RequestMapping(value = "/modify", method=RequestMethod.GET)
+	public ModelAndView modify(ModelAndView mv, Integer num) {
+		//수정할 게시글을 가져와서 화면에 보여줌 
+		BoardVO board = boardService.getBoard(num); //detail만들때 정보 불러오는거 만들어놔서 이용
+		mv.addObject("board", board); 
+		mv.setViewName("/board/modify");
+		return mv;
+	}
+	@RequestMapping(value = "/modify", method=RequestMethod.POST)
+	public ModelAndView modifyPost(ModelAndView mv, BoardVO board) {
+		boardService.getModify(board);
+		mv.setViewName("/board/modify");
 		return mv;
 	}
 }

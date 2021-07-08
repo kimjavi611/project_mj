@@ -34,7 +34,7 @@ public class BoardServiceImp implements BoardService{
 
 	@Override
 	public int updateViews(Integer num) {
-		//디오에게 게시글 정보를 가져오라고 요청
+		//다오에게 게시글 정보를 가져오라고 요청
 		BoardVO board = boardDao.getBoard(num);
 		if(board == null) {
 			return 0;
@@ -43,8 +43,6 @@ public class BoardServiceImp implements BoardService{
 		return boardDao.updateBoard(board);
 	}
 
-
-
 	@Override
 	public void insertBoard(BoardVO board) {
 		if(board == null) {
@@ -52,6 +50,21 @@ public class BoardServiceImp implements BoardService{
 		}
 		boardDao.insertBoard(board); 
 	}
+
+
+
+	@Override
+	public BoardVO getModify(BoardVO board) {
+		//다오에게 수정할 정보를 저장하라고 시킴 
+		return null;
+	}
+
+
+
+	
+
+
+	
 
 
 

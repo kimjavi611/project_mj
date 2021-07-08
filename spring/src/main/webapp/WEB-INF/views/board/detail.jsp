@@ -34,7 +34,8 @@
   	<label>내용</label>
   	<textarea class="form-control" name="contents" rows="10">"${board.contents}"</textarea>
   </div>
-	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-ouline-primary">목록</button></a>
+ 	 <a href="<%=request.getContextPath() %>/board/modify?num=${board.num}"><button class="btn btn-success">수정</button></a>
+	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-primary">목록</button></a>
 </div>
 
 </body>

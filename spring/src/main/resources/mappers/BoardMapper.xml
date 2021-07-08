@@ -21,4 +21,5 @@
 		insert into board(title,contents,writer) 
 		values(#{board.title},#{board.contents},#{board.writer});
 	</insert>
+	
 </mapper>
