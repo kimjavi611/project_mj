@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form class="container" method="post" action="<%=request.getContextPath()%>/board/list">
+<form class="container" method="post" action="<%=request.getContextPath()%>/board/modify">
   <h1>게시물 수정</h1>
   <div class="form-group">
   	<label>제목</label>
@@ -26,6 +26,7 @@
   	<label>내용</label>
   	<textarea class="form-control" name="contents" rows="10">"${board.contents}"</textarea>
   </div>
+  <input type="hidden" name="num" value="${board.num}">
 	<button class="btn btn-primary">수정</button>
 	<a href="<%=request.getContextPath() %>/board/list"><button type=button class="btn btn-success">목록</button></a>
 </form>

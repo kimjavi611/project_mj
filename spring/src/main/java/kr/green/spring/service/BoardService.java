@@ -15,6 +15,10 @@ public interface BoardService {
 
 	void insertBoard(BoardVO board);
 
-	BoardVO getModify(BoardVO board);
+	
+
+	int deleteBoard(Integer num);
+
+	int updateBoard(BoardVO board);
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.green.test.dao.BoardDAO;
+import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.BoardVO;
 
 @Service
@@ -14,9 +15,9 @@ public class BoardServiceImp implements  BoardService{
 	BoardDAO boardDao;
 
 	@Override
-	public ArrayList<BoardVO> getBoardList() {
+	public ArrayList<BoardVO> getBoardList(Criteria cri) {
 		// TODO Auto-generated method stub
-		return boardDao.getBoardList();
+		return boardDao.getBoardList(cri);
 	}
 
 	@Override
@@ -74,5 +75,10 @@ public class BoardServiceImp implements  BoardService{
 		board.setValid("D");
 		//다오에게 게시글 정보를 주면서 수정하라고 시킨 후 정수값을 리턴
 		return boardDao.updateBoard(board);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		return boardDao.getTotalCount(cri);
 	}
 }

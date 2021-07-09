@@ -51,12 +51,28 @@ public class BoardServiceImp implements BoardService{
 		boardDao.insertBoard(board); 
 	}
 
+	@Override
+	public int deleteBoard(Integer num) {
+		if(num == null) {
+			return 0;
+		}
+		BoardVO board = boardDao.getBoard(num);
+		board.setValid("D"); //속성을 바꿔서 안보이게 하기위해서 
+		return boardDao.updateBoard(board);
+	}
+
 
 
 	@Override
-	public BoardVO getModify(BoardVO board) {
-		//다오에게 수정할 정보를 저장하라고 시킴 
-		return null;
+	public int updateBoard(BoardVO board) {
+		if(board ==null) {
+			return 0;
+		}
+		BoardVO dbboard = boardDao.getBoard(board.getNum());
+		dbboard.setContents(board.getContents());
+		dbboard.setTitle(board.getTitle());
+		return boardDao.updateBoard(dbboard);
+		
 	}
 
 

@@ -39,7 +39,20 @@
     </tbody>
   </table>
   <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-primary">글쓰기</button></a>
-  
+  <script>
+  	$(function(){
+  		var msg = '${msg}';
+  		printMsg(msg);
+  		history.replaceState({},null,.null); //삭제 후 목록에서 뒤로가기 버튼을 누르면 삭제 될때 뜬 알림창이 뜨게된다
+  		//뒤로가기는 그 전 실행주소를 불러오기 때문 =>history.replaceState로 실행된걸 비워주면 뒤로가기 버튼을 눌러도 알림이 안뜬다 
+  	})
+  	function printMsg(msg){
+  		if(msg == ''|history.State){
+  			return ;
+  		}
+  		alert(msg);
+  	}
+  </script>
 </div>
 
 </body>

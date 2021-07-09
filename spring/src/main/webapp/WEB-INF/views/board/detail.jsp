@@ -34,8 +34,30 @@
   	<label>내용</label>
   	<textarea class="form-control" name="contents" rows="10">"${board.contents}"</textarea>
   </div>
- 	 <a href="<%=request.getContextPath() %>/board/modify?num=${board.num}"><button class="btn btn-success">수정</button></a>
-	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-primary">목록</button></a>
+  <div class="input-group"> <!-- 부트스트랩에서 제공하는 클래스 -->
+	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-primary mr-2">목록</button></a>
+ 	 <a href="<%=request.getContextPath() %>/board/modify?num=${board.num}"><button class="btn btn-success mr-2">수정</button></a>
+ 	 <c:if test="${board != null}">
+	 	<form action="<%=request.getContextPath()%>/board/delete" method="Post" class="mr-2">
+	 		<input type="hidden" value="${board.num}" name="num"> <!-- 게시글 번호를 인풋하고 숨겨놓음 -->
+	 		<button class="btn btn-success">삭제</button> <!-- POST로 할거기 때문에 form태그안에 넣어줘야함 -->
+		</form>
+	</c:if>
+  </div>
+  <script type="text/javascript">
+  	$(function(){
+  		var msg = '${msg}';
+  		printMsg(msg);
+  		history.replaceState({},null,null); //삭제 후 목록에서 뒤로가기 버튼을 누르면 삭제 될때 뜬 알림창이 뜨게된다
+  		//뒤로가기는 그 전 실행주소를 불러오기 때문 =>history.replaceState로 실행된걸 비워주면 뒤로가기 버튼을 눌러도 알림이 안뜬다 
+  	})
+  	function printMsg(msg){
+  		if(msg == ''|history.State){
+  			return ;
+  		}
+  		alert(msg);
+  	}
+  </script>	
 </div>
 
 </body>
