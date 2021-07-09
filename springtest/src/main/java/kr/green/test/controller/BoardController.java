@@ -25,7 +25,7 @@ public class BoardController {
 		PageMaker pm = new PageMaker();
 		cri.setPerPageNum(2); //페이지당 게시물을 2개
 		pm.setCriteria(cri);
-		pm.setDisplayPageNum(2);
+		pm.setDisplayPageNum(3);
 		int totalCount = boardService.getTotalCount(cri);
 		pm.setTotalCount(totalCount);
 		pm.calcData();
