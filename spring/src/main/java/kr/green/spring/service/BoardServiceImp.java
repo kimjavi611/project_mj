@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.green.spring.dao.BoardDAO;
+import kr.green.spring.pagination.Criteria;
 import kr.green.spring.vo.BoardVO;
 
 @Service
@@ -73,6 +74,14 @@ public class BoardServiceImp implements BoardService{
 		dbboard.setTitle(board.getTitle());
 		return boardDao.updateBoard(dbboard);
 		
+	}
+
+
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		//다오한테 cri정보를 넘겨줌 
+		return boardDao.getTotalCount(cri);
 	}
 
 

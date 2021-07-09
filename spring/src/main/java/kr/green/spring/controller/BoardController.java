@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.spring.pagination.Criteria;
+import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
 import kr.green.spring.vo.BoardVO;
 import lombok.extern.log4j.Log4j;
@@ -19,10 +21,24 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value = "/list")
-	public ModelAndView list(ModelAndView mv, String msg) {
+	public ModelAndView list(ModelAndView mv, String msg, Criteria cri) {
+		log.info(cri);
+		//한 페이지에 보여지는 개시글 갯수
+		cri.setPerPageNum(3);
+		PageMaker pm = new PageMaker();
+		//현재 페이지정보
+		pm.setCriteria(cri);
+		//한페이지에서 보여지는 페이지네이션 갯수
+		pm.setDisplayPageNum(5);
+		//총 게시글 갯수만큼 페이지네이션 생성 
+		//총 게시글 갯수
+		int totalCount = boardService.getTotalCount(cri);
+		pm.setTotalCount(totalCount);
+		pm.calcData();
+		mv.addObject("pm", pm);
 		ArrayList<BoardVO> list = boardService.getBoardList();
-		mv.addObject("list", list);
 		mv.addObject("msg", msg);
+		mv.addObject("list", list);
 		mv.setViewName("/board/list");
 		return mv;
 	}

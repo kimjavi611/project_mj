@@ -39,6 +39,12 @@
     </tbody>
   </table>
   <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-primary">±Û¾²±â</button></a>
+   <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">1</a></li>
+    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">2</a></li>
+    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">Next</a></li>
+  </ul>
   <script>
   	$(function(){
   		var msg = '${msg}';
