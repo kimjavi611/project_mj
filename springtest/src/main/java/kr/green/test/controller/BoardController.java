@@ -21,6 +21,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
+		log.info(cri);
 		PageMaker pm = new PageMaker();
 		cri.setPerPageNum(2); //페이지당 게시물을 2개
 		pm.setCriteria(cri);
