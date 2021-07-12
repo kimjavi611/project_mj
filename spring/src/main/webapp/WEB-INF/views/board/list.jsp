@@ -17,9 +17,9 @@
   <form methhod="get" action="<%=request.getContextPath() %>>">
 	  <div class="input-group mb-3">
 	    <select class="form-control" name="type">
-	    	<option value="0" <c:if test="${pm.critertia.type == 0 }">selected</c:if>>전체</option>
-	    	<option value="1" <c:if test="${pm.critertia.type == 1 }">selected</c:if>>전체+내용</option>
-	    	<option value="2" <c:if test="${pm.critertia.type == 2 }">selected</c:if>>작성자</option>
+	    	<option value="0" <c:if test="${pm.criteria.type == 0 }">selected</c:if>>전체</option>
+	    	<option value="1" <c:if test="${pm.criteria.type == 1 }">selected</c:if>>전체+내용</option>
+	    	<option value="2" <c:if test="${pm.criteria.type == 2 }">selected</c:if>>작성자</option>
 	    </select>
 	    
 	    
