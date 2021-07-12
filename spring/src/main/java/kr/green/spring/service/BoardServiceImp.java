@@ -15,9 +15,9 @@ public class BoardServiceImp implements BoardService{
 	BoardDAO boardDao;
 
 	@Override
-	public ArrayList<BoardVO> getBoardList(){
+	public ArrayList<BoardVO> getBoardList(Criteria cri){
 		
-		return boardDao.getBoradList();
+		return boardDao.getBoradList(cri);
 	}
 
 	
@@ -80,13 +80,12 @@ public class BoardServiceImp implements BoardService{
 
 	@Override
 	public int getTotalCount(Criteria cri) {
-		//다오한테 cri정보를 넘겨줌 
+		// TODO Auto-generated method stub
 		return boardDao.getTotalCount(cri);
 	}
 
 
 
-	
 
 
 	

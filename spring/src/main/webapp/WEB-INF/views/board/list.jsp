@@ -14,7 +14,17 @@
 <body>
 <div class="container">
   <h2>게시판 목록</h2>
-  
+  <form methhod="get" action="<%=request.getContextPath() %>>">
+	  <div class="input-group mb-3">
+	    <select class="form-control" name="type">
+	    	<option value="0" <c:if test="${pm.critertia.type == 0 }">selected</c:if>>전체</option>
+	    	<option value="1" <c:if test="${pm.critertia.type == 1 }">selected</c:if>>전체+내용</option>
+	    	<option value="2" <c:if test="${pm.critertia.type == 2 }">selected</c:if>>작성자</option>
+	    </select>
+	    
+	    
+	  </div>
+	</form>
   <table class="table table-hover">
 
     <thead>
@@ -40,10 +50,16 @@
   </table>
   <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-primary">글쓰기</button></a>
    <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">1</a></li>
-    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">2</a></li>
-    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">Next</a></li>
+    <c:if test="${pm.prev}">
+    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">Previous</a></li>
+    </c:if>
+    <c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="index">
+    	
+   		<li class="page-item" <c:if test="${pm.criteria.page ==index }">active</c:if>><a class="page-link" href="<%=request.getContextPath()%>/board/list>">${index}</a></li>
+    </c:forEach>
+    <c:if test="${pm.next}">
+    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list>">Next</a></li>
+  	</c:if>
   </ul>
   <script>
   	$(function(){

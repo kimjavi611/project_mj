@@ -9,7 +9,7 @@ import kr.green.spring.vo.BoardVO;
 
 public interface BoardDAO {
 
-	ArrayList<BoardVO> getBoradList();
+	ArrayList<BoardVO> getBoradList(@Param("cri")Criteria cri);
 
 
 	BoardVO getBoard(@Param("num")Integer num);
@@ -25,6 +25,9 @@ public interface BoardDAO {
 
 
 	int getTotalCount(@Param("cri")Criteria cri);
+
+
+	
 
 	
 }

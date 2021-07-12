@@ -1,14 +1,28 @@
 package kr.green.spring.pagination;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@ToString
 public class Criteria {
-	//현재 페이지
+	@Getter
 	private int page; 
-	//한 페이지 당 컨텐츠 갯수
+	@Getter
 	private int perPageNum;
+	@Getter
+	private String search;
+	@Getter
+	private int type;
 	//Criteria 디폴트 생성자 : 현재 페이지를 1페이지로, 한 페이지에 10개의 컨텐츠
 	public Criteria() {
 		this.page = 1;
 		this.perPageNum = 10;
+		this.search = "";
+		//int는 기본 초기값이 0
+		//String은 기본값이 null
+		
+		this.type = 0;
+		
 	}
 	//getter and setter
 	public int getPage() {
