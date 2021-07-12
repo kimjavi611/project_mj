@@ -20,10 +20,6 @@
 	  <input type="text" class="form-control" name="title">
 	</div>
 	<div class="form-group">
-	  <label for="usr">작성자</label>
-	  <input type="text" class="form-control" name="writer">
-	</div>
-	<div class="form-group">
 	  <label for="usr">내용</label>
 	  <textarea class="form-control" rows="10" name="contents"> ${board.contents} </textarea>
 	</div>

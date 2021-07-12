@@ -12,25 +12,33 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
-<!-- Links -->
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Logo</a>
+  <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="<%=request.getContextPath() %>/signin">로그인</a>
+      <a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시글</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="<%=request.getContextPath() %>/signup">회원가입</a>
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        회원
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/signin">로그인</a>
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/signup">회원가입</a>
+      	<c:if test="${user == null}">
+	        <a class="dropdown-item" href="<%=request.getContextPath()%>/signin">로그인</a>
+	        <a class="dropdown-item" href="<%=request.getContextPath()%>/signup">회원가입</a>
+        </c:if>
+        <c:if test="${user != null}">
+	        <a class="dropdown-item" href="<%=request.getContextPath()%>/member/mypage">마이 페이지</a>
+	        <a class="dropdown-item" href="<%=request.getContextPath()%>/signout">로그아웃</a>
+        </c:if>
+      </div>
     </li>
   </ul>
-
-  <!-- Navbar text-->
-  <span class="navbar-text">
-    <a class="nav-link" href="<%=request.getContextPath() %>/board/list">게시판</a>
-  </span>
-  <span class="navbar-text">
-    
-  </span>
-
 </nav>
+
 </body>
 </html>

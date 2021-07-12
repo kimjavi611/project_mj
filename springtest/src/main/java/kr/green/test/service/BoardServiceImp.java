@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.green.test.dao.BoardDAO;
 import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.BoardVO;
+import kr.green.test.vo.MemberVO;
 
 @Service
 public class BoardServiceImp implements  BoardService{
@@ -65,10 +66,10 @@ public class BoardServiceImp implements  BoardService{
 	}
 
 	@Override
-	public int deleteBoard(Integer num) {
+	public int deleteBoard(Integer num, MemberVO user) {
 		//다오에게 게시글 번호를 주면서 가져오라고 시킴
 		BoardVO board = boardDao.getBoard(num);
-		if(board == null) {
+		if(board == null || user == null || !board.getWriter().equals(user.getId())) {
 			return 0;
 		}
 		//가져온 게시글의 vaild값을 D로 수정

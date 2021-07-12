@@ -2,6 +2,8 @@ package kr.green.test.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +13,17 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.green.test.pagination.Criteria;
 import kr.green.test.pagination.PageMaker;
 import kr.green.test.service.BoardService;
+import kr.green.test.service.MemberService;
 import kr.green.test.vo.BoardVO;
+import kr.green.test.vo.MemberVO;
 import lombok.extern.log4j.Log4j;
 @Log4j
 @Controller
 public class BoardController {
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
@@ -60,30 +66,41 @@ public class BoardController {
 	}
 	//화면에서 보내주는 제목, 작성자, 내용을 받아서 콘솔에 출력
 	@RequestMapping(value="/board/register", method=RequestMethod.POST) //jsp에서 action="post"한 후 Mapping추가 해줌
-	public ModelAndView boardRegisterPost(ModelAndView mv,BoardVO board ) { 
+	public ModelAndView boardRegisterPost(ModelAndView mv,BoardVO board, HttpServletRequest request ) {
+		MemberVO user = memberService.getMember(request);
+		board.setWriter(user.getId());
 		//서비스에게 게시글 정보(제목,작성자, 내용)을 주면서 게시글을 등록하라고 시킴
 		boardService.insertBoard(board);
 		mv.setViewName("redirect:/board/list");//등록후에 다시 메인으로 
 		return mv;
 	}
 	@RequestMapping(value="/board/modify", method=RequestMethod.GET) 
-	public ModelAndView boardModifyGet(ModelAndView mv, Integer num) { 
+	public ModelAndView boardModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) { 
 		BoardVO board = boardService.getBoard(num);
 		mv.addObject("board", board);
 		mv.setViewName("board/modify");
+		MemberVO user = memberService.getMember(request);
+		if(board == null || !board.getWriter().equals(board));
+		
 		return mv;
 	}
 	@RequestMapping(value="/board/modify", method=RequestMethod.POST) 
-	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board) {
-		//서비스에게 게시글을 주면서 수정하라고 요청
-		boardService.updateBoard(board);
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board,HttpServletRequest request) {
 		//detial로 이동 
 		mv.setViewName("board/modify");
+		MemberVO user = memberService.getMember(request);
+		if(!user.getId().equals(board.getWriter())) {
+			mv.setViewName("redirect:/board/list");
+		}else {
+			//서비스에게 게시글을 주면서 수정하라고 요청
+			boardService.updateBoard(board);
+		}
 		return mv;
 	}
 	@RequestMapping(value="/board/delete") //삭제의 경우 메소드가 get이든 post든 상관 x
-	public ModelAndView boardDeleteGet(ModelAndView mv, Integer num) { 
-		boardService.deleteBoard(num);
+	public ModelAndView boardDeleteGet(ModelAndView mv, Integer num,HttpServletRequest request){
+		MemberVO user = memberService.getMember(request);
+		boardService.deleteBoard(num, user); 
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
