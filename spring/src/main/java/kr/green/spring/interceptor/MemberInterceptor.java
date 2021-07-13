@@ -10,20 +10,21 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kr.green.spring.vo.MemberVO;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter{
+public class MemberInterceptor extends HandlerInterceptorAdapter{
 	@Override
-	public void postHandle(
+	public boolean preHandle(
 	    HttpServletRequest request, 
 	    HttpServletResponse response, 
-	    Object handler, 
-	    ModelAndView modelAndView)
+	    Object handler)
 	    throws Exception {
-	    ModelMap modelMap = modelAndView.getModelMap();
-	    MemberVO user = (MemberVO)modelMap.get("user");
+		HttpSession session = request.getSession();
+		Object user = session.getAttribute("user");
 
-	    if(user != null) {
-	        HttpSession session = request.getSession();
-	        session.setAttribute("user", user);
+	    if(user == null) {
+	    	response.sendRedirect(request.getContextPath()+"/signin");
+	    	return false;
 	    }
+	    return true;
 	}
+	    
 }

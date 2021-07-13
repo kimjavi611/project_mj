@@ -28,7 +28,6 @@
     <a class="nav-link" href="<%=request.getContextPath() %>/board/list">게시판</a>
   </span>
   <span class="navbar-text">
-    
   </span>
 
 </nav>

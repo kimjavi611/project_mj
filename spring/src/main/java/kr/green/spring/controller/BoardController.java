@@ -2,16 +2,17 @@ package kr.green.spring.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.green.spring.pagination.Criteria;
-import kr.green.spring.pagination.PageMaker;
-import kr.green.spring.service.BoardService;
-import kr.green.spring.vo.BoardVO;
+import kr.green.spring.pagination.*;
+import kr.green.spring.service.*;
+import kr.green.spring.vo.*;
 import lombok.extern.log4j.Log4j;
 @Log4j //콘솔에 출력하는것 어떠한 컨트롤러에서 출력했는지 알 수 있음 
 @Controller
@@ -19,6 +20,8 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping(value = "/list")
 	public ModelAndView list(ModelAndView mv, String msg, Criteria cri) {
@@ -48,13 +51,13 @@ public class BoardController {
 	
 	@RequestMapping(value = "/register", method=RequestMethod.GET)
 	public ModelAndView register(ModelAndView mv) {
-		
 		mv.setViewName("/board/register");
 		return mv;
 	}
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
-	public ModelAndView registerPost(ModelAndView mv, BoardVO board) {
-		boardService.insertBoard(board);
+	public ModelAndView registerPost(ModelAndView mv, BoardVO board, HttpServletRequest r) {
+		MemberVO user = memberService.getMember(r);
+		boardService.insertBoard(board,user);
 		mv.setViewName("redirect:/board/list"); //동작 처리후에 보낼곳 
 		return mv;
 	}
@@ -67,18 +70,20 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value = "/modify", method=RequestMethod.POST)
-	public ModelAndView modifyPost(ModelAndView mv, BoardVO board) {//번호 가져오고 출력 찍어봐야됨잉
+	public ModelAndView modifyPost(ModelAndView mv, BoardVO board,HttpServletRequest r) {//번호 가져오고 출력 찍어봐야됨잉
+		MemberVO user = memberService.getMember(r);
 		//수정할 게시글 정보를 가져옴
-		log.info("/board/modify:POST: "+board);
 		int res = boardService.updateBoard(board);
 		String msg = res != 0 ? board.getNum()+ "번 게시글이 수정되었습니다." : "없는 게시글입니다.";
 		mv.addObject("num", board.getNum());
 		mv.addObject("msg", msg);
 		mv.setViewName("redirect:/board/detail");
 		return mv;
+		
 	}
 	@RequestMapping(value = "/delete", method=RequestMethod.POST)
-	public ModelAndView deletePost(ModelAndView mv, Integer num) { //화면에서 서버로 보내주는건 매개변수로!
+	public ModelAndView deletePost(ModelAndView mv, Integer num, HttpServletRequest r) { //화면에서 서버로 보내주는건 매개변수로!
+		MemberVO user = memberService.getMember(r);
 		int res = boardService.deleteBoard(num);
 		if(res != 0) {
 			mv.addObject("msg", num + "번 게시물을 삭제 했습니다"); //mv.addObject는 setViewName으로 보내는것 

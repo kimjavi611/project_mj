@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kr.green.spring.pagination.Criteria;
 import kr.green.spring.vo.BoardVO;
+import kr.green.spring.vo.MemberVO;
 
 public interface BoardService {
 
@@ -14,7 +15,7 @@ public interface BoardService {
 	int updateViews(Integer num);
 
 
-	void insertBoard(BoardVO board);
+	void insertBoard(BoardVO board, MemberVO user);
 
 	int deleteBoard(Integer num);
 

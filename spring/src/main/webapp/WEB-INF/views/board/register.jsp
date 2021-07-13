@@ -19,12 +19,8 @@
   	<input type="text" class="form-control" name="title" value="${board.title}">
   </div>
   <div class="form-group">
-  	<label>작성자</label>
-  	<input type="text" class="form-control" name="writer" value="${board.writer}">
-  </div>
-  <div class="form-group">
   	<label>내용</label>
-  	<textarea class="form-control" name="contents" rows="10">"${board.contents}"</textarea>
+  	<textarea class="form-control" name="contents" rows="10">${board.contents}</textarea>
   </div>
 	<button class="btn btn-primary">등록</button>
 	<a href="<%=request.getContextPath() %>/board/list"><button type=button class="btn btn-success">목록</button></a>

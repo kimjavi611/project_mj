@@ -25,13 +25,29 @@
 	<beans:bean id="loginInterceptor" 
 		class="kr.green.spring.interceptor.LoginInterceptor">
 	</beans:bean>
+	<beans:bean id="MemberInterceptor" 
+		class="kr.green.spring.interceptor.MemberInterceptor">
+	</beans:bean>
+	<beans:bean id="NonMemberInterceptor" 
+		class="kr.green.spring.interceptor.NonMemberInterceptor">
+	</beans:bean>
+	
 	<interceptors>
     	<interceptor>
-        	<mapping path="/"/>
+        	<mapping path="/signin"/>
         	<beans:ref bean="loginInterceptor"/>
     	</interceptor>
+    	<interceptor>
+        	<mapping path="/board/register"/>
+        	<mapping path="/board/modify"/>
+        	<mapping path="/board/delete"/>
+        	<mapping path="/member/mypage"/>
+        	<beans:ref bean="MemberInterceptor"/> <!-- 클래스이름x id랑 이름을 맞춰야 함  -->
+    	</interceptor>
+    	<interceptor>
+        	<mapping path="/signin"/>
+        	<mapping path="/signup"/>
+        	<beans:ref bean="NonMemberInterceptor"/>
+    	</interceptor>
 	</interceptors>
-	
-	
-	
 </beans:beans>

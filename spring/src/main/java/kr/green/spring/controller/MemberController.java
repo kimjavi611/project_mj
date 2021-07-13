@@ -41,6 +41,7 @@ public class MemberController {
 	@PostMapping(value = "/signin")
 	public ModelAndView signinPost(ModelAndView mv, MemberVO user) {
 		MemberVO dbUser = memberService.signin(user);
+		
 		//회원정보 있으면 로그인 성공 없으면 실패
 		//회원 정보 있으면 메인 페이지로 이동
 		if(dbUser != null) {
@@ -53,4 +54,5 @@ public class MemberController {
 		mv.addObject("user", dbUser);
 		return mv;
 	}
+	
 }
