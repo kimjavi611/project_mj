@@ -14,7 +14,7 @@
 <body>
 <div class="container">
   <h2>게시판 목록</h2>
-  <form method="get" action="<%=request.getContextPath() %>board/list">
+  <form method="get" action="<%=request.getContextPath() %>/board/list">
 	  <div class="input-group mb-3">
 	    <select class="form-control" name="type">
 	    	<option value="0" <c:if test="${pm.criteria.type == 0 }">selected</c:if>>전체</option>
@@ -56,10 +56,10 @@
     <c:forEach begin="${pm.startPage }" end="${pm.endPage }" var="index">
     	
    		<li class="page-item" <c:if test="${pm.criteria.page ==index }">active</c:if>>
-   			<a class="page-link" href="<%=request.getContextPath()%>/board/list">${index}</a></li>
+   			<a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&search=<c:out value="${pm.criteria.search}"/>&type=${pm.criteria.type}">${index}</a></li>
     </c:forEach>
     <c:if test="${pm.next}">
-    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list">Next</a></li>
+    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.endPage+1}&search=<c:out value="${pm.criteria.search}"/>&type=${pm.criteria.type}"">Next</a></li>
   	</c:if>
   </ul>
   <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-primary">글쓰기</button></a>
