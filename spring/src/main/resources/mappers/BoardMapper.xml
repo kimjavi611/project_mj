@@ -45,6 +45,7 @@
 		</if>
 		<if test="cri.type==1">
 			and (contents like concat('%',#{cri.search},'%')
+			or title like concat('%',#{cri,search},'%'))
 		</if>
 		<if test="cri.type==2">
 			and writer like concat('%',#{cri.search},'%')
