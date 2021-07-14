@@ -22,7 +22,7 @@ public class MemberServiceImp implements MemberService {
 	public MemberVO signin(MemberVO user) {
 		//회원정보가 없거나 아이디가 없으면 null
 		if(user == null || user.getId() == null ||
-				user.getId().trim().length()==0 ||
+				user.getId().trim().length()==0 || 
 				user.getPw().trim().length()==0) {
 			return null;
 		}
@@ -68,10 +68,27 @@ public class MemberServiceImp implements MemberService {
 		
 		return (MemberVO)r.getSession().getAttribute("user");
 	}
+
+	@Override
+	public MemberVO updateMember(MemberVO user, MemberVO sUser) {
+		if(user == null || sUser == null ||user.getId()== null|| !user.getId().equals(sUser.getId()))
+			return null;
+		if(user.getPw()!= null && user.getPw().trim().length() != 0) {
+			String ePw = passwordEncoder.encode(user.getPw());
+			sUser.setPw(ePw);
+		}
+		sUser.setEmail(user.getEmail());
+		sUser.setGender(user.getGender());
+		sUser.setName(user.getName());
+		memberDao.updateMember(sUser);
+		return sUser;
+	}
+
+	
+	}
     
   
 
 	
 
 
-} 

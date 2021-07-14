@@ -58,11 +58,16 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public int deleteBoard(Integer num) {
+	public int deleteBoard(Integer num, MemberVO user) {
 		if(num == null) {
 			return 0;
 		}
 		BoardVO board = boardDao.getBoard(num);
+		if(board == null) {
+			return 0;
+		}
+		if(user == null || !user.getId().equals(board.getWriter()))
+			return -1;
 		board.setValid("D"); //속성을 바꿔서 안보이게 하기위해서 
 		return boardDao.updateBoard(board);
 	}
@@ -70,11 +75,16 @@ public class BoardServiceImp implements BoardService{
 
 
 	@Override
-	public int updateBoard(BoardVO board) {
+	public int updateBoard(BoardVO board, MemberVO user) {
 		if(board ==null) {
 			return 0;
 		}
+		if(user == null)
+			return -1;
 		BoardVO dbboard = boardDao.getBoard(board.getNum());
+		if(!user.getId().equals(board.getWriter())) {
+			return -1;
+		}
 		dbboard.setContents(board.getContents());
 		dbboard.setTitle(board.getTitle());
 		return boardDao.updateBoard(dbboard);

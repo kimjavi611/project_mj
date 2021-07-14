@@ -36,8 +36,8 @@
   </div>
   <div class="input-group"> <!-- 부트스트랩에서 제공하는 클래스 -->
 	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-primary mr-2">목록</button></a>
+ 	 <c:if test="${board != null && user.id eq board.writer}"> <!-- eq == -->
  	 <a href="<%=request.getContextPath() %>/board/modify?num=${board.num}"><button class="btn btn-success mr-2">수정</button></a>
- 	 <c:if test="${board != null}">
 	 	<form action="<%=request.getContextPath()%>/board/delete" method="Post" class="mr-2">
 	 		<input type="hidden" value="${board.num}" name="num"> <!-- 게시글 번호를 인풋하고 숨겨놓음 -->
 	 		<button class="btn btn-success">삭제</button> <!-- POST로 할거기 때문에 form태그안에 넣어줘야함 -->

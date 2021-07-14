@@ -11,6 +11,8 @@ public interface MemberService {
 	void signup(MemberVO user);
 
 	MemberVO getMember(HttpServletRequest r);
+
+	MemberVO updateMember(MemberVO user, MemberVO sUser);
 	
 
 	

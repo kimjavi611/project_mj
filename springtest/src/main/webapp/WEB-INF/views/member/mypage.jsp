@@ -40,7 +40,7 @@
 	</div>	
 	<div class="form-group">
 	  <label for="usr">이름:</label>
-	  <input type="text" class="form-control" name="name"value="${user.name}" readonly>
+	  <input type="text" class="form-control" name="name"value="${user.name}">
 	</div>
 	<div class="form-group">
 		<button class = "btn btn-outline-success col-12">수정</button>
