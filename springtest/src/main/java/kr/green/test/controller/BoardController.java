@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.test.pagination.Criteria;
@@ -25,6 +26,9 @@ public class BoardController {
 	@Autowired
 	MemberService memberService;
 	
+	
+	
+	
 	@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
 		log.info(cri);
@@ -41,7 +45,7 @@ public class BoardController {
 		//화면에 모든 게시글을 전송
 		mv.addObject("pm", pm);
 		mv.addObject("list",list);
-		mv.setViewName("board/list");
+		mv.setViewName("/template/board/list");
 		return mv;
 	}
 	@RequestMapping(value="/board/detail")
@@ -55,22 +59,22 @@ public class BoardController {
 		BoardVO board = boardService.getBoard(num);
 		//가져온 게시글을 화면에 전달, 화면으로 보낼 이름은 board로
 		mv.addObject("board", board);
-		mv.setViewName("board/detail");
+		mv.setViewName("/template/board/detail");
 		return mv;
 	}
 	@RequestMapping(value="/board/register", method=RequestMethod.GET) //전송방식이 get일때 주소가 너무 길어질 수 있음 =>실제 처리는 post이용
 	public ModelAndView boardRegisterGet(ModelAndView mv) { 
 		
-		mv.setViewName("board/register");
+		mv.setViewName("/template/board/register");
 		return mv;
 	}
 	//화면에서 보내주는 제목, 작성자, 내용을 받아서 콘솔에 출력
 	@RequestMapping(value="/board/register", method=RequestMethod.POST) //jsp에서 action="post"한 후 Mapping추가 해줌
-	public ModelAndView boardRegisterPost(ModelAndView mv,BoardVO board, HttpServletRequest request ) {
+	public ModelAndView boardRegisterPost(ModelAndView mv,BoardVO board, HttpServletRequest request, MultipartFile file ) {
 		MemberVO user = memberService.getMember(request);
 		board.setWriter(user.getId());
 		//서비스에게 게시글 정보(제목,작성자, 내용)을 주면서 게시글을 등록하라고 시킴
-		boardService.insertBoard(board);
+		boardService.insertBoard(board, file);
 		mv.setViewName("redirect:/board/list");//등록후에 다시 메인으로 
 		return mv;
 	}
@@ -78,7 +82,7 @@ public class BoardController {
 	public ModelAndView boardModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) { 
 		BoardVO board = boardService.getBoard(num);
 		mv.addObject("board", board);
-		mv.setViewName("board/modify");
+		mv.setViewName("/template/board/modify");
 		MemberVO user = memberService.getMember(request);
 		if(board == null || !board.getWriter().equals(board));
 		

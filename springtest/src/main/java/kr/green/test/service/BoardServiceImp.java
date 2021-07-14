@@ -1,19 +1,24 @@
 package kr.green.test.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.test.dao.BoardDAO;
 import kr.green.test.pagination.Criteria;
+import kr.green.test.utils.UploadFileUtils;
 import kr.green.test.vo.BoardVO;
+import kr.green.test.vo.FileVO;
 import kr.green.test.vo.MemberVO;
 
 @Service
 public class BoardServiceImp implements  BoardService{
 	@Autowired
 	BoardDAO boardDao;
+	private String uploadPath ="D:\\JAVA_KMJ\\uploadfiles";
 
 	@Override
 	public ArrayList<BoardVO> getBoardList(Criteria cri) {
@@ -35,9 +40,20 @@ public class BoardServiceImp implements  BoardService{
 	}
 
 	@Override
-	public void insertBoard(BoardVO board) {
+	public void insertBoard(BoardVO board, MultipartFile file) {
 		//다오에게 게시글 정보를 주면서 게시글 등록하라고 시킴
 		boardDao.insertBoard(board);
+		//System.out.println("게시글 번호" + board.getNum()); 정보 잘 불러오나 확인 
+		if(file != null && file.getOriginalFilename().length() != 0) {
+			try {
+				String filename = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				FileVO fileVo = new FileVO(board.getNum(), filename, file.getOriginalFilename());
+				boardDao.insertFile(fileVo);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("첨부파일 업로드 중 예외 발생");
+			}
+		}
 		
 	}
 

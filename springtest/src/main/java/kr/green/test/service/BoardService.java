@@ -2,6 +2,8 @@ package kr.green.test.service;
 
 import java.util.ArrayList;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.BoardVO;
 import kr.green.test.vo.MemberVO;
@@ -12,7 +14,7 @@ public interface BoardService {
 
 	BoardVO getBoard(Integer num);
 
-	void insertBoard(BoardVO board);
+	void insertBoard(BoardVO board,MultipartFile file);
 
 	int updateViews(Integer num);
 
