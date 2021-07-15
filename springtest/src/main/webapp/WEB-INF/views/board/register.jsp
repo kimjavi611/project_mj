@@ -20,12 +20,37 @@
 	  <label for="usr">내용</label>
 	  <textarea class="form-control" rows="10" name="contents"> ${board.contents} </textarea>
 	</div>
-	 <div class="form-group">
+	 <div class="form-group files">
         <label>파일</label>
-        <input type="file" class="form-control" name="file"/>
-    </div>ㄴ
+        <input type="file" class="form-control" name="file" data=""/>
+    </div>
 	<button type="submit" class="btn btn-outline-success ">등록</button>
 </form>
-
+<script type="text/javascript">
+	$(function(){
+		//click을 쓰면 나중에 추가된 요소에는 이벤트가 적용되지 않는다 
+		$(document).on('change','input[name=file]',function(){
+			var val = $(this).val();
+			var str = '<input type="file" class="form-control" name="file" data=""/>';
+			var length = $('input[name=file]').length;
+			var data = $(this).attr('data'); //바뀌기 전 값
+			//파일을 선택했다가 취소하는 경우 
+			if(val ==''){
+				$(this).remove();
+				if(length == 3 && $('input[name=file]').last().val() != ''){
+					$('.files').append(str);
+				}
+			}
+			//input태그를 추가해야하는 경우
+			else{
+				if(length < 3 && data == ''){
+					$('.files').append(str);
+				}
+				$(this).attr('data',val);
+			}
+		})
+		
+	})
+</script>
 </body>
 </html>
