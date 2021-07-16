@@ -81,7 +81,7 @@ public class BoardServiceImp implements  BoardService{
 			board.setValid("I");
 		}
 		//fileList : 1,2,3 , fileNum : 1,3 
-		//파일리스트에는 있는데 파일이 없다면 지워진것 => fileNum이 fileList에 있는지 비교해 줄거
+		//파일리스트에는 있는데 파일이 없다면 지워진것 => fileList에 있는 파일을 하나씩 꺼내서 fileNum에 있는지 비교함
 		//배열에 있는 값들을 리스트에 저장 (배열 => 리스트)
 		ArrayList<Integer> nums = new ArrayList<Integer>();
 		for(Integer tmp : fileNum) {
