@@ -30,19 +30,19 @@
 	  <textarea class="form-control" rows="10" name="contents"> ${board.contents} </textarea>
 	</div>
 	
-	<c:if test ="${file != null}">
-		<div class="form-groups file-box">
+		<div class="form-groups files">
 		  <label for="usr">첨부파일</label>
-		  <div class="form-control">${file.ori_name}<button type="button" class="del-btn">X</button></div>
-	 </div>
-	</c:if>
+		  <c:forEach items="${fileList}" var="file">
+		  	<div class="form-control attach">
+		  		<span>${file.ori_name}</span><button type="button" class="del-btn">X</button>
+		  		<input type="hidden" name="fileNum" value="${file.num}">
+		  	</div>
+		  </c:forEach>
+		  <c:if test="${fileList == null || fileList.size() < 3}">
+		  	<input type="file" class="form-control" name="file" data=""/>
+		  </c:if>
+	 	</div>
 	
-	<c:if test ="${file == null}">
-		<div class="form-group ">
-		  <label for="usr">첨부파일</label>
-		  <input type="file" class="form-control" name="file">
-	 </div>
-	</c:if>
 	<input type="hidden" value="${board.num}" name="num">
 	<input type="hidden" value="${board.views}" name="views">
 	<button type="submit" class="btn btn-outline-success mt-2">등록</button>
@@ -50,9 +50,31 @@
 <script type="text/javascript">
 	$(function(){
 		$('.del-btn').click(function(){
-			var str = '<input type="file" class="form-control" name="file">';
+			var str = '<input type="file" class="form-control" name="file" data="">';
 			$(this).parent().remove();
-			$('.file-box').append(str)
+			if($('.attach').length == 3)
+				$('.files').append(str)
+		})
+		$(document).on('change','input[name=file]',function(){
+			var val = $(this).val();
+			var str = '<input type="file" class="form-control" name="file" data=""/>';
+			//기존에 추가된것 + 현재 선택된거 
+			var length = $('input[name=file]').length + $('.attach').length;
+			var data = $(this).attr('data'); //바뀌기 전 값
+			//파일을 선택했다가 취소하는 경우 
+			if(val ==''){
+				$(this).remove();
+				if(length == 3 && $('input[name=file]').last().val() != ''){
+					$('.files').append(str);
+				}
+			}
+			//input태그를 추가해야하는 경우
+			else{
+				if(length < 3 && data == ''){
+					$('.files').append(str);
+				}
+				$(this).attr('data',val);
+			}
 		})
 		
 	})
