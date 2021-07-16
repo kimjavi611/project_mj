@@ -12,16 +12,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form class="container" method="post" action="<%=request.getContextPath()%>/board/register">
-  <h1>게시물 등록</h1>
-  <div class="form-group">
-  	<label>제목</label>
-  	<input type="text" class="form-control" name="title" value="${board.title}">
-  </div>
-  <div class="form-group">
-  	<label>내용</label>
-  	<textarea class="form-control" name="contents" rows="10">${board.contents}</textarea>
-  </div>
+<form class="container" method="post" action="<%=request.getContextPath()%>/board/register" enctyp="multipart/form-data">
+	<h1>게시물 등록</h1>
+	<div class="form-group">
+		<label>제목</label>
+		<input type="text" class="form-control" name="title" value="${board.title}">
+	</div>
+	<div class="form-group">
+		<label>내용</label>
+		<textarea class="form-control" name="contents" rows="10">${board.contents}</textarea>
+	</div>
+	<div class="form-group">
+		<label>첨부파일</label>
+		<input type="file" class="form-control" name="files"/>
+		<input type="file" class="form-control" name="files"/>
+		<input type="file" class="form-control" name="files"/>
+	</div>
 	<button class="btn btn-primary">등록</button>
 	<a href="<%=request.getContextPath() %>/board/list"><button type=button class="btn btn-success">목록</button></a>
 </form>

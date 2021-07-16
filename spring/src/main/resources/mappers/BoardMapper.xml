@@ -31,7 +31,7 @@
 			valid = #{board.valid}
 		where num = #{board.num}		
 	</update>
-	<insert id="insertBoard">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.num" parameterType="kr.green.spring.vo.BoardVO" >
 		insert into board(title,contents,writer) 
 		values(#{board.title},#{board.contents},#{board.writer});
 	</insert>
@@ -51,4 +51,9 @@
 			and writer like concat('%',#{cri.search},'%')
 		</if>
 	</select>
+	<insert id="insertFile">
+		insert into file(board, name,ori_name)
+		values(#{File.board},#{File.name},#{File.ori_name})
+		
+	</insert>
 </mapper>
