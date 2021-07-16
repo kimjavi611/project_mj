@@ -84,20 +84,26 @@ public class BoardServiceImp implements  BoardService{
 		//파일리스트에는 있는데 파일이 없다면 지워진것 => fileList에 있는 파일을 하나씩 꺼내서 fileNum에 있는지 비교함
 		//배열에 있는 값들을 리스트에 저장 (배열 => 리스트)
 		ArrayList<Integer> nums = new ArrayList<Integer>();
-		for(Integer tmp : fileNum) {
-			nums.add(tmp);
-		}
+		if(fileNum != null) {
+			for(Integer tmp : fileNum) {
+				nums.add(tmp);
+			}
+		}	
 		//기존에서 빠진게 있나 확인해야해서 파일 불러 와야함
 		//기존에 첨부되었던 파일중 삭제된 파일을 제거 
 		ArrayList<FileVO> fileList = boardDao.getFileVOList(board.getNum());
-		for(FileVO tmp : fileList) {
-			if(!nums.contains((Integer)tmp.getNum())) {
-				deleteFileVO(tmp);
+		if(fileList != null) {
+			for(FileVO tmp : fileList) {
+				if(!nums.contains((Integer)tmp.getNum())) {
+					deleteFileVO(tmp);
+				}
 			}
-		}
+		}	
 		//새로 추가된 파일을 추가
-		for(MultipartFile tmp : file) {
-			insertFileVO(tmp, board.getNum());
+		if(fileList != null) {
+			for(MultipartFile tmp : file) {
+				insertFileVO(tmp, board.getNum());
+			}
 		}
 		/*
 		FileVO fileVo = boardDao.getFileVO(board.getNum());
