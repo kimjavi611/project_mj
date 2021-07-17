@@ -52,7 +52,7 @@ public class BoardServiceImp implements BoardService{
 
 	@Override 
 	public void insertBoard(BoardVO board, MemberVO user, MultipartFile [] files) {
-		if(board == null) {
+		if(board == null || board.getTitle().trim().length()== 0) {
 			return;
 		}
 		if(user==null || user.getId()==null || user.getId().trim().length() == 0)
@@ -126,10 +126,12 @@ public class BoardServiceImp implements BoardService{
 
 
 
-
-
-	
-
+	@Override
+	public ArrayList<FileVO> getFileList(Integer num) {
+		if(num == null)
+			return null;
+		return boardDao.getFileList(num);
+	}
 
 
 

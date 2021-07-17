@@ -34,6 +34,13 @@
   	<label>내용</label>
   	<textarea class="form-control" name="contents" rows="10">"${board.contents}"</textarea>
   </div>
+  <div class="form-group">
+		<label>첨부파일</label>
+		<c:forEach items="${fileList}" var="file">
+			<a class="form-control" href="#">${file.ori_name}</a>
+		</c:forEach>
+		<input type="file" class="form-control" name="files"/>
+	</div>
   <div class="input-group"> <!-- 부트스트랩에서 제공하는 클래스 -->
 	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-primary mr-2">목록</button></a>
  	 <c:if test="${board != null && user.id eq board.writer}"> <!-- eq == -->

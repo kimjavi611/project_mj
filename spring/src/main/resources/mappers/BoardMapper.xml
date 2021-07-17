@@ -43,7 +43,7 @@
 			or title like concat('%',#{cri.search},'%')
 			or writer like concat('%',#{cri.search},'%'))
 		</if>
-		<if test="cri.type==1">
+		<if test="cri.type==1">q
 			and (contents like concat('%',#{cri.search},'%')
 			or title like concat('%',#{cri,search},'%'))
 		</if>
@@ -53,7 +53,9 @@
 	</select>
 	<insert id="insertFile">
 		insert into file(board, name,ori_name)
-		values(#{File.board},#{File.name},#{File.ori_name})
-		
+		values(#{file.board},#{file.name},#{file.ori_name})
 	</insert>
+	<select id="getFileList" resultType="kr.green.spring.vo.FileVO">
+		select * from file where state = "I" and board = #{num}
+	</select>
 </mapper>

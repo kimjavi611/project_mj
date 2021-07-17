@@ -9,8 +9,9 @@ public class FileVO {
 	private String name;
 	private String ori_name;
 	private String state;
+	
+	public FileVO() {};
 	public FileVO(int board,String name, String ori_name) {
-		super();
 		this.num = board;
 		this.name = name;
 		this.ori_name = ori_name;
