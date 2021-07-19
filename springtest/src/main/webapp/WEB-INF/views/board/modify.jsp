@@ -4,6 +4,10 @@
     <!doctype html>
 <html>
 <head>
+<!-- summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    
 	<title>게시글 등록</title>
 	<style>
 		.del-btn{float: right; width: 20px; height: 20px; text-aline:center; line-height: 20px}
@@ -27,7 +31,7 @@
 	</div>
 	<div class="form-group">
 	  <label for="usr">내용</label>
-	  <textarea class="form-control" rows="10" name="contents"> ${board.contents} </textarea>
+	  <textarea id="summernote" name="contents">${board.contents}</textarea>
 	</div>
 	
 		<div class="form-groups files">
@@ -76,6 +80,11 @@
 				$(this).attr('data',val);
 			}
 		})
+		 $('#summernote').summernote({
+		        placeholder: '내용을 작성하세요',
+		        tabsize: 2,
+		        height: 100
+		 });
 		
 	})
 </script>

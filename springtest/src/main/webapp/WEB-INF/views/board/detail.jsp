@@ -31,7 +31,7 @@
 		</div>
 		<div class="form-group">
 		  <label for="usr">내용</label>
-		  <textarea class="form-control readonly"> ${board.contents} </textarea>
+		  <div class="form-control readonly" style="height : auto"> ${board.contents} </div>
 		</div>
 		<c:if test ="${fileList.size() != 0}">	
 			<div class="form-group">
