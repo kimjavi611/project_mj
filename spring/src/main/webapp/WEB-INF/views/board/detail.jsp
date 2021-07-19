@@ -32,12 +32,12 @@
   </div>
   <div class="form-group">
   	<label>내용</label>
-  	<textarea class="form-control" name="contents" rows="10">"${board.contents}"</textarea>
+  	<textarea class="form-control" name="contents" rows="10">${board.contents}</textarea>
   </div>
   <div class="form-group">
 		<label>첨부파일</label>
 		<c:forEach items="${fileList}" var="file">
-			<a class="form-control" href="#">${file.ori_name}</a>
+			<a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.name}">${file.ori_name}</a>
 		</c:forEach>
 		<input type="file" class="form-control" name="files"/>
 	</div>

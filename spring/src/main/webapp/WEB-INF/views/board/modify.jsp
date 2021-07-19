@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form class="container" method="post" action="<%=request.getContextPath()%>/board/modify">
+<form class="container" method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/board/modify">
   <h1>게시물 수정</h1>
   <div class="form-group">
   	<label>제목</label>
@@ -26,9 +26,33 @@
   	<label>내용</label>
   	<textarea class="form-control" name="contents" rows="10">"${board.contents}"</textarea>
   </div> 
-	<button class="btn btn-primary">수정</button>
+  <div class="form-group file-box">
+  	<label>첨부파일</label>
+  	<c:forEach items="${fileList}" var="file">
+	  	<div class="form-control mb-2">
+	  		<span>${file.ori_name}</span>
+	  		<!-- 첨부파일의 정보 -->
+	  		<input type="hidden" value="${file.num}" name="filenums">
+	  		<button type="button" class="btn btn-outline-success del-btn">x</button>
+	  	</div>
+	 </c:forEach>
+	 <c:forEach begin="1" end="${3 - fileList.size()}">
+	 	<input type="file" class="form-control mb-2" name="files">	
+	 </c:forEach>
+   </div>
+	
+  
+  	<input type="hidden" name="num" value="${board.num}">
+	<button class="btn btn-primary">등록</button>
 	<a href="<%=request.getContextPath() %>/board/list"><button type=button class="btn btn-success">목록</button></a>
 </form>
-	
+	<script type="text/javascript">
+		$(function(){
+			$('.del-btn').click(function(){
+				$(this).parent().remove();
+				$('.file-box').append('<input type="file" class="form-control mb-2" name="files">');
+			})
+		})
+	</script>
 </body>
 </html>

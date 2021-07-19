@@ -1,19 +1,31 @@
 package kr.green.spring.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.green.spring.pagination.*;
-import kr.green.spring.service.*;
-import kr.green.spring.vo.*;
+import kr.green.spring.pagination.Criteria;
+import kr.green.spring.pagination.PageMaker;
+import kr.green.spring.service.BoardService;
+import kr.green.spring.service.MemberService;
+import kr.green.spring.vo.BoardVO;
+import kr.green.spring.vo.FileVO;
+import kr.green.spring.vo.MemberVO;
 import lombok.extern.log4j.Log4j;
 @Log4j //콘솔에 출력하는것 어떠한 컨트롤러에서 출력했는지 알 수 있음 
 @Controller
@@ -71,14 +83,18 @@ public class BoardController {
 		//수정할 게시글을 가져와서 화면에 보여줌 
 		BoardVO board = boardService.getBoard(num); //detail만들때 정보 불러오는거 만들어놔서 이용
 		mv.addObject("board", board); 
+		//첨부파일 가져옴
+		ArrayList<FileVO> fileList = boardService.getFileList(num);
+		//화면에 첨부파일 전송
+		mv.addObject("fileList",fileList);
 		mv.setViewName("/template/board/modify");
 		return mv;
 	}
 	@RequestMapping(value = "/modify", method=RequestMethod.POST)
-	public ModelAndView modifyPost(ModelAndView mv, BoardVO board,HttpServletRequest r) {//번호 가져오고 출력 찍어봐야됨잉
+	public ModelAndView modifyPost(ModelAndView mv, BoardVO board,HttpServletRequest r, MultipartFile[] files, Integer[] filenums) {//번호 가져오고 출력 찍어봐야됨잉
 		MemberVO user = memberService.getMember(r);
 		//수정할 게시글 정보를 가져옴
-		int res = boardService.updateBoard(board, user);
+		int res = boardService.updateBoard(board, user, files, filenums);
 		String msg="" ;
 		mv.setViewName("redirect:/board/detail");
 		if(res==1)
@@ -90,7 +106,6 @@ public class BoardController {
 		mv.setViewName("redirect:/board/list");
 		mv.addObject("num", board.getNum());
 		mv.addObject("msg", msg);
-		
 		return mv;
 		
 	}
@@ -106,7 +121,15 @@ public class BoardController {
 			mv.addObject("msg", "잘못된 접근입니다.");
 		}
 		mv.setViewName("redirect:/board/list");
+		
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/download")
+	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
+		return boardService.downloadFile(fileName);
+	  
 	}
 	
 }

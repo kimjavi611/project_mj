@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form class="container" method="post" action="<%=request.getContextPath()%>/board/register" enctyp="multipart/form-data">
+<form class="container" method="post" action="<%=request.getContextPath()%>/board/register" enctype="multipart/form-data">
 	<h1>게시물 등록</h1>
 	<div class="form-group">
 		<label>제목</label>

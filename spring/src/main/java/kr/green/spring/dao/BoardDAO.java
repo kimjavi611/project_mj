@@ -34,6 +34,9 @@ public interface BoardDAO {
 	ArrayList<FileVO> getFileList(@Param("num")Integer num);
 
 
+	void deleteFile(@Param("num")int num);
+
+
 	
 
 	

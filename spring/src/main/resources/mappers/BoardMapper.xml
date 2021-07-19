@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.spring.dao.BoardDAO">
+<!-- id는 메서드 이름과 같아야함 -->
 	<select id="getBoradList" resultType="kr.green.spring.vo.BoardVO">
 		select * from board where valid = "I"
 		<if test="cri.type != 1 and cri.type !=2">
@@ -58,4 +59,8 @@
 	<select id="getFileList" resultType="kr.green.spring.vo.FileVO">
 		select * from file where state = "I" and board = #{num}
 	</select>
+	
+	<update id="deleteFile">
+		update file set state = 'D' where num = #{num}
+	</update>
 </mapper>
