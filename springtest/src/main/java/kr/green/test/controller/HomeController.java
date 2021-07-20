@@ -102,7 +102,8 @@ public class HomeController {
 		String res = user != null ? "IMPOSIBLE" : "POSIBLE";
 		return res;
 	}
-	@ResponseBody
+	//리턴타입을 임의로 이용할 수 있다
+	@ResponseBody 
 	@PostMapping(value = "/member/signin")
 	public String membereSininPist(@RequestBody MemberVO user, HttpServletRequest r) {
 		MemberVO dbUser = memberService.signin(user);
