@@ -3,9 +3,12 @@ package kr.green.test.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -94,9 +97,17 @@ public class HomeController {
 	//아이디 중복체크 
 	@ResponseBody
 	@GetMapping(value = "/member/idcheck/{id}")
-	public String memberIdcheckGet(@PathVariable("id")String id) {
+	public String memberIdcheckGet(@RequestBody @PathVariable("id")String id) {
 		MemberVO user = memberService.getMember(id);
 		String res = user != null ? "IMPOSIBLE" : "POSIBLE";
 		return res;
+	}
+	@ResponseBody
+	@PostMapping(value = "/member/signin")
+	public String membereSininPist(@RequestBody MemberVO user, HttpServletRequest r) {
+		MemberVO dbUser = memberService.signin(user);
+		if(dbUser != null )
+			r.getSession().setAttribute("user", dbUser);
+		return dbUser != null ? "success" : "fail";
 	}
 }
