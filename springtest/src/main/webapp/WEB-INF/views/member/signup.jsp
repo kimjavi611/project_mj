@@ -5,8 +5,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>회원 가입</title>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/additional-methods.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.validate.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/additional-methods.js"></script>
 
 <style>
 	.error{color: red}
@@ -15,9 +15,11 @@
 
 <form class="container" method="post" action="<%=request.getContextPath()%>/signup" id="signup">
 	<div class="form-group">
-	  <label for="usr">아이디:</label>
-	  <input type="text" class="form-control" name="id">
+	  <label for="usr">아이디:</label>	
+		  <input type="text" class="form-control" name="id">
 	</div>
+	<button type="button" id="dupCheck" class="col-12 btn btn-outline-success">아이디 중복 확인</button>
+
 	<div class="form-group">
 	  <label for="pwd">비밀번호:</label>
 	  <input type="password" class="form-control" name="pw" id="pw">
@@ -42,11 +44,28 @@
 	  <input type="text" class="form-control" name="name">
 	</div>
 	<div class="form-group">
-		<button class = "btn btn outline-success col-12">회원가입</button>
+		<button class = "btn btn-outline-success col-12">회원가입</button>
 	</div>
 </form>
 <script type="text/javascript">
 	$(function(){
+		$('#dupCheck').click(function(){
+			var id = $('[name=id]').val();
+			$.ajax({
+				type: 'get', 
+				url : '<%=request.getContextPath()%>/member/idcheck/' + id, 
+				success : function(result, status, xhr){  //컨트롤러에서 실행이 끝나면 이 기능을 수행 //url에 내가 원하는 정보를 넣음
+					if(result == 'posible')
+						alert('사용 가능한 아이디입니다.')
+					else
+						alert('사용 불가능한 아이디입니다.')
+				},
+				error : function(xhr, status, e){
+					
+				}
+			})
+		})
+		
 	    $("#signup").validate({
 	        rules: { //규칙
 	        	//input의 name과 일치 

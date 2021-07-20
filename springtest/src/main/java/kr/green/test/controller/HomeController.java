@@ -1,15 +1,18 @@
 package kr.green.test.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.test.service.MemberService;
 import kr.green.test.vo.MemberVO;
-import javax.servlet.http.HttpServletRequest;
 /**
  * Handles requests for the application home page.
  */
@@ -87,5 +90,13 @@ public class HomeController {
 		request.getSession().removeAttribute("user");
 		mv.setViewName("redirect:/");
 		return mv;
+	}
+	//아이디 중복체크 
+	@ResponseBody
+	@GetMapping(value = "/member/idcheck/{id}")
+	public String memberIdcheckGet(@PathVariable("id")String id) {
+		MemberVO user = memberService.getMember(id);
+		String res = user != null ? "IMPOSIBLE" : "POSIBLE";
+		return res;
 	}
 }
