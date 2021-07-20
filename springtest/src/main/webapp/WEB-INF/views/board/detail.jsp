@@ -29,6 +29,11 @@
 		  <label for="usr">조회수</label>
 		  <input type="text" class="form-control"value="${board.views}"readonly>
 		</div>
+		<c:if test="${rvo.state != 1 }">-outline</c:if>
+		<div class="form-group">
+			<button type="button" class="re-btn up btn btn<c:if test="${rvo.state != 1 }">-outline</c:if>-success">추천</button>
+			<button type="button" class="re-btn down btn btn<c:if test="${rvo.state != -1 }">-outline</c:if>-success">비추천</button>
+		</div>
 		<div class="form-group">
 		  <label for="usr">내용</label>
 		  <div class="form-control readonly" style="height : auto"> ${board.contents} </div>
@@ -41,6 +46,21 @@
 			</c:forEach>	 
 			 </div>
 		</c:if>
+		<div class="reply form-group">
+			<label>댓글</label>
+			<div class="contents">
+				<div class="reply-list">
+					<div class="form-group">
+					<label>작성자</label>
+					<div class="form-control">내용</div>
+					</div>
+				</div>
+				<div class="reply-box">
+					<textarea class="reply-input form-control"></textarea>
+					<button type="button" class="reply-btn btn btn-outline-success">등록</button>
+				</div>
+			</div>
+		</div>
 		<c:if test="${user != null && user.id == board.writer}">
 			<a href="<%=request.getContextPath() %>/board/modify?num=${board.num}"><button class="btn btn-outline-success">수정</button></a>
 			<a href="<%=request.getContextPath() %>/board/delete?num=${board.num}"><button class="btn btn-outline-success">삭제</button></a>
@@ -54,5 +74,54 @@
 		<a href="<%=request.getContextPath() %>/board/list"><button class="btn btn-outline-success">목록</button></a>
 	</div>	
 </c:if>
+<script>
+	$(function(){
+		$('.re-btn').click(function(){
+			//추천 버튼이면 state을 1로, 비추 버튼이면 state을 -1로
+			var state = $(this).hasClass('up') ? 1 : -1
+			var num = '<c:out value="${board.num}"/>'
+			var obj = $(this);
+			$.ajax({
+				type: 'get', 
+				url : '<%=request.getContextPath()%>/board/recommend/' + state + '/' + num,	
+				dataType: "json",
+				success : function(res, status, xhr){  
+					var str = '';
+					var str2 = '';
+					if(state == 1)
+						str2 == '추천';
+					else
+						str == '비추천';
+					
+					if(res.result == 0)
+						str = '이 취소되었습니다.'
+					else if(res.result == 1)
+						str = '을 했습니다.'
+					else
+						str = '추천/비추천은 회원만 가능합니다.'
+					if(res.result != -1){
+						alert(str2+str);
+					}else{
+						alert(str);
+					}	
+					
+					if(res.result == 1){
+						$('.re-btn').removeClass('btn-success').addClass('btn-outline-success')
+						obj.removeClass('btn-outline-success').addClass('btn-success')
+					}else if(res.result == 0){
+						obj.removeClass('btn-success').addClass('btn-outline-success')
+					}
+					
+					
+					
+				},
+				error : function(xhr, status, e){
+					
+				}
+			})
+		})
+		
+	})
+</script>
 </body>
 </html>

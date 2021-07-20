@@ -1,18 +1,16 @@
 package kr.green.test.controller;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +24,7 @@ import kr.green.test.service.MemberService;
 import kr.green.test.vo.BoardVO;
 import kr.green.test.vo.FileVO;
 import kr.green.test.vo.MemberVO;
+import kr.green.test.vo.RecommendVO;
 import lombok.extern.log4j.Log4j;
 @Log4j
 @Controller
@@ -58,7 +57,7 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="/board/detail")
-	public ModelAndView boardDetail(ModelAndView mv, Integer num) { //int는 url이 잘못됐을때(NULL)이 됐을 때 에러가 뜬다. null값을 가질 수 없기 때문
+	public ModelAndView boardDetail(ModelAndView mv, Integer num, HttpServletRequest r) { //int는 url이 잘못됐을때(NULL)이 됐을 때 에러가 뜬다. null값을 가질 수 없기 때문
 		//게시글을 가져오기 전에 조회수를 증가
 		//서비스에게 게시글 번호를 주면서 게시글 조회수를 1증가 시키라고 시킴
 		//서비스에게 번호를 주면서 게시글을 가져오라고 시킴 
@@ -72,6 +71,11 @@ public class BoardController {
 		//첨부파일 
 		ArrayList<FileVO> fileList = boardService.getFileVOList(num);
 		mv.addObject("fileList", fileList);
+		
+		//추천정보 가져오기
+		MemberVO user = memberService.getMember(r);
+		RecommendVO recommend = boardService.getRecommend(user, num);
+		mv.addObject("rvo", recommend);
 		mv.setViewName("/template/board/detail");
 		return mv;
 	}
@@ -135,5 +139,19 @@ public class BoardController {
 		//entity에 실제 파일을 받음
 		ResponseEntity<byte[]> entity = boardService.downloadFile(fileName); //컨트롤러에서 해도되지만 서비스한테 시킬거
 	    return entity;
+	}
+	@ResponseBody 
+	@GetMapping("/board/recommend/{state}/{board}")
+	public Map<String,Object> boardRecommend(
+			@PathVariable("state") int state,@PathVariable("board") int board, 
+			HttpServletRequest r){
+		HashMap<String,Object> map = new HashMap<String,Object>(); 
+		MemberVO user = memberService.getMember(r);
+		//추천/ 비추천했으면 1, 취소했으면 0, 로그인 안했으면 -1
+		int res = boardService.updateRecommend(user,board,state);
+		map.put("state", state);
+		map.put("board",board);
+		map.put("result",res);
+	    return map;
 	}
 }
