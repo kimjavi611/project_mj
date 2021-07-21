@@ -140,6 +140,8 @@ $(function(){
 				if(result == 'ok'){
 					alert('댓글 등록이 완료 되었습니다.')
 					readReply('${board.num}',1);
+					//댓글 등록 후 댓글입력창에 빈 문자열 등록
+					$('.reply-input').val('');
 				}
 			},
 			error : function(xhr, status, e){
