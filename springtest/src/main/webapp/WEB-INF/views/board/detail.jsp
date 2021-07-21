@@ -149,11 +149,26 @@ $(function(){
 		
 	})
 	readReply('${board.num}',1);
-	$(document).on('click', '.pagination .page-item', function(){
+	$(document).on('click', '.pagination .page-item', function(e){
+		e.preventDefault();
 		var page = $(this).attr('data');
 		readReply('${board.num}',page);
 	})
-	
+	$(document).on('click', '.del-btn', function(){
+		var rp_num = $(this).attr('data');
+		$.ajax({
+			type:'post',
+			url : '<%=request.getContextPath()%>/reply/del',
+			data : JSON.stringify({'rp_num' : rp_num}),
+			contentType : "application/json; charset=utf-8", 
+			success : function(result, status, xhr){ 
+				readReply('${board.num}',1);
+			},
+			error : function(xhr, status, e){
+				
+			}
+		})
+	})
 })
 function readReply(rp_bd_num, page){	
 	$.ajax({
@@ -168,7 +183,8 @@ function readReply(rp_bd_num, page){
 					'<label>'+list[i].rp_me_id+'</label>'+
 					'<div class="form-control">'+list[i].rp_content+'</div>'+
 					'</div>';
-				
+				if('${user.id}' == list[i].rp_me_id)	
+					str += '<button class="btn btn-outline-danger del-btn" data="'+list[i].rp_num+'">삭제</button>';
 				
 			}
 			$('.reply-list').html(str);
