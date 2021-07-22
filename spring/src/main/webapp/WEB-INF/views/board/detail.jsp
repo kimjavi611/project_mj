@@ -64,6 +64,14 @@
 	  </c:choose>
   	</a>
   </div>
+  
+  <div class="form-group">
+	<label for="comment">작성자</label>
+	<textarea class="form-control" rows="2" id="comment"></textarea>
+	<button type="button" class="btn btn-info mt-1">등록</button>
+  </div>
+	
+	
   <div class="form-group">
 		<label>첨부파일</label>
 		<c:forEach items="${fileList}" var="file">
@@ -71,6 +79,9 @@
 		</c:forEach>
 		<input type="file" class="form-control" name="files"/>
 	</div>
+	
+ 	
+
   <div class="input-group"> <!-- 부트스트랩에서 제공하는 클래스 -->
 	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-primary mr-2">목록</button></a>
  	 <c:if test="${board != null && user.id eq board.writer}"> <!-- eq == -->
