@@ -16,8 +16,10 @@
 	<div class="form-group">
 	  <label for="usr">아이디:</label>
 	  <input type="text" class="form-control" name="id">
+	  <button type="button" class="btn btn-outline-danger dup-btn">아이디 중복 확인</button>
 	</div>
-	<div class="form-group">
+	
+	<div class="form-group mt-2">
 	  <label for="pwd">비밀번호:</label>
 	  <input type="password" class="form-control" name="pw">
 	</div>
@@ -41,7 +43,7 @@
 	  <input type="text" class="form-control" name="name">
 	</div>
 	<div class="form-group">
-		<button class = "btn btn outline-success col-12">회원가입</button>
+		<button class = "btn btn-outline-success col-12">회원가입</button>
 	</div>
 </form>
 <script type="text/javascript">
@@ -73,6 +75,26 @@
 				alret('이메일을 입력하세요.');
 				return false;
 			}
+		})
+		$('.dup-btn').click(function(){
+			var id = $('[name=id]').val();
+			if(id == ''){
+				alert('아이디를 입력하세요.')
+				return;
+			}
+		    $.ajax({
+		        type:'get',
+		        url:'<%=request.getContextPath()%>/member/idCheck/' + id,
+		        success : function(result, status, xhr){
+		            if(result == 'POSSIBLE')
+		            	alert('사용 가능한 아이디입니다.');
+		            else
+		            	alert('사용 불가능한 아이디입니다.')
+		        },
+		        error : function(xhr, status, e){
+		        	console.log('에러발생')
+		        }
+		    });
 		})
 	})
 </script>
