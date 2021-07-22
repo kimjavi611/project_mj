@@ -10,6 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- 써머노트 -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 <body>
 <form class="container" method="post" action="<%=request.getContextPath()%>/board/register" enctype="multipart/form-data">
@@ -20,7 +23,7 @@
 	</div>
 	<div class="form-group">
 		<label>내용</label>
-		<textarea class="form-control" name="contents" rows="10">${board.contents}</textarea>
+		<textarea class="form-control" id="summernote" name="contents"></textarea>
 	</div>
 	<div class="form-group">
 		<label>첨부파일</label>
@@ -31,6 +34,15 @@
 	<button class="btn btn-primary">등록</button>
 	<a href="<%=request.getContextPath() %>/board/list"><button type=button class="btn btn-success">목록</button></a>
 </form>
-	
+	<script type="text/javascript">
+		$(function(){
+		  $('#summernote').summernote({
+		        placeholder: '내용작성',
+		        tabsize: 2,
+		        height: 200
+		      }); 
+		})
+		
+	</script>
 </body>
 </html>

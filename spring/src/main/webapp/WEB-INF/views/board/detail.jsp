@@ -1,53 +1,55 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>°Ô½ÃÆÇ ¸ñ·Ï</title>
+<title>ê²Œì‹œíŒ ëª©ë¡</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 <div class="container">
-  <h1>°Ô½ÃÆÇ</h1>
+  <h1>ê²Œì‹œíŒ</h1>
   <div class="form-group">
-  	<label>Á¦¸ñ</label>
+  	<label>ì œëª©</label>
   	<input type="text" class="form-control" name="title" value="<c:out value="${board.title}"/>"readonly>
   </div>
   <div class="form-group">
-  	<label>ÀÛ¼ºÀÚ</label>
+  	<label>ìž‘ì„±ìž</label>
   	<input type="text" class="form-control" name="title" value="${board.writer}">
   </div>
   <div class="form-group">
-  	<label>ÀÛ¼ºÀÏ</label>
+  	<label>ìž‘ì„±ì¼</label>
   	<input type="text" class="form-control" name="title" value="${board.dateTime}">
   </div>
   <div class="form-group">
-  	<label>Á¶È¸¼ö</label>
+  	<label>ì¡°íšŒìˆ˜</label>
   	<input type="text" class="form-control" name="title" value="${board.views}">
   </div>
   <div class="form-group">
-  	<label>³»¿ë</label>
-  	<textarea class="form-control" name="contents" rows="10">${board.contents}</textarea>
+  	<label>ë‚´ìš©</label>
+  	<div class="form-control" style="min-height: 300px">${board.contents}</div>
   </div>
   <div class="form-group">
-		<label>Ã·ºÎÆÄÀÏ</label>
+		<label>ì²¨ë¶€íŒŒì¼</label>
 		<c:forEach items="${fileList}" var="file">
 			<a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.name}">${file.ori_name}</a>
 		</c:forEach>
 		<input type="file" class="form-control" name="files"/>
 	</div>
-  <div class="input-group"> <!-- ºÎÆ®½ºÆ®·¦¿¡¼­ Á¦°øÇÏ´Â Å¬·¡½º -->
-	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-primary mr-2">¸ñ·Ï</button></a>
+  <div class="input-group"> <!-- ë¶€íŠ¸ìŠ¤íŠ¸ëž©ì—ì„œ ì œê³µí•˜ëŠ” í´ëž˜ìŠ¤ -->
+	<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-primary mr-2">ëª©ë¡</button></a>
  	 <c:if test="${board != null && user.id eq board.writer}"> <!-- eq == -->
- 	 <a href="<%=request.getContextPath() %>/board/modify?num=${board.num}"><button class="btn btn-success mr-2">¼öÁ¤</button></a>
+ 	 <a href="<%=request.getContextPath() %>/board/modify?num=${board.num}"><button class="btn btn-success mr-2">ìˆ˜ì •</button></a>
 	 	<form action="<%=request.getContextPath()%>/board/delete" method="Post" class="mr-2">
-	 		<input type="hidden" value="${board.num}" name="num"> <!-- °Ô½Ã±Û ¹øÈ£¸¦ ÀÎÇ²ÇÏ°í ¼û°Ü³õÀ½ -->
-	 		<button class="btn btn-success">»èÁ¦</button> <!-- POST·Î ÇÒ°Å±â ¶§¹®¿¡ formÅÂ±×¾È¿¡ ³Ö¾îÁà¾ßÇÔ -->
+	 		<input type="hidden" value="${board.num}" name="num"> <!-- ê²Œì‹œê¸€ ë²ˆí˜¸ë¥¼ ì¸í’‹í•˜ê³  ìˆ¨ê²¨ë†“ìŒ -->
+	 		<button class="btn btn-success">ì‚­ì œ</button> <!-- POSTë¡œ í• ê±°ê¸° ë•Œë¬¸ì— formíƒœê·¸ì•ˆì— ë„£ì–´ì¤˜ì•¼í•¨ -->
 		</form>
 	</c:if>
   </div>
@@ -55,8 +57,8 @@
   	$(function(){
   		var msg = '${msg}';
   		printMsg(msg);
-  		history.replaceState({},null,null); //»èÁ¦ ÈÄ ¸ñ·Ï¿¡¼­ µÚ·Î°¡±â ¹öÆ°À» ´©¸£¸é »èÁ¦ µÉ¶§ ¶á ¾Ë¸²Ã¢ÀÌ ¶ß°ÔµÈ´Ù
-  		//µÚ·Î°¡±â´Â ±× Àü ½ÇÇàÁÖ¼Ò¸¦ ºÒ·¯¿À±â ¶§¹® =>history.replaceState·Î ½ÇÇàµÈ°É ºñ¿öÁÖ¸é µÚ·Î°¡±â ¹öÆ°À» ´­·¯µµ ¾Ë¸²ÀÌ ¾È¶á´Ù 
+  		history.replaceState({},null,null); //ì‚­ì œ í›„ ëª©ë¡ì—ì„œ ë’¤ë¡œê°€ê¸° ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ì‚­ì œ ë ë•Œ ëœ¬ ì•Œë¦¼ì°½ì´ ëœ¨ê²Œëœë‹¤
+  		//ë’¤ë¡œê°€ê¸°ëŠ” ê·¸ ì „ ì‹¤í–‰ì£¼ì†Œë¥¼ ë¶ˆëŸ¬ì˜¤ê¸° ë•Œë¬¸ =>history.replaceStateë¡œ ì‹¤í–‰ëœê±¸ ë¹„ì›Œì£¼ë©´ ë’¤ë¡œê°€ê¸° ë²„íŠ¼ì„ ëˆŒëŸ¬ë„ ì•Œë¦¼ì´ ì•ˆëœ¬ë‹¤
   	})
   	function printMsg(msg){
   		if(msg == ''|history.State){
