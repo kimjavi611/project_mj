@@ -10,7 +10,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/660af269cf.js" crossorigin="anonymous"></script>
 
+<style type="text/css">
+	.recommend-btn{font-size: 30px}
+	.fa-thumbs-down{transform : rotateY(180deg)}
+</style>
 
 </head>
 <body>
@@ -36,6 +41,29 @@
   	<label>내용</label>
   	<div class="form-control" style="min-height: 300px">${board.contents}</div>
   </div>
+  
+  <div class="form=group mb-3">
+  	<a href="#" class="recommend-btn up">
+  		<c:choose> 
+		  	<c:when test="${recommend != null && recommend.state == 1 }">
+		  		<i class="fas fa-thumbs-up"></i>
+		  	</c:when> 
+		  	<c:otherwise>
+		  		<i class="far fa-thumbs-up"></i>
+		  	</c:otherwise>
+	  	</c:choose>
+  	</a>
+  	<a href="#" class="recommend-btn down">
+  		<c:choose> 
+		  	<c:when test="${recommend != null && recommend.state == -1 }">
+		  		<i class="fas fa-thumbs-down"></i>
+		  	</c:when> 
+		  	<c:otherwise>
+		  		<i class="far fa-thumbs-down"></i>
+		  	</c:otherwise>
+	  </c:choose>
+  	</a>
+  </div>
   <div class="form-group">
 		<label>첨부파일</label>
 		<c:forEach items="${fileList}" var="file">
@@ -59,6 +87,38 @@
   		printMsg(msg);
   		history.replaceState({},null,null); //삭제 후 목록에서 뒤로가기 버튼을 누르면 삭제 될때 뜬 알림창이 뜨게된다
   		//뒤로가기는 그 전 실행주소를 불러오기 때문 =>history.replaceState로 실행된걸 비워주면 뒤로가기 버튼을 눌러도 알림이 안뜬다
+  		$('.recommend-btn').click(function(e){
+  			 e.preventDefault();
+  			 var board = ${board.num};
+  			 var state = $(this).hasClass('up') ? 1 : -1;
+  			$.ajax({
+		        type:'get',
+		        url:'<%=request.getContextPath()%>/board/recommend/'+ board + '/'+state,
+		        
+		        success : function(result, status, xhr){
+		        	$('.recommend-btn i').removeClass('fas').addClass('far');
+		            if(result == 'UP'){
+		            	alert('해당 게시글을 추천했습니다.')
+		            	$('.recommend-btn.up i').addClass('fas');
+		            }else if(result == 'DOWN'){
+		            	alert('해당 게시글을 비추천했습니다.')
+		            	$('.recommend-btn.down i').addClass('fas');
+		            }else if(result == 'GUEST'){
+		            	alert('추천/비추천 하려면 로그인 하세요.')
+		            }else if(result == 'CANCEL'){
+		            	if(state == 1){
+							alert('추천을 취소했습니다.')
+						}else{
+							alert('비추천을 취소했습니다.');
+						}
+		            }
+		        },
+		        error : function(xhr, status, e){
+		        	console.log('에러 발생')
+		        }
+		    });
+  			 
+  		})
   	})
   	function printMsg(msg){
   		if(msg == ''|history.State){

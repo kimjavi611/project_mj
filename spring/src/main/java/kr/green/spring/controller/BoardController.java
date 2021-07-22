@@ -1,18 +1,14 @@
 package kr.green.spring.controller;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +22,7 @@ import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
 import kr.green.spring.vo.MemberVO;
+import kr.green.spring.vo.RecommendVO;
 import lombok.extern.log4j.Log4j;
 @Log4j //콘솔에 출력하는것 어떠한 컨트롤러에서 출력했는지 알 수 있음 
 @Controller
@@ -51,7 +48,7 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value = "/detail")
-	public ModelAndView detail(ModelAndView mv, Integer num, String msg) {
+	public ModelAndView detail(ModelAndView mv, Integer num, String msg, HttpServletRequest r) {
 		boardService.updateViews(num);
 		//log.info(num);
 		//게시글 번호를 가져와서 화면에 보여줌 
@@ -61,6 +58,10 @@ public class BoardController {
 		
 		ArrayList<FileVO> fileList = boardService.getFileList(num);
 		mv.addObject("fileList", fileList);
+		
+		MemberVO user = memberService.getMember(r);
+		RecommendVO rvo = boardService.getRecommend(num, user);
+		mv.addObject("recommend",rvo);
 		mv.setViewName("/template/board/detail");
 		return mv;
 	}
@@ -131,5 +132,13 @@ public class BoardController {
 		return boardService.downloadFile(fileName);
 	  
 	}
-	
+	@ResponseBody
+	@GetMapping("/recommend/{board}/{state}")
+	public String boardRecommend(@PathVariable("board") int board, @PathVariable("state") int state,
+			HttpServletRequest r){
+		MemberVO user = memberService.getMember(r);
+		return boardService.recommend(board,state,user);
+		
+	  
+	}
 }

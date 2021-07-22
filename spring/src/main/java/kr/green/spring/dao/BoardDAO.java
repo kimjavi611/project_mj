@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import kr.green.spring.pagination.Criteria;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
+import kr.green.spring.vo.RecommendVO;
 
 public interface BoardDAO {
 
@@ -35,6 +36,15 @@ public interface BoardDAO {
 
 
 	void deleteFile(@Param("num")int num);
+
+
+	RecommendVO getRecommend(@Param("board")int board, @Param("id")String id);
+
+
+	void insertRecommend(@Param("board")int board, @Param("id")String id, @Param("state") int state);
+
+
+	void updateRecommend(@Param("rvo")RecommendVO rvo);
 
 
 	
