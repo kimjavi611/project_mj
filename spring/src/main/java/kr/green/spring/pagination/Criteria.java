@@ -24,6 +24,10 @@ public class Criteria {
 		this.type = 0;
 		
 	}
+	public Criteria(int page, int perPageNum) {
+		setPage(page);
+		setPerPageNum(perPageNum);
+	}
 	//getter and setter
 	public int getPage() {
 		return page;
