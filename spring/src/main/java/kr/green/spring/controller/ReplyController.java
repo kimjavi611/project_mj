@@ -48,5 +48,14 @@ public class ReplyController {
 		//System.out.println(list);
 		return map;
 	}
-	
+	@PostMapping("/reply/mod")
+	public String replyModPost(@RequestBody ReplyVO reply) {
+		//System.out.println(reply);
+		return replyService.updateReply(reply);
+	}
+	@PostMapping("/reply/del")
+	public String replyDelPost(@RequestBody ReplyVO reply) {
+		//return reply.toString();
+		return replyService.deleteReply(reply);
+	}
 }

@@ -120,18 +120,21 @@
 			};
 			replyService.insert(contextPath, data)
 		})
+		
 		$(document).on('click','.pagination .page-item',function(e){
 			e.preventDefault();
 			var page = $(this).attr('data');
 			replyService.list(contextPath,rp_bd_num, page, id);
 		})
+		
 		$(document).on('click','.mod-btn',function(){
 			//console.log('수정');
 			var contentObj = $(this).parent().prev().children().last();
+			var rp_num = $(this).attr('data');
 			var str = 
 				'<div class="reply-mod-box form-group">'+
 					'<textarea class="reply-input form-control mb-2" >'+contentObj.text()+'</textarea>'+
-					'<button type="button" class="reply-mod-btn btn btn-outline-success">등록</button>'+
+					'<button type="button" class="reply-mod-btn btn btn-outline-success" data="'+ rp_num +'">등록</button>'+
 				'</div>';
 				
 			contentObj.after(str).remove();		
@@ -150,6 +153,7 @@
 		}
 		alert(msg);
 	}
+	
 	$(function(){
 		$('.recommend-btn').click(function(e){
 			e.preventDefault();
@@ -180,6 +184,39 @@
 					console.log('에러 발생');
 				}
 			})
+		})
+		$(document).on('click', '.reply-mod-btn', function(){
+			//console.log('등록버튼 클릭');
+			var rp_content = $(this).siblings('.reply-input').val();
+			//console.log(rp_content);
+			//var rp_me_id = '${user.id}';
+			//console.log(rp_me_id)
+			var rp_num = $(this).attr('data');
+			//console.log(rp_num);
+			var data = {
+					rp_content : rp_content,
+					rp_me_id : id,
+					rp_num : rp_num,
+					rp_bd_num : rp_bd_num
+					};
+			//console.log(data);
+			var page = $('.paginatopn .active a').text();
+			//console.log(page)
+			replyService.modify(contextPath, data, page);
+			
+		})
+		$(document).on('click', '.del-btn', function(){
+			//console.log('확인')
+			var rp_me_id = id;
+			var rp_num = $(this).attr('data');
+			var data = {
+					rp_me_id : rp_me_id,
+					rp_num : rp_num,
+					rp_bd_num : rp_bd_num
+			}
+			var page = $('.paginatopn .active a').text();
+			//console.log(data);
+			replyService.deleteReply(contextPath, data, page);
 		})
 	})
 	
