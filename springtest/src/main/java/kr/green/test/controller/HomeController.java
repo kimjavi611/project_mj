@@ -138,6 +138,8 @@ public class HomeController {
 		        String newPw = newPw();
 		        //새 비밀번호를 DB에 저장 
 		        user.setPw(newPw);
+		        memberService.updateMember(user);
+		        
 		        messageHelper.setFrom("zzizzu0524@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함
 		        messageHelper.setTo(user.getEmail());     // 받는사람 이메일
 		        messageHelper.setSubject("새 비밀번호를 발급합니다."); // 메일제목은 생략이 가능하다
@@ -200,7 +202,7 @@ public class HomeController {
 		for(int i = 0; i < 8; i++) {
 			int r = (int)(Math.random()*(max-min+1))+min;
 			//int r =(int)(Math.random()*62);
-			if(r < 9) {
+			if(r <= 9) {
 				pw += r;
 			}else if(r <= 35) {
 				pw += (char)('a'+(r-10));

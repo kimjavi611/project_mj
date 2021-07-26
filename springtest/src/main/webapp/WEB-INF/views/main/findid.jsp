@@ -19,11 +19,10 @@
 				var email =$('[name=email]').val();
 				//console.log(email);
 				$.ajax({
-					type: 'post',
+					type : 'post',
 					url : '<%=request.getContextPath()%>/find/id',
-					data : {email : eamil},
+					data : {email : email},
 					success : function(res){
-						//console.log(res)
 						alert('가입된 아이디를 메일로 전송했습니다.');
 					}
 				})
