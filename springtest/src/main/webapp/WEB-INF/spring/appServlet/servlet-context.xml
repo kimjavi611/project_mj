@@ -30,6 +30,8 @@
 	class="kr.green.test.interceptor.MemberInterceptor"></beans:bean>
 	<beans:bean id="nonMemberInterceptor" 
 	class="kr.green.test.interceptor.NonMemberInterceptor"></beans:bean>
+	<beans:bean id="autoLoginInterceptor" 
+		class="kr.green.test.interceptor.AutoLoginInterceptor"></beans:bean>
 	
 	<interceptors>
 	    <interceptor>
@@ -47,6 +49,10 @@
 	        <mapping path="/signin"/>
 	        <mapping path="/signup"/>
 	        <beans:ref bean="nonMemberInterceptor"/>
+	    </interceptor>
+	    <interceptor>
+	        <mapping path="/**/"/>
+	        <beans:ref bean="autoLoginInterceptor"/>
 	    </interceptor>
 	</interceptors>
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">

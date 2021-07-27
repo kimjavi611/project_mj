@@ -1,9 +1,12 @@
 package kr.green.test.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import kr.green.test.service.MemberService;
 import kr.green.test.vo.MemberVO;
@@ -42,6 +46,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public ModelAndView signinPost(ModelAndView mv, MemberVO user) {
+		System.out.println(user);
 		//서비스에게 아이디와 비밀번호를 전달하면, 해당 정보가 DB에 있으면 회원 정보를 없으면 null을 반환
 		//작업이 다 끝난 후 URI가 /signin인 곳으로 넘어감
 		MemberVO dbUser = memberService.signin(user);
@@ -95,8 +100,19 @@ public class HomeController {
 		return mv;
 	}
 	@RequestMapping(value="/signout", method=RequestMethod.GET) 
-	public ModelAndView signoutGet(ModelAndView mv, HttpServletRequest request) {
+	public ModelAndView signoutGet(ModelAndView mv, 
+			HttpServletRequest request,
+			HttpServletResponse response) {
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		request.getSession().removeAttribute("user");
+		request.getSession().invalidate();
+		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+		if(loginCookie != null) {
+			loginCookie.setPath("/");
+			loginCookie.setMaxAge(0);
+			response.addCookie(loginCookie);
+			memberService.keeplogin(user.getId(), "none", new Date());
+		}
 		mv.setViewName("redirect:/");
 		return mv;
 	}
@@ -111,7 +127,7 @@ public class HomeController {
 	//리턴타입을 임의로 이용할 수 있다
 	@ResponseBody 
 	@PostMapping(value = "/member/signin")
-	public String membereSininPist(@RequestBody MemberVO user, HttpServletRequest r) {
+	public String membereSininPost(@RequestBody MemberVO user, HttpServletRequest r) {
 		MemberVO dbUser = memberService.signin(user);
 		if(dbUser != null )
 			r.getSession().setAttribute("user", dbUser);
@@ -138,7 +154,7 @@ public class HomeController {
 		        String newPw = newPw();
 		        //새 비밀번호를 DB에 저장 
 		        user.setPw(newPw);
-		        memberService.updateMember(user);
+		        System.out.println(memberService.updateMember(user));
 		        
 		        messageHelper.setFrom("zzizzu0524@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함
 		        messageHelper.setTo(user.getEmail());     // 받는사람 이메일
