@@ -22,9 +22,17 @@
 	  <input type="password" class="form-control" name="pw">
 	</div>
 	<div class="form-group">
-		<button class = "btn btn outline-success col-12">로그인</button>
+		<button class = "btn btn-outline-success col-12">로그인</button>
+	</div>
+	<label class="form-group">
+		<input type="checkbox" name="useCookie" value="true">자동 로그인
+	</label>
+	<div>
+		<a href="<%=request.getContextPath()%>/find/pw">비밀번호 찾기</a>
 	</div>
 </form>
+
+
 <script type="text/javascript">
 	$(function(){
 		$('form').submit(function(){

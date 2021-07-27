@@ -1,8 +1,13 @@
 package kr.green.spring.service;
 
+import java.util.Date;
+
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +22,8 @@ public class MemberServiceImp implements MemberService {
     //암호화 설정해놓고 테스트 한번하기 
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private JavaMailSender mailSender;
     
 	@Override
 	public MemberVO signin(MemberVO user) {
@@ -35,6 +42,7 @@ public class MemberServiceImp implements MemberService {
 			return null;
 		}
 		if(passwordEncoder.matches(user.getPw(), dbUser.getPw())) {
+			dbUser.setUseCookie(user.getUseCookie());
 			return dbUser;
 		}
 		return null;
@@ -91,6 +99,70 @@ public class MemberServiceImp implements MemberService {
 		return memberDao.getMember(id)==null ? true : false;
 	}
 
+	@Override
+	public void keepLogin(String id, String session_id, Date session_limit) {
+		if(id == null || session_limit == null) {
+			return;
+		}
+		memberDao.keepLogin(id, session_id, session_limit);
+		
+	}
+
+	@Override
+	public MemberVO getMemberByCookie(String value) {
+		
+		return memberDao.getMemberByCookie(value);
+	}
+
+	@Override
+	public String findPw(String id) {
+		if(id == null)
+			return "FAIL";
+		MemberVO user = memberDao.getMember(id);
+		
+		if(user == null)
+			return "FAIL";
+		//비밀번호 8자리 랜덤 생성
+		String newPw = newRandomPw(8);
+		//비밀번호 변경 
+		user.setPw(newPw);
+		updateMember(user,user);
+		
+		//새 비밀번호를 메일로 전송 
+		 try {
+		        MimeMessage message = mailSender.createMimeMessage();
+		        MimeMessageHelper messageHelper 
+		            = new MimeMessageHelper(message, true, "UTF-8");
+
+		        messageHelper.setFrom("zzizzu0524@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함
+		        messageHelper.setTo(user.getEmail());     // 받는사람 이메일
+		        messageHelper.setSubject("새 비밀번호를 발급합니다."); // 메일제목은 생략이 가능하다
+		        messageHelper.setText("","발급된 새 비밀번호는 <h2>" + newPw + "</h2>입니다.");  // 메일 내용
+
+		        mailSender.send(message);
+		        return "SUCCESS";
+		    } catch(Exception e){
+		        System.out.println(e);
+		    }
+
+		
+		return "FAIL";
+	}
+	private String newRandomPw(int size) {
+		int min = 0, max = 61;
+		String str = "";
+		for(int i = 0; i < size ; i++ ) {
+			int r = (int)(Math.random()*(max-min +1)+ min);
+			if( r <10) {
+				str += r;
+			}else if(r < 36) {
+				str += (char)('a' + (r - 10));
+			}else if(r < 62) {
+				str += (char)('A' + (r - 36));
+			}
+			
+		}return str;
+	}
 }
     
   

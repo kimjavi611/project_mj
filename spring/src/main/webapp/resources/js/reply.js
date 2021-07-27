@@ -69,16 +69,17 @@ var replyService = (function(){
 		$.ajax({
 				type :'post',
 				url : contextPath + '/reply/mod',
-				data : JSON.stringify(data)
+				data : JSON.stringify(data),
 				contentType : "application/json; charset=utf-8",
 				success : function(res){
-					if(res == 'SUCCESS')
-						alert('댓글이 수정되었습니다.');
-						list(contextPath, data['rp_bd_num'], page, data['rp_me_id']);
-					else
-						alert('댓글을 수정할 수 없습니다.');
-				}	
-			});
+						if(res == 'SUCCESS'){
+							alert('게시글을 삭제했습니다.');
+							replyService.list(contextPath,data['rp_bd_num'], page, data['rp_me_id']);
+						}else{
+							alert('게시글을 삭제할 수 없습니다.');
+						}
+					}
+			})
 	}
 	
 	function deleteReply(contextPath, data, page){

@@ -1,8 +1,6 @@
 package kr.green.spring.vo;
 
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -13,6 +11,6 @@ public class MemberVO {
 	private String email;
 	private String name;
 	private String authority;
-	
+	private Boolean useCookie;
 	
 }

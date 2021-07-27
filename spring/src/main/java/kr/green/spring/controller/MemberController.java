@@ -1,7 +1,11 @@
 package kr.green.spring.controller;
 
 
+import java.util.Date;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.MemberVO;
@@ -42,6 +47,7 @@ public class MemberController {
 	}
 	@PostMapping(value = "/signin")
 	public ModelAndView signinPost(ModelAndView mv, MemberVO user) {
+		System.out.println(user);
 		MemberVO dbUser = memberService.signin(user);
 		
 		//회원정보 있으면 로그인 성공 없으면 실패
@@ -76,8 +82,18 @@ public class MemberController {
 		return mv;
 	}
 	@GetMapping(value = "/member/signout")
-	public ModelAndView signoutGet(ModelAndView mv, HttpServletRequest r) {
-		r.getSession().removeAttribute("user");
+	public ModelAndView signoutGet(ModelAndView mv, HttpServletRequest rq,
+			HttpServletResponse rp) {
+		MemberVO user = memberService.getMember(rq);
+		rq.getSession().removeAttribute("user");
+		rq.getSession().invalidate();
+		Cookie loginCookie = WebUtils.getCookie(rq, "loginCookie");
+		if(loginCookie != null) {
+			loginCookie.setPath("/");
+			loginCookie.setMaxAge(0);
+			rp.addCookie(loginCookie);
+			memberService.keepLogin(user.getId(), "none", new Date());
+		}
 		mv.setViewName("redirect:/");
 		return mv;
 	}
@@ -86,5 +102,17 @@ public class MemberController {
 	public String memberIdCheckGet(@PathVariable("id") String id) {
 		
 		return memberService.idCheck(id) ? "POSSIBLE" : "IMPOSSIBLE";
+	}
+	
+	@GetMapping(value="find/pw")
+	public ModelAndView findPw(ModelAndView mv) {
+		mv.setViewName("/template/member/findPw");
+		return mv;
+	}
+	@ResponseBody
+	@GetMapping("/find/pw/{id}")
+	public String findPwIdGet(@PathVariable("id") String id) {
+		//System.out.println(id);
+		return memberService.findPw(id);
 	}
 }

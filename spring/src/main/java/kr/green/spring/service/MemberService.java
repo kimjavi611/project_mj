@@ -1,5 +1,7 @@
 package kr.green.spring.service;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import kr.green.spring.vo.MemberVO;
@@ -15,6 +17,12 @@ public interface MemberService {
 	MemberVO updateMember(MemberVO user, MemberVO sUser);
 
 	boolean idCheck(String id);
+
+	void keepLogin(String id, String session_id, Date session_limit);
+
+	MemberVO getMemberByCookie(String value);
+
+	String findPw(String id);
 	
 
 	

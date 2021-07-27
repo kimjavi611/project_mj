@@ -22,6 +22,9 @@
       <a class="nav-link" href="<%=request.getContextPath() %>/signup">회원가입</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="<%=request.getContextPath() %>/member/signout">로그아웃</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="<%=request.getContextPath() %>/member/mypage">마이페이지</a>
     </li>
   </ul>
