@@ -22,7 +22,7 @@
 	  <label for="usr">아이디:</label>	
 		  <input type="text" class="form-control" name="id">
 	</div>
-	<button type="button" id="dupCheck" class="col-12 btn btn-outline-success">아이디 중복 확인</button>
+	<button type="button"  class="id-dup-btn col-12 btn btn-outline-success">아이디 중복 확인</button>
 
 	<div class="form-group">
 	  <label for="pwd">비밀번호:</label>
@@ -109,6 +109,17 @@ $(function(){
             }
         }
     });
+    $('.id-dup-btn').click(function(){
+		var id = $('[name=id]').val();
+		$.ajax({
+			type : 'post',
+			usrl : '<%=request.getContextPath()%>/id/check'
+			data : {id : id},
+			success : function(res){
+				console.log(res)
+			}
+		})
+    })
 })
 $.validator.addMethod(
     "regex",
@@ -118,6 +129,13 @@ $.validator.addMethod(
     },
     "Please check your input."
 );
+var memberService = (function(){
+	function idCheck()
+	return {
+		name : 'memberService',
+		idCheck : idCheck;
+	} 
+})
 </script>
 </body>
 </html>

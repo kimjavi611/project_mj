@@ -35,7 +35,18 @@
 	        </beans:list>
 	    </beans:property>
 	</beans:bean>
-
+	<!-- 인터셉터 설정 -->
+	<beans:bean id="LoginInterceptor" 
+		class="kr.green.study.interceptor.LoginInterceptor">
+	</beans:bean>
+	
+	<interceptors>
+		<interceptor>
+		<!-- 언제 동작해야하는지 알려줌  -->
+			<mapping path="/member/signin"/>
+			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>

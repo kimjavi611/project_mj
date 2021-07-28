@@ -19,6 +19,7 @@ public class MemberServiceImp implements MemberService{
 	public boolean signup(MemberVO user) {
 		if(user == null)
 			return false;
+		//jsp에서 유효성 검사를 하지만 이중으로 걸러주기 위해 서버에서 한번 더 해줌
 		//아이디 유효성 검사
 		String idRegex = "^[a-z0-9_-]{5,20}$";
 		//Pattern.matches() 문자열이랑 정규표현식 비교할때 사용하는 메소드
@@ -45,4 +46,20 @@ public class MemberServiceImp implements MemberService{
 		memberDao.insertMember(user);
 		return false;
 	}
+	@Override
+	public MemberVO signin(MemberVO user) {
+		if(user == null || user.getId() == null)
+			return null;
+		MemberVO dbUser = memberDao.selectUser(user.getId());
+		//잘못된 ID == 회원이 아닌
+		if(dbUser == null)
+			return null;
+		//잘못된 비번 
+		if(user.getPw() == null || !passwordEncoder.matches(user.getPw(), dbUser.getPw()))
+			return null;
+		//자동로그인 기능을 위해
+		dbUser.setUseCookie(user.getUseCookie());
+		return dbUser;
+	}
+	
 }
