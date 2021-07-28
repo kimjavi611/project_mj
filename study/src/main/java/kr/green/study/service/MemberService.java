@@ -8,6 +8,8 @@ public interface MemberService {
 
 	MemberVO signin(MemberVO user);
 
+	Object getMember(String id);
+
 	
 
 }

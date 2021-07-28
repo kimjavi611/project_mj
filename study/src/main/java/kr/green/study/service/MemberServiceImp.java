@@ -61,5 +61,11 @@ public class MemberServiceImp implements MemberService{
 		dbUser.setUseCookie(user.getUseCookie());
 		return dbUser;
 	}
+	@Override
+	public Object getMember(String id) {
+		if(id == null)
+			return null;
+		return memberDao.selectUser(id);
+	}
 	
 }

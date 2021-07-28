@@ -111,14 +111,11 @@ $(function(){
     });
     $('.id-dup-btn').click(function(){
 		var id = $('[name=id]').val();
-		$.ajax({
-			type : 'post',
-			usrl : '<%=request.getContextPath()%>/id/check'
-			data : {id : id},
-			success : function(res){
-				console.log(res)
-			}
-		})
+		var res = memberService.idCheck(contextPath, id);
+		if(res)
+			alert('사용가능한 아이디입니다.')
+		else
+			alert('이미 가입된 아이디입니다.')	
     })
 })
 $.validator.addMethod(
@@ -129,13 +126,30 @@ $.validator.addMethod(
     },
     "Please check your input."
 );
+var contextPath = '<%=request.getContextPath()%>';
 var memberService = (function(){
-	function idCheck()
+	function idCheck(contextPath, id){
+		var flag = false;
+		$.ajax({
+			async : false,
+			type : 'post',
+			url : contextPath + '/id/check',
+			data : {id : id},
+			success : function(res){
+				if(res == 'OK'){
+					flag = true;
+				}else{
+					flag = false;
+				}
+			}
+		})
+		return flag;
+	}
 	return {
 		name : 'memberService',
-		idCheck : idCheck;
+		idCheck : idCheck
 	} 
-})
+})();
 </script>
 </body>
 </html>
