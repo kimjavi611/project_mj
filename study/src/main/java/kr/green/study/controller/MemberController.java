@@ -1,5 +1,7 @@
 package kr.green.study.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +55,12 @@ public class MemberController {
 	@PostMapping("/id/check")
 	public String idCheck(String id) {
 		return memberService.getMember(id) != null ? "FAIL" : "OK";
+	}
+	@GetMapping("/member/signout")
+	public ModelAndView memberSignout(ModelAndView mv, HttpServletRequest request ) {
+		memberService.signout(request);
+		mv.setViewName("redirect:/");
+		return mv;
 	}
 	
 }
