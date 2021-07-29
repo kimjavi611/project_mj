@@ -44,7 +44,17 @@
 	<beans:bean id="autoLoginInterceptor" 
 		class="kr.green.study.interceptor.AutoLoginInterceptor">
 	</beans:bean>
-	
+	<!-- 비회원만 접근할 수 있게 하는 인터셉터 -->
+	<beans:bean id="guestInterceptor" 
+		class="kr.green.study.interceptor.GuestInterceptor">
+	</beans:bean>
+	<!-- 회원만 접근할 수 있게하는 인터셉터 -->
+	<beans:bean id="memberInterceptor" 
+		class="kr.green.study.interceptor.MemberInterceptor">
+	</beans:bean>
+	<beans:bean id="adminInterceptor" 
+		class="kr.green.study.interceptor.AdminInterceptor">
+	</beans:bean>
 	<interceptors>
 		<interceptor>
 		<!-- 언제 동작해야하는지 알려줌  -->
@@ -55,6 +65,19 @@
 		<!-- 언제 동작해야하는지 알려줌  -->
 			<mapping path="/**/"/>
 			<beans:ref bean="autoLoginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/member/signup/"/>
+			<mapping path="/member/signin/"/>
+			<beans:ref bean="guestInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/abcd/*"/>
+			<beans:ref bean="memberInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/admin/**/"/>
+			<beans:ref bean="adminInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

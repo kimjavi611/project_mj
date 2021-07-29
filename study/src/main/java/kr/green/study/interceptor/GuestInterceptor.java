@@ -10,7 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import kr.green.study.service.MemberService;
 import kr.green.study.vo.MemberVO;
 
-public class MemberInterceptor extends HandlerInterceptorAdapter {
+public class GuestInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	MemberService memberService;
 	@Override
@@ -18,8 +18,8 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		if(user == null) {
-			response.sendRedirect(request.getContextPath()+"/member/signin");
+		if(user != null) {
+			response.sendRedirect(request.getContextPath()+"/");
 			return false;
 		}
 		return true;
