@@ -19,13 +19,18 @@
 	
 		  <!-- Navbar links -->
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-		<c:if test="${user == null}">
 		 	<ul class="navbar-nav">
+		<c:if test="${user == null}">
 				<li class="nav-item">
 				 	<a class="nav-link" href="<%=request.getContextPath()%>/member/signup">회원가입</a>
 				</li>
 				<li class="nav-item">
 				 	<a class="nav-link" href="<%=request.getContextPath()%>/member/signin">로그인</a>
+					</li>
+				</c:if>
+				<c:if test="${user != null && user.authority != 'USER' }">
+					<li class="nav-item">
+					 	<a class="nav-link" href="<%=request.getContextPath()%>/admin/user/list">회원관리</a>
 					</li>
 				</c:if>
 				<c:if test="${user != null}">
