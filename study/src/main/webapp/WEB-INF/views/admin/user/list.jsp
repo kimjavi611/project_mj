@@ -89,7 +89,8 @@
 			var obj =  $(this).parent().siblings().eq(1);
 			$.ajax({
 				type : 'post',
-				url : contextPath + 'admin/user/mod',
+				url : contextPath + '/admin/user/mod',
+				data : JSON.stringify(data),
 				contentType : "application/json; charset=UTF-8",
 				success : function(res){
 					//console.log(res)
