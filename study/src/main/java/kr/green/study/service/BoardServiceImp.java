@@ -32,7 +32,7 @@ public class BoardServiceImp implements BoardService{
 		if(board == null || user == null)
 			return;
 		board.setWriter(user.getId());
-		//잘못접근하는걸 방지하기 위해서 0 으로 만들어줌 => 답변 관리자만 작성할 수 있는데 일반사용자가 임의로 1로 만드는것을 막아주기 위해서
+		//�옒紐살젒洹쇳븯�뒗嫄� 諛⑹��븯湲� �쐞�빐�꽌 0 �쑝濡� 留뚮뱾�뼱以� => �떟蹂� 愿�由ъ옄留� �옉�꽦�븷 �닔 �엳�뒗�뜲 �씪諛섏궗�슜�옄媛� �엫�쓽濡� 1濡� 留뚮뱶�뒗寃껋쓣 留됱븘二쇨린 �쐞�빐�꽌
 		board.setGroupOrd(0);
 		boardDao.insertBoard(board);
 		
@@ -49,5 +49,30 @@ public class BoardServiceImp implements BoardService{
 			return;
 		board.setTitle(dbBoard.getTitle());
 		boardDao.insertBoard(board);
+	}
+
+	@Override
+	public void updateBoard(BoardVO board, MemberVO user) {
+		if(user == null || board == null)
+			return;
+		BoardVO dbBoard = boardDao.selectBoard(board.getNum());
+		if(dbBoard == null || !user.getId().equals(dbBoard.getWriter()))
+			return;
+		dbBoard.setTitle(board.getTitle());
+		dbBoard.setContents(board.getContents());
+		boardDao.updateBoard(dbBoard);
+		
+	}
+
+	@Override
+	public void deleteBoard(Integer num, MemberVO user) {
+		if(num == null || user == null)
+			return;
+		BoardVO board = boardDao.selectBoard(num);
+		if(board == null || !board.getWriter().equals(user.getId()))
+			return;
+		boardDao.deleteBoard(num);
+		boardDao.deleteReplyBoard(num);
+		
 	}
 }

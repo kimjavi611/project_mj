@@ -48,7 +48,7 @@ public class BoardController {
 	public ModelAndView registerPost(ModelAndView mv, BoardVO board, MultipartFile [] fileList,
 			HttpServletRequest request) {
 		//System.out.println(board);
-		//파일 이름 제대로 찍히는지 반복문으로 확인 
+		//�뙆�씪 �씠由� �젣��濡� 李랁엳�뒗吏� 諛섎났臾몄쑝濡� �솗�씤 
 		/*for(MultipartFile tmp : fileList) {
 			if(tmp != null)
 				System.out.println(tmp.getOriginalFilename());
@@ -72,4 +72,30 @@ public class BoardController {
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
+	@GetMapping("/modify")
+	public ModelAndView boardModifyGet(ModelAndView mv, Integer num) {
+		BoardVO board = boardService.getBoard(num);
+		mv.addObject("board", board); 
+		mv.setViewName("/template/board/modify");
+		return mv;
+	}
+	@PostMapping("/modify")
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board,
+			HttpServletRequest request) {
+		//작성내용이 컨트롤러로 넘어오는지 확인 
+		//System.out.println(board);
+		MemberVO user = memberService.getMemberByRequest(request);
+		boardService.updateBoard(board,user);
+		mv.addObject("num", board.getNum());
+		mv.setViewName("redirect:/board/detail");
+		return mv;
+	}
+	@GetMapping("/delete")
+	public ModelAndView deleteGet(ModelAndView mv, Integer num, HttpServletRequest request) {
+		MemberVO user = memberService.getMemberByRequest(request);
+		boardService.deleteBoard(num, user);
+		mv.setViewName("/template/board/list");
+		return mv;
+	}
+	
 }

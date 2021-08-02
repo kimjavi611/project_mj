@@ -11,7 +11,13 @@ public interface BoardDAO {
 	ArrayList<BoardVO> selectBoardList();
 
 	BoardVO selectBoard(Integer num);
-//매퍼에서 if를 쓰기위해서 1개여도 param을 붙여줌
+//留ㅽ띁�뿉�꽌 if瑜� �벐湲곗쐞�빐�꽌 1媛쒖뿬�룄 param�쓣 遺숈뿬以�
 	void insertBoard(@Param("board")BoardVO board);
+
+	void updateBoard(BoardVO dbBoard);
+
+	void deleteBoard(Integer num);
+
+	void deleteReplyBoard(Integer num);
 
 }
