@@ -38,10 +38,10 @@ var replyService = (function(){
 						'</div>';
 						if(reply['rp_me_id'] == id){
 							str += 
-								'<div>' +
-									'<button type="button" class="btn btn-outline-info mod-btn" data="'+[rp_num]+'">수정</button>'+
-									'<button type="button" class="btn btn-outline-info del-btn" data="'+[rp_num]+'">삭제</button>'+
-								'</div>';
+								'<div>' + 
+									'<button type="button" class="btn btn-outline-danger mod-btn" data="'+ reply['rp_num'] +'">수정</button>' +
+									'<button type="button" class="btn btn-outline-danger del-btn" data="'+ reply['rp_num'] +'">삭제</button>' +
+								'</div>'; 
 						}
 				}
 				str += '<hr style="background:red;"/>';
@@ -73,10 +73,10 @@ var replyService = (function(){
 				contentType : "application/json; charset=utf-8",
 				success : function(res){
 						if(res == 'SUCCESS'){
-							alert('게시글을 삭제했습니다.');
-							replyService.list(contextPath,data['rp_bd_num'], page, data['rp_me_id']);
+							alert('게시글이 수정되었습니다.');
+							list(contextPath,data['rp_bd_num'], page, data['rp_me_id']);
 						}else{
-							alert('게시글을 삭제할 수 없습니다.');
+							alert('댓글을 수정할 수 없습니다.');
 						}
 					}
 			})
@@ -92,7 +92,7 @@ var replyService = (function(){
 				//console.log(res);
 				if(res == "SUCCESS"){
 					alert('게시글을 삭제했습니다.')
-					replyService.list(contextPath, data['rp_num'], page, data['rp_me_id']);
+					replyService.list(contextPath, data['rp_bd_num'], page, data['rp_me_id']);
 				}else{
 					alert('게시글을 삭제할 수 없습니다.');
 				}
