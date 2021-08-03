@@ -114,3 +114,10 @@ target/
 *.setup
 *.ini
 .metadata/.plugins/org.springframework.ide.eclipse.beans.core.metadata/properties/.state
+.metadata/.plugins/org.eclipse.m2e.core/nexus/05b0fe8524860bd73cbb07ef30fb34cc/segments_5
+.metadata/.plugins/org.eclipse.m2e.core/nexus/0f013510fbaab9039f1725aea07d5a4e/segments_5
+.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments_b
+.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments_c
+.metadata/.plugins/org.eclipse.m2e.core/nexus/05b0fe8524860bd73cbb07ef30fb34cc/segments_6
+.metadata/.plugins/org.eclipse.m2e.core/nexus/0f013510fbaab9039f1725aea07d5a4e/segments_6
+.metadata/.plugins/org.eclipse.m2e.core/nexus/830bc118332e77292949ed1e6d2fabe0/segments_d

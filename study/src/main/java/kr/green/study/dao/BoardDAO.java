@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.green.study.pagination.Criteria;
 import kr.green.study.vo.BoardVO;
+import kr.green.study.vo.FileVO;
 
 public interface BoardDAO {
 
-	ArrayList<BoardVO> selectBoardList();
+	ArrayList<BoardVO> selectBoardList(Criteria cri);
 
 	BoardVO selectBoard(Integer num);
 //留ㅽ띁�뿉�꽌 if瑜� �벐湲곗쐞�빐�꽌 1媛쒖뿬�룄 param�쓣 遺숈뿬以�
@@ -20,4 +22,19 @@ public interface BoardDAO {
 
 	void deleteReplyBoard(Integer num);
 
+	void insertFile(FileVO file);
+
+	void updateViews(Integer num);
+
+	ArrayList<FileVO> selectFileList(Integer num);
+
+	void deleteFile(int num);
+	
+	ArrayList<Integer> selectFileNumList(int num);
+
+	FileVO selectFile(Integer tmp);
+	
+	int getTotalCount(Criteria cri);
+	
+	FileVO selectThumnail(int num);
 }

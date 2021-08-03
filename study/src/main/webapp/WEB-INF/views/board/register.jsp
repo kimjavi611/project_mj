@@ -9,10 +9,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
-	<form class="container" method="post" action="<%=request.getContextPath()%>/board/register" enctype="multipart/form-data">
+	<form class="container" method="post" enctype="multipart/form-data">
 		<h1>게시물 등록</h1>
 		<div class="form-group">
 			<label>제목</label>
@@ -29,7 +30,7 @@
 		</div>
 		
 		<button class="btn btn-primary">등록</button>
-		<a href="<%=request.getContextPath()%>/board/list"><button type=button class="btn btn-success">목록</button></a>
+		<a href="<%=request.getContextPath()%>/board${type}/list"><button type=button class="btn btn-success">목록</button></a>
 	</form>
 	
 	<script type="text/javascript">
@@ -39,6 +40,11 @@
 			})
 				
 		})
+		$('#summernote').summernote({
+	        placeholder: 'Hello Bootstrap 4',
+	        tabsize: 2,
+        height: 100
+      });
 	</script>
 
 </body>
