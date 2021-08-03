@@ -101,47 +101,15 @@ var contextPath = '<%=request.getContextPath()%>'
  	 	 	alert('댓글 등록에 실패하였습니다')
 	}
 	
-	function listOk(){
+	function listOk(res){
 		var list = res.list;
+		var str = '';
 		for(i = 0; i <list.lenth; i++){
 			str += list[i].rp_me_id + ' : ' + list[i].rp_content + '<br>';
 		}
 		$('.reply-list').html(str);
 	}
 
-	
-	var replyService = (function(){
-		function add(contextPath, data, callback, callback2){
-			$.ajax({
-				type:'post'
-				url : contextPath + '/reply/add',
-				data: JSON.stringify(data),
-				contentType: "application/json; charset=UTF-8",
-				success : function(res){
-					if(callback){
-						callback(res);
-						list(contextPath,data.rp_bd_num,callback2)
-					}
-				}
-			})
-		}
-		function list(contextPath, data, callback){
-			$.ajax({
-				type: 'get',
-				url : contextPath + 'reply/lst/'+data.page+'/' + data.rp_bd_num,
-				dataType : "json",
-				success : function(res){
-				if(callback)
-					callback(res);
-				}
-			})
-		}
-		return{
-			name: '댓글 서비스',
-			add: add,
-			list: list
-		};
-	})();
 </script>
 </body>
 </html>

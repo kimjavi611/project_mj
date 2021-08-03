@@ -21,6 +21,11 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		//user는 로그인인터셉터의 session.setAttribute("user", user);앞 user랑 맞춘다
 		MemberVO user = (MemberVO)session.getAttribute("user");
+		/*Object obj = session.getAttribute("user");
+		MemberVO user = null;
+		if(obj instanceof MemberVO)
+			user = (MemberVO) obj;
+		*/
 		//세션에 회원 정보가 있으면 자동 로그인 기능을 활용할 필요가 없고, 없으면 자동 로그인을 해야하는지 확인 
 		if(user == null) {
 			//loginCookie 정보를 가져와서 있으면 자동 로그인을 시도하고 없으면 안한다

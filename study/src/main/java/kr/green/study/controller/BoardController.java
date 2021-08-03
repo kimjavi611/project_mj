@@ -24,7 +24,7 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/board/image")
+@RequestMapping("/board")
 public class BoardController {
 	private BoardService boardService;
 	private MemberService memberService;
@@ -37,34 +37,25 @@ public class BoardController {
 		mv.addObject("pm", pm);
 		//System.out.println(list);
 		mv.addObject("list", list);
-		mv.setViewName("/template/board/image/list");
+		mv.setViewName("/template/board/list");
 		return mv;
 	}
 	@GetMapping("/detail")
 	public ModelAndView detailGet(ModelAndView mv, Integer num) {
+		boardService.updateViews(num);
+		BoardVO board = boardService.getBoard(num);
 		
-		mv.setViewName("/template/board/image/list");
+		ArrayList<FileVO> fList = boardService.getFileList(num);
+		
+		mv.addObject("board", board);
+		mv.addObject("fList", fList);
+		mv.setViewName("/template/board/detail");
 		return mv;
 	}
-	@PostMapping("/detail")
-	public ModelAndView detailPost(ModelAndView mv, BoardVO tmpBoard) {
-		if(boardService.checkBoardPw(tmpBoard)) {
-			boardService.updateViews(tmpBoard.getNum());
-			//System.out.println(num);
-			BoardVO board = boardService.getBoard(tmpBoard.getNum());
-			
-			ArrayList<FileVO> fList = boardService.getFileList(tmpBoard.getNum());
-			mv.addObject("fList", fList);
-			mv.addObject("board", board);
-			mv.setViewName("/template/board/image/detail");
-		}else {
-			mv.setViewName("redirect:/board/image/list");
-		}
-		return mv;
-	}
+	
 	@GetMapping("/register")
 	public ModelAndView registerGet(ModelAndView mv) {
-		mv.setViewName("/template/board/image/register");
+		mv.setViewName("/template/board/register");
 		return mv;
 	}
 	@PostMapping("/register")
@@ -79,22 +70,22 @@ public class BoardController {
 		MemberVO user = memberService.getMemberByRequest(request);
 		board.setType("NORMAL");
 		boardService.insertBoard(board, fileList, user);
-		mv.setViewName("redirect:/board/image/list");
+		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
-	@GetMapping("/reply/image/register")
+	@GetMapping("/reply/register")
 	public ModelAndView replyRegisterGet(ModelAndView mv, Integer oriNo) {
 		mv.addObject("oriNo", oriNo);
-		mv.setViewName("/template/board/image/replyregister");
+		mv.setViewName("/template/board/replyregister");
 		return mv;
 	}
-	@PostMapping("/reply/image/register")
+	@PostMapping("/reply/register")
 	public ModelAndView replyRegisterPost(ModelAndView mv, BoardVO board,
-			HttpServletRequest request, MultipartFile[] fileList) throws Exception {
+			HttpServletRequest request) {
 		MemberVO user = memberService.getMemberByRequest(request);
 		board.setType("NORMAL");
 		boardService.insertReplyBoard(board,user);
-		mv.setViewName("redirect:/board/image/list");
+		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
 	@GetMapping("/modify")
@@ -103,25 +94,25 @@ public class BoardController {
 		ArrayList<FileVO> fList = boardService.getFileList(num);
 		mv.addObject("board", board); 
 		mv.addObject("fList",fList);
-		mv.setViewName("/template/board/image/modify");
+		mv.setViewName("/template/board/modify");
 		return mv;
 	}
 	@PostMapping("/modify")
-	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board,
+	public ModelAndView modifyPost(ModelAndView mv, BoardVO board,
 			HttpServletRequest request, MultipartFile[] fileList, Integer [] fileNumList)  throws Exception {
 		//작성내용이 컨트롤러로 넘어오는지 확인 
 		//System.out.println(board);
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.updateBoard(board,user,fileList, fileNumList);
 		mv.addObject("num", board.getNum());
-		mv.setViewName("redirect:/board/image/detail");
+		mv.setViewName("redirect:/board/detail");
 		return mv;
 	}
 	@GetMapping("/delete")
 	public ModelAndView deleteGet(ModelAndView mv, Integer num, HttpServletRequest request) {
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.deleteBoard(num, user);
-		mv.setViewName("/template/board/image/list");
+		mv.setViewName("/template/board/list");
 		return mv;
 	}
 	@ResponseBody

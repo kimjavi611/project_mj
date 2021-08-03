@@ -16,11 +16,11 @@
 		<h1>게시판</h1>
 		<div class="form-group">
 			<label>내용</label>
-			<textarea class="form-control" id="summernote" name="contents">${board.contents}</textarea>
+			<textarea class="form-control" id="summernote" name="contents" rows="10">${board.contents}</textarea>
 		</div>
 		<input type="hidden" name="oriNo" value="${oriNo}">
-		<button class="btn btn-primary">등록</button>
-		<a href="<%=request.getContextPath()%>/board/list"><button type=button class="btn btn-success">목록</button></a>
+		<button class="btn btn-outline-primary">등록</button>
+		<a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-success">목록</button></a>
 	</form>
 	<script type="text/javascript">
 		$(function(){

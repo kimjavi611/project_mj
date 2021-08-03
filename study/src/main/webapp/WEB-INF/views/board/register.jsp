@@ -21,7 +21,7 @@
 		</div>
 		<div class="form-group">
 			<label>내용</label>
-			<textarea class="form-control" id="summernote" name="contents">${board.contents}</textarea>
+			<textarea class="form-control" id="summernote" name="contents" rows="10">${board.contents}</textarea>
 		</div>
 		<div class="form-group">
 			<input type="file" name="fileList" class="form-control">
@@ -30,7 +30,7 @@
 		</div>
 		
 		<button class="btn btn-primary">등록</button>
-		<a href="<%=request.getContextPath()%>/board${type}/list"><button type=button class="btn btn-success">목록</button></a>
+		<a href="<%=request.getContextPath()%>/board${type}/list"><button type=button class="btn btn-outline-success">목록</button></a>
 	</form>
 	
 	<script type="text/javascript">
@@ -43,7 +43,7 @@
 		$('#summernote').summernote({
 	        placeholder: 'Hello Bootstrap 4',
 	        tabsize: 2,
-        height: 100
+        height: 400
       });
 	</script>
 
